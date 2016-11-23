@@ -1,0 +1,69 @@
+.content_contato{
+
+	p{
+		font-size: 18px;
+		padding: 0;
+	}
+
+	.sobre_pessoas{
+		padding: 0;
+
+		li{
+
+			&:first-child{
+				padding-left: 0;
+			}
+
+			&:last-child{
+				padding-right: 0;
+			}
+
+			p{
+				padding: 5px 0;
+				background-color: #293666;
+				color: #fff;
+				font-size: 30px;
+				text-align: center;
+				text-transform: uppercase;
+
+			}
+		}
+
+	}
+
+	.sobre_qualidade{
+		padding: 0;
+
+		li{
+			background-color: #d8a52b;
+			padding: 0 30px;
+			width: 178px;
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			min-height: 350px;
+			margin-right: 4px;
+			border-radius: 5px;
+
+			&:last-child{
+				margin-right: 0;
+			}
+
+			h3{
+				color: #fff;
+				font-size: 19px;
+				text-transform: uppercase;
+				text-align: center;
+			}
+
+			p{
+				font-size: 14px;
+				color: #fff;
+				text-align: center;
+			}
+
+		}
+
+	}
+
+}

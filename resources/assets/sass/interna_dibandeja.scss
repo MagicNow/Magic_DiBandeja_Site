@@ -1,0 +1,30 @@
+#interna_dibandeja{
+	position: relative;
+
+
+	&.content{
+
+		.container{
+			padding: 0 30px;
+		}
+
+
+		.content_infos{
+			position: relative;
+			margin-top: 40px;
+
+			.container{
+				padding: 0;
+			
+
+				.infos_right{
+					top: -8px;
+				}
+
+			}
+
+		}
+
+	}
+
+}
