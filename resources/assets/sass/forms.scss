@@ -1,0 +1,73 @@
+.content_form{
+	position: relative;
+	margin-bottom: 145px;
+
+	.form_cliente{
+
+		label{
+			width: 100%;
+		}
+		input{
+			width: 100%;
+			border-left: 3px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 3px solid #cccccc;
+			border-bottom: 1px solid #cccccc;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			height: 40px;
+			background-color: #fff;
+			padding: 5px;
+
+			&.radio{
+				display: inline-block;
+			    width: 15%;
+			    line-height: 11px;
+			    height: 15px;
+			    margin: 0 10px;
+			}
+		}
+		select{
+			width: 100%;
+			border-left: 3px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 3px solid #cccccc;
+			border-bottom: 1px solid #cccccc;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			height: 40px;
+			background-color: #fff;
+		}
+
+		textarea{
+			width: 100%;
+			height: 265px;
+			border-left: 3px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 3px solid #cccccc;
+			border-bottom: 1px solid #cccccc;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+
+		#enviar{
+			float: right;
+			width: 120px;
+			height: 40px;
+			background-color: #d8a52b;
+			color: #fff;
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 14px;
+			border: none;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+
+	}
+
+}

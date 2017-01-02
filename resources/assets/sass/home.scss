@@ -237,6 +237,7 @@ footer{
 		width: 980px;
 		padding: 20px 0 0 0;
 		border-top: 1px dashed #999999;
+		text-align: center;
 	}
 
 	h3{
@@ -349,7 +350,7 @@ footer{
 
 				li{
 
-					&:nth-child(4){
+					&:nth-child(6){
 						
 						&:after{
 							display: none;

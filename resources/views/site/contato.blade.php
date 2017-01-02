@@ -4,8 +4,8 @@
 
 
 <div class="header_interna">
-	<h2>
-		<img src="assets/images/bg_contato.png">
+	<h2 class="title_contato">
+		{{-- <img src="assets/images/bg_contato.png"> --}}
 	</h2>
 </div>	
 

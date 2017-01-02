@@ -1,0 +1,57 @@
+.content_form {
+  position: relative;
+  margin-bottom: 145px; }
+  .content_form .form_cliente label {
+    width: 100%; }
+  .content_form .form_cliente input {
+    width: 100%;
+    border-left: 3px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-top: 3px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    height: 40px;
+    background-color: #fff;
+    padding: 5px; }
+    .content_form .form_cliente input.radio {
+      display: inline-block;
+      width: 15%;
+      line-height: 11px;
+      height: 15px;
+      margin: 0 10px; }
+  .content_form .form_cliente select {
+    width: 100%;
+    border-left: 3px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-top: 3px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    height: 40px;
+    background-color: #fff; }
+  .content_form .form_cliente textarea {
+    width: 100%;
+    height: 265px;
+    border-left: 3px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-top: 3px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }
+  .content_form .form_cliente #enviar {
+    float: right;
+    width: 120px;
+    height: 40px;
+    background-color: #d8a52b;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px; }

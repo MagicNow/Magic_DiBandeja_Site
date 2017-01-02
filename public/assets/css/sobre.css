@@ -2,6 +2,9 @@
   font-size: 18px;
   padding: 0; }
 
+.content_contato .sobre p {
+  font-size: 20px; }
+
 .content_contato .sobre_pessoas {
   padding: 0; }
   .content_contato .sobre_pessoas li:first-child {

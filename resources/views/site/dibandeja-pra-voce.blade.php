@@ -4,8 +4,8 @@
 
 
 <div class="header_interna">
-	<h2>
-		<img src="assets/images/bg_dibandeja_interna.png">
+	<h2 class="title_dibandeja">
+		{{-- <img src="assets/images/bg_dibandeja_interna.png"> --}}
 	</h2>
 </div>	
 
@@ -22,7 +22,7 @@
 					<a href="#">Home / </a>
 				</li>
 				<li>
-					<a href="#">Dibandeja pra você</a>
+					<a href="#">Dibandeja para você</a>
 				</li>
 			</ul>
 		</div> 
@@ -34,12 +34,12 @@
 			 	
 				<div class="infos_left col-sm-12 col-md-6 col-lg-6">
 					<img src="assets/images/interna_01.png">
-					<a href="#" class="bt_red_solicite"></a>
+					<a href="{{ route('cliente.pf') }}" class="bt_red_solicite"></a>
 				</div>
 
 				<div class="infos_right col-sm-12 col-md-6 col-lg-6">
 					<img src="assets/images/interna_02.png">
-					<a href="#" class="bt_red_veja"></a>
+					<a href="{{ route('cliente.pj') }}" class="bt_red_veja"></a>
 				</div>
 
 			 </div>

@@ -36,8 +36,19 @@
                         <a href="{{ route('sobre') }}">Sobre o DiBandeja</a>
                     </li>
                     <li>
-                        <a href="{{ route('contato') }}">Contato</a>
+                        <a href="{{ route('cliente.pf') }}">Faça um pedido para sua casa</a>
                     </li>
+                    <li>
+                        <a href="{{ route('cliente.pj') }}">Faça um pedido para o seu negócio</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('fornecedor') }}">Seja um Fornecedor</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('parceiro') }}">Seja um Parceiro / Colaborador</a>
+                    </li>
+                    
+                    
                     <!--<li>
                         <a href="#">Novo Cadastro</a>
                     </li>-->

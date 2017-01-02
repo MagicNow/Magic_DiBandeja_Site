@@ -12,9 +12,22 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-Route::get('/dibandeja-pra-voce', ['as' => 'dibandeja-pra-voce', 'uses' => 'HomeController@dibandeja_para_voce']);
+Route::get('/dibandeja-para-voce', ['as' => 'dibandeja-pra-voce', 'uses' => 'HomeController@dibandeja_para_voce']);
 Route::get('/sobre', ['as' => 'sobre', 'uses' => 'HomeController@sobre']);
 Route::get('/contato', ['as' => 'contato', 'uses' => 'HomeController@contato']);
+Route::get('/cliente-pf', ['as' => 'cliente.pf', 'uses' => 'HomeController@clientePF']);
+Route::get('/cliente-pj', ['as' => 'cliente.pj', 'uses' => 'HomeController@clientePJ']);
+Route::get('/fornecedor', ['as' => 'fornecedor', 'uses' => 'HomeController@fornecedor']);
+Route::get('/parceiro', ['as' => 'parceiro', 'uses' => 'HomeController@parceiro']);
+Route::get('/participe', ['as' => 'participe', 'uses' => 'HomeController@participe']);
+
+
+Route::post('/contato/store', ['as' => 'contato.store', 'uses' => 'HomeController@storeContato']);
+Route::post('/cliente-pf/store', ['as' => 'cliente.pf.store', 'uses' => 'HomeController@storeClientePF']);
+Route::post('/cliente-pj/store', ['as' => 'cliente.pj.store', 'uses' => 'HomeController@storeClientePJ']);
+Route::post('/fornecedor/store', ['as' => 'fornecedor.store', 'uses' => 'HomeController@storeFornecedor']);
+Route::post('/parceiro/store', ['as' => 'parceiro.store', 'uses' => 'HomeController@storeParceiro']);
+
 
 Route::group(['prefix' => 'admin'], function() {
 		Route::get('/', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);

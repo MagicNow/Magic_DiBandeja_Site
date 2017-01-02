@@ -16,6 +16,18 @@ body {
       .breadcrumb ul li a {
         color: #6f6f6f; }
 
+.header_interna .title_sobre {
+  height: 183px;
+  background: url("../images/bg_sobre.png") no-repeat;
+  width: 100%;
+  background-position: top center; }
+
+.header_interna .title_dibandeja {
+  height: 183px;
+  background: url("../images/bg_dibandeja_interna.png") no-repeat;
+  width: 100%;
+  background-position: top center; }
+
 .bt_red_veja {
   background: url("../images/bt_red_veja.png") no-repeat;
   width: 210px;
