@@ -41,6 +41,20 @@
 
 			Tem novas idéias? Mande um email para <a href="mailto:ola@dibandeja.com.br"> ola@dibandeja.com.br</a> e nós adoraremos recebê-las!</p>
 
+			@if(count($errors) > 0)
+		        <div class="alert alert-danger">
+		            @foreach ($errors->all() as $message)
+		                {!! $message!!}<br />
+		            @endforeach
+		        </div>
+		        
+		    @endif
+		    @if (session('success'))
+		        <div class="alert alert-success">
+		            {{ session('success') }}
+		        </div>
+		    @endif
+
 			<form class="form_cliente col-sm-8 col-md-9 col-lg-9" action="{{route('parceiro.store')}}" method="post">
 				<fieldset><br>
 					<label>PARCEIRO
@@ -52,72 +66,48 @@
 					<label>
 						
 					<label>
-						<input type="text" placeholder="NOME COMPLETO" name="nome">
+						<input type="text" placeholder="NOME COMPLETO" name="nome" value="{{ old('nome') }}">
 					</label>		
 					<label>
-						<input type="text" placeholder="APELIDO" name="apelido">
+						<input type="text" placeholder="APELIDO" name="apelido" value="{{ old('apelido') }}">
 					</label>	
 					<label>
-						<input type="text" placeholder="PROFISSÃO" name="profissao">
+						<input type="text" placeholder="PROFISSÃO" name="profissao" value="{{ old('profissao') }}">
 					</label>		
 					<label>
-						<input type="email" placeholder="E-MAIL" name="email">
+						<input type="email" placeholder="E-MAIL" name="email" value="{{ old('email') }}">
 					</label>
 					<label>
-						<input type="tel" placeholder="TELEFONE" id="phone"name="telefone">
+						<input type="tel" placeholder="TELEFONE" id="phone" name="telefone" value="{{ old('telefone') }}">
 					</label>
 					<label>
-						<input type="url" placeholder="URL" name="url">
+						<input type="url" placeholder="URL" name="url" value="{{ old('url') }}">
 					</label>
 					
 					<label>
-						<input type="text" placeholder="CEP" name="cep">
+						<input type="text" placeholder="CEP" name="cep" value="{{ old('cep') }}">
 					</label>
 					<label>
-						<input type="text" placeholder="ENDEREÇO" name="endereco">
+						<input type="text" placeholder="ENDEREÇO" name="endereco" value="{{ old('endereco') }}">
 					</label>
 					<label>
-						<input type="number" placeholder="NÚMERO" name="numero">
+						<input type="number" placeholder="NÚMERO" name="numero" value="{{ old('numero') }}">
 					</label>
 					<label>
-						<input type="text" placeholder="COMPLEMENTO" name="complemento">
+						<input type="text" placeholder="COMPLEMENTO" name="complemento" value="{{ old('complemento') }}">
 					</label>
 					<label>
-						<input type="text" placeholder="BAIRRO" name="bairro">
+						<input type="text" placeholder="BAIRRO" name="bairro" value="{{ old('bairro') }}">
 					</label>
 					<label>
-						<input type="text" placeholder="CIDADE" name="cidade">
+						<input type="text" placeholder="CIDADE" name="cidade" value="{{ old('cidade') }}">
 					</label>
 					<label>
 						<select name="estado" class="form-estado">
 							<option value="">ESTADO</option>
-							<option value="AC">Acre</option>
-							<option value="AL">Alagoas</option>
-							<option value="AP">Amapá</option>
-							<option value="AM">Amazonas</option>
-							<option value="BA">Bahia</option>
-							<option value="CE">Ceará</option>
-							<option value="DF">Distrito Federal</option>
-							<option value="ES">Espirito Santo</option>
-							<option value="GO">Goiás</option>
-							<option value="MA">Maranhão</option>
-							<option value="MS">Mato Grosso do Sul</option>
-							<option value="MT">Mato Grosso</option>
-							<option value="MG">Minas Gerais</option>
-							<option value="PA">Pará</option>
-							<option value="PB">Paraíba</option>
-							<option value="PR">Paraná</option>
-							<option value="PE">Pernambuco</option>
-							<option value="PI">Piauí</option>
-							<option value="RJ">Rio de Janeiro</option>
-							<option value="RN">Rio Grande do Norte</option>
-							<option value="RS">Rio Grande do Sul</option>
-							<option value="RO">Rondônia</option>
-							<option value="RR">Roraima</option>
-							<option value="SC">Santa Catarina</option>
-							<option value="SP">São Paulo</option>
-							<option value="SE">Sergipe</option>
-							<option value="TO">Tocantins</option>
+							@foreach ($estados as $estado)
+								<option value="{{ $estado->uf }}">{{ $estado->nome }}</option>
+							@endforeach
 						</select>
 					</label>
 					

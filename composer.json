@@ -14,7 +14,10 @@
         "phpunit/phpunit": "~4.0",
         "laravelcollective/html": "5.2.*",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*"
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "way/generators": "dev-feature/laravel-five-stable",
+        "xethron/migrations-generator": "^2.0",
+        "orangehill/iseed": "dev-master"
     },
     "autoload": {
         "classmap": [
@@ -47,5 +50,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "repo-name": {
+            "type": "vcs",
+            "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
+        }
     }
 }
