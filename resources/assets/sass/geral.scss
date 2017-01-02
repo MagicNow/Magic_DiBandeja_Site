@@ -25,18 +25,23 @@ body{
 
 	}
 }
+
 .header_interna{
-	.title_sobre{
-		height: 183px;
-		background:url('../images/bg_sobre.png') no-repeat;
-		width: 100%;
-		background-position: top center;
-	}
-	.title_dibandeja{
-		height: 183px;
-		background:url('../images/bg_dibandeja_interna.png') no-repeat;
-		width: 100%;
-		background-position: top center;
+	.title {
+		&_sobre{
+			margin: 0;
+			height: 183px;
+			background: url('../images/bg_sobre.png') no-repeat top center;
+			width: 100%;
+			margin: 0;
+		}
+
+		&_dibandeja{
+			margin: 0;
+			height: 183px;
+			background: url('../images/bg_dibandeja_interna.png') no-repeat top center;
+			width: 100%;
+		}
 	}
 }
 

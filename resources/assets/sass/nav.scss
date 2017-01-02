@@ -1,0 +1,49 @@
+.nav {
+	float: left;
+	margin-top: 35px;
+
+	&-list {
+		display: inline-block;
+		margin: 0;
+	}
+
+	&-link {
+		cursor: pointer;
+		font: normal 14px 'Abel', sans-serif;
+		text-transform: uppercase;
+		color: #000;
+		display: block;
+		padding-bottom: 5px;
+	}
+
+	&-submenu {
+		display: none;
+		position: absolute;
+		padding: 0;
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 10px;
+
+		&-link {
+			color: #304E86;
+			font: bold 14px 'Abel', sans-serif;
+			text-transform: uppercase;
+		}
+	}
+
+	&-item {
+		float: left;
+		list-style: none;
+		margin-left: 15px;
+
+		&:hover {
+			.nav-submenu {
+				display: block;
+			}
+		}
+
+		.has-submenu {
+			position: relative;
+		}
+	}
+}

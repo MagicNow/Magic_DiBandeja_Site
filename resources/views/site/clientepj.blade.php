@@ -46,37 +46,37 @@
 			<form class="form_cliente col-sm-8 col-md-9 col-lg-9" action="{{route('cliente.pj.store')}}" method="post">
 				<fieldset>
 					<label>
-						<input type="text" placeholder="Razão social" name="razao_social">
+						<input type="text" placeholder="RAZÃO SOCIAL" name="razao_social">
 					</label>					
 					<label>
 						<input type="text" placeholder="CEP" name="cep">
 					</label>
 					<label>
-						<input type="text" placeholder="Endereço" name="endereco">
+						<input type="text" placeholder="ESTADO" name="estado">
 					</label>
 					<label>
-						<input type="text" placeholder="Número" name="numero">
+						<input type="text" placeholder="CIDADE" name="cidade">
 					</label>
 					<label>
-						<input type="text" placeholder="Complemento" name="complemento">
+						<input type="text" placeholder="ENDEREÇO" name="endereco">
 					</label>
 					<label>
-						<input type="text" placeholder="Bairro" name="bairro">
+						<input type="number" placeholder="NÚMERO" name="numero">
 					</label>
 					<label>
-						<input type="text" placeholder="Cidade" name="cidade">
+						<input type="text" placeholder="COMPLEMENTO" name="complemento">
 					</label>
 					<label>
-						<input type="text" placeholder="Estado" name="estado">
+						<input type="text" placeholder="BAIRRO" name="bairro">
 					</label>
 					<label>
-						<input type="text" placeholder="Telefone 1" id="phone" name="telefone">
+						<input type="tel" placeholder="TELEFONE 1" id="phone" name="telefone">
 					</label>
 					<label>
-						<input type="text" placeholder="Telefone 2" id="phone2" name="telefone2">
+						<input type="tel" placeholder="TELEFONE 2" id="phone2" name="telefone2">
 					</label>
 					<label>
-						<input type="text" placeholder="Email" name="email">
+						<input type="email" placeholder="E-MAIL" name="email">
 					</label>
 					<button type="submit" id="enviar">Continuar</button>
 				</fieldset>

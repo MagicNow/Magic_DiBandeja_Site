@@ -7,9 +7,14 @@ body{
 	overflow-x: hidden;
 }
 
+.breadcrumb {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 10px;
+}
+
 header{
-	height: 115px;
-	padding: 25px 0 0 0;
+	padding: 12px 0 0 0;
 
 	&.active{
 		background: url('../images/bg2.jpg') repeat;
@@ -46,33 +51,6 @@ header{
 			}
 
 		}
-
-		nav{
-			float: left;
-			margin-top: 35px;
-
-			ul{
-
-				li{
-					float: left;
-					list-style: none;
-					margin-left: 15px;
-
-					a{
-
-						font-family: 'Abel', sans-serif;
-						font-size: 14px;
-						text-transform: uppercase;
-						color: #000;
-						display: block;
-
-					}
-				}
-
-			}
-
-		}
-
 	}
 
 }
@@ -138,7 +116,7 @@ header{
 			height: 74px;
 			position: absolute;
 			left: 50%;
-			bottom: 10%;
+			bottom: 7%;
 			text-indent: -999px;
 			margin: 0 -130px;
 			border: none;
@@ -231,7 +209,7 @@ header{
 }
 
 footer{
-	margin-top: 20px;
+	margin-top: 12px;
 
 	.container{
 		width: 980px;
@@ -412,6 +390,7 @@ footer{
 					font-family: 'Abel', sans-serif;
 					font-size: 14px;
 					color: #969696;
+					text-transform: uppercase;
 				}
 
 			}

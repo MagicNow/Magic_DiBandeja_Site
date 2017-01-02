@@ -46,16 +46,16 @@
 			<form class="form_cliente col-sm-8 col-md-9 col-lg-9" action="{{route('cliente.pf.store')}}" method="post">
 				<fieldset>
 					<label>
-						<input type="text" placeholder="Nome completo" name="nome">
+						<input type="text" placeholder="NOME COMPLETO" name="nome">
 					</label>	
 					<label>
-						<input type="text" placeholder="Email" name="email">
+						<input type="email" placeholder="E-MAIL" name="email">
 					</label>				
 					<label>
-						<input type="text" placeholder="Telefone 1" id="phone" name="telefone">
+						<input type="tel" placeholder="TELEFONE 1" id="phone" name="telefone">
 					</label>
 					<label>
-						<input type="text" placeholder="Telefone 2" id="phone2" name="telefone2">
+						<input type="tel" placeholder="TELEFONE 2" id="phone2" name="telefone2">
 					</label>
 					
 					<button type="submit" id="enviar">Continuar</button>

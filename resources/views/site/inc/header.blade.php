@@ -21,42 +21,41 @@
                 </a>
             </h1>
 
-            <nav>
-                <ul>
-                    <li>
-                        <a href="{{ route('dibandeja-pra-voce') }}">Dibandeja pra você</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dibandeja-pra-voce') }}">Dibandeja para você</a>
                     </li>
-                    <!--<li>
-                        <a href="#">DiBanpédia</a>
-                    </li>-->
-                    <!--<li>
-                        <a href="#">Salada DiDéias</a>
-                    </li>-->
-                    <li>
-                        <a href="{{ route('sobre') }}">Sobre o DiBandeja</a>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="#">DiBanpédia</a>
                     </li>
-                    <li>
-                        <a href="{{ route('cliente.pf') }}">Faça um pedido para sua casa</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Salada DiDéias</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('sobre') }}">Sobre o DiBandeja</a>
                     </li>
-                    <li>
-                        <a href="{{ route('cliente.pj') }}">Faça um pedido para o seu negócio</a>
+                    <li class="nav-item has-submenu">
+                        <span class="nav-link">Faça um pedido</span>
+                        <ul class="nav-submenu">
+                            <li class="nav-submenu-item"><a href="{{ route('cliente.pf') }}" class="nav-submenu-link">Faça sua casa</a></li>
+                            <li class="nav-submenu-item"><a href="{{ route('cliente.pj') }}" class="nav-submenu-link">Para seu negócio</a></li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="{{ route('fornecedor') }}">Seja um Fornecedor</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('fornecedor') }}">Seja um Fornecedor</a>
                     </li>
-                    <li>
-                        <a href="{{ route('parceiro') }}">Seja um Parceiro / Colaborador</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('parceiro') }}">Seja um Parceiro / Colaborador</a>
                     </li>
-                    
-                    
-                    <!--<li>
-                        <a href="#">Novo Cadastro</a>
-                    </li>-->
-                    <!--<li>
-                        <a href="#">Login</a>
-                    </li>-->
+
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="#">Novo Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li> --}}
                 </ul>
             </nav>
         </div>
     </header>
-

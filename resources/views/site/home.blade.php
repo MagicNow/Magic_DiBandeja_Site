@@ -33,13 +33,13 @@
 
 	<div class="container">
 		
-		<div class="tipos_dibandeja col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		{{-- <div class="tipos_dibandeja col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul>
-				{{-- <li data-tipo="salada_ideias" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<li data-tipo="salada_ideias" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 					<a href="#">
 						<img src="assets/images/ico_1.png" alt="Salada Didéias" title="Salada Didéias">
 					</a>
-				</li> --}}
+				</li>
 
 				<li data-tipo="dibandeja_voce" class=""> 
 					<a href="#">
@@ -47,13 +47,13 @@
 					</a>
 				</li>
 
-				{{-- <li data-tipo="dibanpedia" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<li data-tipo="dibanpedia" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 					<a href="#">
 						<img src="assets/images/ico_3.png" alt="DiBanpédia" title="DiBanpédia">
 					</a>
-				</li> --}}
+				</li>
 			</ul>
-		</div>
+		</div> --}}
 
 	</div>
 
