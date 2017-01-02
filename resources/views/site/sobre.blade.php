@@ -3,10 +3,8 @@
 @section('content')
 
 
-<div class="header_interna">
-	<h2 class="title_sobre">
-		{{-- <img src="assets/images/bg_sobre.png"> --}}
-	</h2>
+<div class="header-interna">
+	<h2 class="header-title title-sobre">Sobre o DiBandeja</h2>
 </div>	
 
 <section id="interna_dibandeja" class="content">

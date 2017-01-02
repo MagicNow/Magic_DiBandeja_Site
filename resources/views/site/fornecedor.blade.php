@@ -3,10 +3,8 @@
 @section('content')
 
 
-<div class="header_interna">
-	<h2 class="title_sobre">
-		{{-- <img src="assets/images/bg_sobre.png"> --}}
-	</h2>
+<div class="header-interna">
+	<h2 class="title-fornecedor header-title">Seja um fornecedor</h2>
 </div>	
 
 <section id="interna_dibandeja" class="content">
@@ -46,43 +44,72 @@
 			<form class="form_cliente col-sm-8 col-md-9 col-lg-9" action="{{route('fornecedor.store')}}" method="post">
 				<fieldset>
 					<label>
-						<input type="text" placeholder="Razão social" name="razao_social">
+						<input type="text" placeholder="RAZÃO SOCIAL" name="razao_social">
 					</label>		
 					<label>
-						<input type="text" placeholder="Nome fantasia" name="nome_fantasia">
+						<input type="text" placeholder="NOME FANTASIA" name="nome_fantasia">
 					</label>	
 					<label>
-						<input type="text" placeholder="Especialidade" name="especialidade">
+						<input type="text" placeholder="ESPECIALIDADE" name="especialidade">
 					</label>		
 					<label>
-						<input type="text" placeholder="Url" name="url">
+						<input type="uel" placeholder="URL" name="url">
 					</label>
 					{{-- <label>
 						<input type="text" placeholder="Cotação" name="cotacao">
 					</label> --}}
 					<label>
-						<input type="text" placeholder="telefone" id="phone" name="telefone">
+						<input type="tel" placeholder="TELEFONE" id="phone" name="telefone">
 					</label>
 					<label>
 						<input type="text" placeholder="CEP" name="cep">
 					</label>
 					<label>
-						<input type="text" placeholder="Endereço" name="endereco">
+						<input type="text" placeholder="ENDEREÇO" name="endereco">
 					</label>
 					<label>
-						<input type="text" placeholder="Número" name="numero">
+						<input type="number" placeholder="NÚMERO" name="numero">
 					</label>
 					<label>
-						<input type="text" placeholder="Complemento" name="complemento">
+						<input type="text" placeholder="COMPLEMENTO" name="complemento">
 					</label>
 					<label>
-						<input type="text" placeholder="Bairro" name="bairro">
+						<input type="text" placeholder="BAIRRO" name="bairro">
 					</label>
 					<label>
-						<input type="text" placeholder="Cidade" name="cidade">
+						<input type="text" placeholder="CIDADE" name="cidade">
 					</label>
 					<label>
-						<input type="text" placeholder="Estado" name="estado">
+						<select name="estado" class="form-estado">
+							<option value="">ESTADO</option>
+							<option value="AC">Acre</option>
+							<option value="AL">Alagoas</option>
+							<option value="AP">Amapá</option>
+							<option value="AM">Amazonas</option>
+							<option value="BA">Bahia</option>
+							<option value="CE">Ceará</option>
+							<option value="DF">Distrito Federal</option>
+							<option value="ES">Espirito Santo</option>
+							<option value="GO">Goiás</option>
+							<option value="MA">Maranhão</option>
+							<option value="MS">Mato Grosso do Sul</option>
+							<option value="MT">Mato Grosso</option>
+							<option value="MG">Minas Gerais</option>
+							<option value="PA">Pará</option>
+							<option value="PB">Paraíba</option>
+							<option value="PR">Paraná</option>
+							<option value="PE">Pernambuco</option>
+							<option value="PI">Piauí</option>
+							<option value="RJ">Rio de Janeiro</option>
+							<option value="RN">Rio Grande do Norte</option>
+							<option value="RS">Rio Grande do Sul</option>
+							<option value="RO">Rondônia</option>
+							<option value="RR">Roraima</option>
+							<option value="SC">Santa Catarina</option>
+							<option value="SP">São Paulo</option>
+							<option value="SE">Sergipe</option>
+							<option value="TO">Tocantins</option>
+						</select>
 					</label>
 					
 					<button type="submit" id="enviar">Continuar</button>

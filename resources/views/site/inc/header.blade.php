@@ -38,7 +38,7 @@
                     <li class="nav-item has-submenu">
                         <span class="nav-link">Faça um pedido</span>
                         <ul class="nav-submenu">
-                            <li class="nav-submenu-item"><a href="{{ route('cliente.pf') }}" class="nav-submenu-link">Faça sua casa</a></li>
+                            <li class="nav-submenu-item"><a href="{{ route('cliente.pf') }}" class="nav-submenu-link">Para sua casa</a></li>
                             <li class="nav-submenu-item"><a href="{{ route('cliente.pj') }}" class="nav-submenu-link">Para seu negócio</a></li>
                         </ul>
                     </li>

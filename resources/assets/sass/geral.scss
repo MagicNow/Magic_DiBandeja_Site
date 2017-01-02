@@ -26,21 +26,38 @@ body{
 	}
 }
 
-.header_interna{
-	.title {
-		&_sobre{
-			margin: 0;
-			height: 183px;
-			background: url('../images/bg_sobre.png') no-repeat top center;
-			width: 100%;
-			margin: 0;
+.header-title {
+	text-indent: -9999em;
+	margin: 0;
+	height: 183px;
+	width: 100%;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-position: top center;
+
+	&.title {
+		&-sobre{
+			background-image: url('../images/bg_sobre.png') ;
 		}
 
-		&_dibandeja{
-			margin: 0;
-			height: 183px;
-			background: url('../images/bg_dibandeja_interna.png') no-repeat top center;
-			width: 100%;
+		&-dibandeja{
+			background-image: url('../images/bg_dibandeja_interna.png');
+		}
+
+		&-pf{
+			background-image: url('../images/bg_paraasuacasa.png');
+		}
+
+		&-pj{
+			background-image: url('../images/bg_paraoseunegocio.png');
+		}
+
+		&-parceiro{
+			background-image: url('../images/bg_parceirocolaborador.png');
+		}
+
+		&-fornecedor {
+			background-image: url('../images/bg_sejaumfornecedor.png');
 		}
 	}
 }

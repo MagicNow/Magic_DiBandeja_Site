@@ -3,10 +3,8 @@
 @section('content')
 
 
-<div class="header_interna">
-	<h2 class="title_sobre">
-		{{-- <img src="assets/images/bg_sobre.png"> --}}
-	</h2>
+<div class="header-interna">
+	<h2 class="title-pf header-title">Faça um negócio para sua casa</h2>
 </div>	
 
 <section id="interna_dibandeja" class="content">
@@ -19,10 +17,10 @@
 					<i class="fa fa-angle-double-right" aria-hidden="true"></i>
 				</li>
 				<li>
-					<a href="#">Home / </a>
+					<a href="#">Faça seu pedido / </a>
 				</li>
 				<li>
-					<a href="#">Cliente Pessoa Física</a>
+					<a href="#">Para sua casa</a>
 				</li>
 			</ul>
 		</div> 
