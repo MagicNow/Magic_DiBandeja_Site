@@ -97,5 +97,8 @@
         <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
         {{ HTML::script('assets/js/maskedinput.min.js') }}
         {{ HTML::script('assets/js/main.js') }}
+
+
+{{-- <script type="text/javascript" src="{{URL::asset('assets/js/jquery.min.js')}}"></script> --}}
     </body>
 </html>
