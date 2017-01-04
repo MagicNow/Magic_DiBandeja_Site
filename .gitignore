@@ -16,3 +16,5 @@ bootstrap/cache/
 *.map
 public/assets/css
 public/assets/admin/css
+dibandeja.sublime-project
+dibandeja.sublime-workspace

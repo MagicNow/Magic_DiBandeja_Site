@@ -1,4 +1,10 @@
 var Index = {
+	limpaFormulario: function () {
+		$("input[name='endereco']").val('');
+		$("input[name='bairro']").val('');
+		$("input[name='cidade']").val('');
+		$("select[name='estado'] option").first().attr("selected", "selected");
+	},
 
 	destaqueHome: function (){
 		setTimeout(function (){
@@ -15,13 +21,12 @@ var Index = {
 
 			console.log(tipo);
 		})
-
-
 	},
 
 	init: function(){
+		var self = this;
 
-		this.destaqueHome();
+		self.destaqueHome();
 		$("#phone").mask("(99) 9999-9999?9")
 	        .focusout(function (event) {  
 	            var target, phone, element;  
@@ -35,6 +40,7 @@ var Index = {
 	                element.mask("(99) 9999-9999?9");  
 	            }  
 	        });
+
 	    $("#phone2").mask("(99) 9999-9999?9")
 	        .focusout(function (event) {  
 	            var target, phone, element;  
@@ -46,8 +52,32 @@ var Index = {
 	                element.mask("(99) 99999-999?9");  
 	            } else {  
 	                element.mask("(99) 9999-9999?9");  
-	            }  
+	            }
 	        });
+
+	    $("input[name='cep']").mask("99999-999", {
+			completed:function () {
+				//Preenche os campos com "..." enquanto consulta webservice.
+				$("input[name='endereco']").val('..');
+				$("input[name='bairro']").val('...');
+				$("input[name='cidade']").val('...');
+
+				//Consulta o webservice viacep.com.br/
+				$.getJSON("https://viacep.com.br/ws/" + this.val() + "/json", function(dados) {
+					if (!("erro" in dados)) {
+						//Atualiza os campos com os valores da consulta.
+						$("input[name='endereco']").val(dados.logradouro);
+						$("input[name='bairro']").val(dados.bairro);
+						$("input[name='cidade']").val(dados.localidade);
+						$("select[name='estado']").find('option[value="' + dados.uf + '"]').attr("selected", "selected");
+					} //end if.
+					else {
+						self.limpaFormulario();
+						alert("CEP não encontrado.");
+					}
+				});
+			}
+	    })
 	}
 
 }
