@@ -65,6 +65,9 @@
 						<input type="tel" placeholder="TELEFONE" id="phone" name="telefone" value="{{ old('telefone') }}">
 					</label>
 					<label>
+						<input type="tel" placeholder="TELEFONE 2" id="phone2" name="telefone2" value="{{ old('telefone2') }}">
+					</label>
+					<label>
 						<input type="text" placeholder="CEP" name="cep" value="{{ old('cep') }}">
 					</label>
 					<label>

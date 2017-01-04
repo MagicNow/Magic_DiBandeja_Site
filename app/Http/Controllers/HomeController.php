@@ -82,13 +82,7 @@ class HomeController extends Controller {
 		$validator = Validator::make($dados, [
 			'nome'    	=> 'required',
 			'email'		=> 'required',
-			'cep'		=> 'required',
-			'endereco'	=> 'required',
-			'bairro'	=> 'required',
-			'cidade'	=> 'required',
-			'estado'	=> 'required',
 			'telefone'	=> 'required'
-			
 		]);
 
 		if ($validator->fails()) {
@@ -119,11 +113,6 @@ class HomeController extends Controller {
 		$validator = Validator::make($dados, [
 			'razao_social'      => 'required',
 			'email'             => 'required',
-			'cep'               => 'required',
-			'endereco'          => 'required',
-			'bairro'            => 'required',
-			'cidade'            => 'required',
-			'estado'            => 'required',
 			'telefone'          => 'required'
 		]);
 
@@ -155,13 +144,8 @@ class HomeController extends Controller {
 		$validator = Validator::make($dados, [
 			'razao_social'      => 'required',
 			'nome_fantasia'     => 'required',
-			'especialidade'     => 'required',
-			'cep'               => 'required',
-			'endereco'          => 'required',
-			'bairro'            => 'required',
-			'cidade'            => 'required',
-			'estado'            => 'required',
-			'telefone'          => 'required'
+			'telefone'          => 'required',
+			'nome_contato'		=> 'required'
 		]);
 
 		if ($validator->fails()) {
@@ -188,16 +172,8 @@ class HomeController extends Controller {
 	{
 		$dados = Input::all();
 		$validator = Validator::make($dados, [
-			'tipo' 			=> 'required',
 			'nome'          => 'required',
-			'apelido'       => 'required',
-			'profissao'     => 'required',
 			'email'         => 'required',
-			'cep'           => 'required',
-			'endereco'      => 'required',
-			'bairro'        => 'required',
-			'cidade'        => 'required',
-			'estado'        => 'required',
 			'telefone'      => 'required'
 		]);
 

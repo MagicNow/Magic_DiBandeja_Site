@@ -41,8 +41,9 @@
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">
 						Especialidade: <b>{{ $fornecedor->especialidade }}</b></p>
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">URL: <b>{{ $fornecedor->url }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Nome do contatp: <b>{{ $fornecedor->nome_contato }}</b></p>
+						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Nome do contato: <b>{{ $fornecedor->nome_contato }}</b></p>
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone: <b>{{ $fornecedor->telefone }}</b></p>
+						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 2: <b>{{ $fornecedor->telefone2 }}</b></p>
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">CEP: <b>{{ $fornecedor->cep }}</b></p>
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Endereço: <b>{{ $fornecedor->endereco }}</b></p>
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Número: <b>{{ $fornecedor->numero }}</b></p>
