@@ -1,3 +1,33 @@
+.botao-enviar, .sobre-botao {
+	float: right;
+	width: 120px;
+	height: 40px;
+	background-color: #d8a52b;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 14px;
+	border: none;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.sobre-botao {
+	display: inline-block;
+	float: none;
+	line-height: 40px;
+	margin-right: 10px;
+	font-size: 20px;
+	width: auto;
+	padding: 0 20px;
+
+	&:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
 input:-moz-placeholder {
 	color: #333;
 }
@@ -81,20 +111,8 @@ select {
 		}
 
 		#enviar{
-			float: right;
-			width: 120px;
-			height: 40px;
-			background-color: #d8a52b;
-			color: #fff;
-			text-align: center;
-			text-transform: uppercase;
-			font-size: 14px;
-			border: none;
-			border-radius: 5px;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
+			@extend .botao-enviar;
 		}
-
 	}
 
 }

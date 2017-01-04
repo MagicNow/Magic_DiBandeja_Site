@@ -35,6 +35,9 @@
 				<p>Esses estudos gastronômicos personalizados podem servir também para empresas do setor alimentício e a donos de bares e restaurantes, de acordo com a necessidade individual de cada um.</p>
 				<p>Faça um pedido. Nós teremos o maior prazer em desenvolver um cardápio DiBandeja para você.</p>
 
+				<a href="{{ route('cliente.pf') }}" target="_self" class="sobre-botao">PARA A SUA CASA</a>
+				<a href="{{ route('cliente.pj') }}" target="_self" class="sobre-botao">PARA O SEU NEGÓCIO</a>
+
 				{{-- <ul class="sobre_pessoas col-sm-12 col-md-12 col-lg-12">
 					<li class="col-sm-12 col-md-3 col-lg-3">
 						<p>Cliente</p>
@@ -72,12 +75,8 @@
 						<p>Adoramos receber fotos grandes e bonitas e ilustrações exclusivas, relacionadas à gastronomia. Por favor mande várias junto com seu artigo.</p>
 					</li>
 				</ul>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempor sed libero et placerat. Pellentesque fermentum sapien ut turpis fermentum convallis. Nullam quis magna vitae turpis vestibulum ullamcorper id aliquet metus. Etiam tristique arcu sagittis dui iaculis rhoncus. Mauris quis finibus eros, vel blandit dui. Fusce id lacus turpis. Vivamus nec odio lacinia, finibus orci a, consectetur dui. Proin hendrerit nulla non neque lacinia dictum. Sed aliquam mauris a ex molestie suscipit. Praesent ut diam in urna volutpat tincidunt. Donec tincidunt varius risus ut convallis.</p>
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempor sed libero et placerat. Pellentesque fermentum sapien ut turpis fermentum convallis. Nullam quis magna vitae turpis vestibulum ullamcorper id aliquet metus. Etiam tristique arcu sagittis dui iaculis rhoncus. Mauris quis finibus eros, vel blandit dui. Fusce id lacus turpis. Vivamus nec odio lacinia, finibus orci a, consectetur dui. Proin hendrerit nulla non neque lacinia dictum. Sed aliquam mauris a ex molestie suscipit. Praesent ut diam in urna volutpat tincidunt. Donec tincidunt varius risus ut convallis.</p>
-
 			</div> --}}
+
 		</div>
 		
 	</div>

@@ -17,7 +17,7 @@
         <div class="container">
             <h1>
                 <a href="{{ route('home') }}">
-                    <img src="assets/images/logo.png" alt="Di Bandeja" title="Di Bandeja">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="Di Bandeja" title="Di Bandeja">
                 </a>
             </h1>
 
