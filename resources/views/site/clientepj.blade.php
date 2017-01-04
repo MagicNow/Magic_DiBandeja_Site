@@ -20,7 +20,7 @@
 					<a href="#">Faça seu pedido / </a>
 				</li>
 				<li>
-					<a href="#">Para seu negócio</a>
+					<a href="#">Para o seu negócio</a>
 				</li>
 			</ul>
 		</div> 

@@ -68,7 +68,7 @@
 						<select name="estado" class="form-estado">
 							<option value="">ESTADO</option>
 							@foreach ($estados as $estado)
-								<option value="{{ $estado->uf }}">{{ $estado->nome }}</option>
+								<option value="{{ $estado->uf }}" @if (old('estado') == $estado->uf) selected="selected" @endif>{{ $estado->nome }}</option>
 							@endforeach
 						</select>
 					</label>

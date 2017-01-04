@@ -1,11 +1,36 @@
+input:-moz-placeholder {
+	color: #333;
+}
+
+input::-moz-placeholder {
+	color: #333;
+}
+
+input:-ms-input-placeholder {
+	color: #333;
+}
+
+input::-webkit-input-placeholder {
+	color: #333;
+}
+
+select {
+	color: #333;
+}
+
 .content_form{
 	position: relative;
 	// margin-bottom: 145px;
 
 	.form_cliente{
-
 		label{
 			width: 100%;
+		}
+
+		.parceiro-tipo {
+			width: auto;
+			padding-right: 20px;
+			cursor: pointer;
 		}
 
 		input{
@@ -23,7 +48,7 @@
 
 			&.radio{
 				display: inline-block;
-			    width: 15%;
+			    width: 12px;
 			    line-height: 11px;
 			    height: 15px;
 			    margin: 0 10px;

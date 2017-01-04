@@ -57,11 +57,8 @@
 
 			<form class="form_cliente col-sm-8 col-md-9 col-lg-9" action="{{route('parceiro.store')}}" method="post">
 				<fieldset><br>
-					<label>PARCEIRO
-						<input class="radio" type="radio" name="tipo" value="PARCEIRO">
-						COLABORADOR
-						<input type="radio" class="radio" name="tipo" value="COLABORADOR">
-					</label>
+					<label for="tipo-parceiro" class="parceiro-tipo"><input class="radio" id="tipo-parceiro" type="radio" name="tipo" value="PARCEIRO" @if (old('tipo') == "PARCEIRO") checked="checked" @endif>PARCEIRO</label>
+					<label for="tipo-colaborador" class="parceiro-tipo"><input type="radio" id="tipo-colaborador" class="radio" name="tipo" value="COLABORADOR" @if (old('tipo') == "COLABORADOR") checked="checked" @endif>COLABORADOR</label>
 					<br>
 					<label>
 						
@@ -106,7 +103,7 @@
 						<select name="estado" class="form-estado">
 							<option value="">ESTADO</option>
 							@foreach ($estados as $estado)
-								<option value="{{ $estado->uf }}">{{ $estado->nome }}</option>
+								<option value="{{ $estado->uf }}" @if (old('estado') == $estado->uf) selected="selected" @endif>{{ $estado->nome }}</option>
 							@endforeach
 						</select>
 					</label>

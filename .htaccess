@@ -1,0 +1,10 @@
+# AddHandler php7-script .php
+# suPHP_ConfigPath /home/storage/2/8d/76/dibandeja/public_html/
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

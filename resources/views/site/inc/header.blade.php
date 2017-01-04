@@ -9,7 +9,7 @@
         
         <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        {!! Html::style('assets/css/app.css') !!}
+        {!! Html::style('public/assets/css/app.css') !!}
         <title>DiBandeja</title>
     </head>
     <body>
@@ -38,8 +38,8 @@
                     <li class="nav-item has-submenu">
                         <span class="nav-link">Faça um pedido</span>
                         <ul class="nav-submenu">
-                            <li class="nav-submenu-item"><a href="{{ route('cliente.pf') }}" class="nav-submenu-link">Para sua casa</a></li>
-                            <li class="nav-submenu-item"><a href="{{ route('cliente.pj') }}" class="nav-submenu-link">Para seu negócio</a></li>
+                            <li class="nav-submenu-item"><a href="{{ route('cliente.pf') }}" class="nav-submenu-link">Para a sua casa</a></li>
+                            <li class="nav-submenu-item"><a href="{{ route('cliente.pj') }}" class="nav-submenu-link">Para o seu negócio</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -10,6 +10,12 @@ use Validator;
 use Redirect;
 use Auth;
 
+use App\Mail\NovoPedidoPF;
+use App\Mail\NovoPedidoPJ;
+use App\Mail\FornecedorMail;
+use App\Mail\ParceiroMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class HomeController extends Controller {
 
@@ -94,12 +100,15 @@ class HomeController extends Controller {
 		try {
 			$dados['pessoa'] = 'Física';
 
-			ClientesSite::create($dados);
+			$cliente 	= ClientesSite::create($dados);
+			$mail 		= Mail::to(env('MAIL_TO'));
+			$mail->send(new NovoPedidoPF($cliente));
+
 			return redirect()->route('cliente.pf')
 					->with('success', 'É uma prazer tê-lo cadastrado no DiBandeja. Sinta-se na sua cozinha.');
 		} catch (\Exception $ex) {
 			return back()
-				->withErrors($validator)
+				->withErrors($ex->getMessage())
 				->withInput();
 		}
 	}
@@ -126,12 +135,16 @@ class HomeController extends Controller {
 
 		try {
 			$dados['pessoa'] = 'Juridica';
-			ClientesSite::create($dados);
+
+			$cliente 	= ClientesSite::create($dados);
+			$mail 		= Mail::to(env('MAIL_TO'));
+			$mail->send(new NovoPedidoPJ($cliente));
+
 			return redirect()->route('cliente.pj')
 					->with('success', 'Obrigada pelo cadastramento. O nosso negócio é ajudar o seu.');
 		} catch (\Exception $ex) {
 			return back()
-				->withErrors($validator)
+				->withErrors($ex->getMessage())
 				->withInput();
 		}
 	}
@@ -158,12 +171,15 @@ class HomeController extends Controller {
 		}
 
 		try {
-			FornecedoresSite::create($dados);
+			$fornecedor = FornecedoresSite::create($dados);
+			$mail 		= Mail::to(env('MAIL_TO'));
+			$mail->send(new FornecedorMail($fornecedor));
+
 			return redirect()->route('fornecedor')
 					->with('success', 'É um prazer tê-lo cadastrado no DiBandeja. O nosso negócio é ajudar o seu. E vice-versa.');
 		} catch (\Exception $ex) {
 			return back()
-				->withErrors($validator)
+				->withErrors($ex->getMessage())
 				->withInput();
 		}
 	}
@@ -172,6 +188,7 @@ class HomeController extends Controller {
 	{
 		$dados = Input::all();
 		$validator = Validator::make($dados, [
+			'tipo' 			=> 'required',
 			'nome'          => 'required',
 			'apelido'       => 'required',
 			'profissao'     => 'required',
@@ -191,12 +208,15 @@ class HomeController extends Controller {
 		}
 
 		try {
-			Parceiros::create($dados);
+			$parceiro 	= Parceiros::create($dados);
+			$mail 		= Mail::to(env('MAIL_TO'));
+			$mail->send(new ParceiroMail($parceiro));
+
 			return redirect()->route('parceiro')
 					->with('success', 'É um prazer tê-lo cadastrado no DiBandeja. O nosso negócio é ajudar o seu. E vice-versa.');
 		} catch (\Exception $ex) {
 			return back()
-				->withErrors($validator)
+				->withErrors($ex->getMessage())
 				->withInput();
 		}
 	}

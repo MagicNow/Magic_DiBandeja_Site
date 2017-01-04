@@ -213,7 +213,7 @@ footer{
 
 	.container{
 		width: 980px;
-		padding: 20px 0 0 0;
+		padding: 10px 0 0 0;
 		border-top: 1px dashed #999999;
 		text-align: center;
 	}
@@ -328,7 +328,7 @@ footer{
 
 				li{
 
-					&:nth-child(6){
+					&:nth-child(7){
 						
 						&:after{
 							display: none;
@@ -380,15 +380,13 @@ footer{
 						font-size: 12px;
 						color: #969696;
 						margin: 0 10px;
-
 					}
 
 				}
 
 				a{
-
 					font-family: 'Abel', sans-serif;
-					font-size: 14px;
+					font-size: 0.78em;
 					color: #969696;
 					text-transform: uppercase;
 				}

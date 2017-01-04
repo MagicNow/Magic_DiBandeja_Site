@@ -20,7 +20,7 @@
 					<a href="#">Faça seu pedido / </a>
 				</li>
 				<li>
-					<a href="#">Para sua casa</a>
+					<a href="#">Para a sua casa</a>
 				</li>
 			</ul>
 		</div> 
@@ -53,7 +53,7 @@
 						<input type="tel" placeholder="TELEFONE 2" id="phone2" name="telefone2" value="{{ old('telefone2') }}">
 					</label>
 					<label>
-						<input type="email" placeholder="E-MAIL" name="email" value="{{ old('nomeemail') }}">
+						<input type="email" placeholder="E-MAIL" name="email" value="{{ old('email') }}">
 					</label>
 					<label>
 						<input type="text" placeholder="CEP" name="cep" value="{{ old('cep') }}">

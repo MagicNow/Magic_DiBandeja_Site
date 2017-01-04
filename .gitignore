@@ -15,3 +15,4 @@ bootstrap/cache/
 .rocketeer/
 *.map
 public/assets/css
+public/assets/admin/css
