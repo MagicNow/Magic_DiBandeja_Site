@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\Models\FornecedoresSite;
 
-class Fornecedor extends Mailable
+class FornecedorMail extends Mailable
 {
     use Queueable, SerializesModels;
 

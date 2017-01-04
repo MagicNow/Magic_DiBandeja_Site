@@ -48,7 +48,7 @@
 					</label>		
 					<label>
 						<input type="text" placeholder="NOME FANTASIA" name="nome_fantasia" value="{{ old('nome_fantasia') }}">
-					</label>	
+					</label>
 					<label>
 						<input type="text" placeholder="ESPECIALIDADE" name="especialidade" value="{{ old('especialidade') }}">
 					</label>		
@@ -58,6 +58,9 @@
 					{{-- <label>
 						<input type="text" placeholder="Cotação" name="cotacao" value="{{ old('cotacao') }}">
 					</label> --}}
+					<label>
+						<input type="text" placeholder="NOME DO CONTATO" name="nome_contato" value="{{ old('nome_contato') }}">
+					</label>
 					<label>
 						<input type="tel" placeholder="TELEFONE" id="phone" name="telefone" value="{{ old('telefone') }}">
 					</label>
