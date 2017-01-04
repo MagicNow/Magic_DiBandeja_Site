@@ -37,17 +37,39 @@
 				<tr style="background-color: #f4f4f4;">
 					<td bgcolor="#f4f4f4" style="background-color: #f4f4f4;">
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">DiBandeja recebeu um novo cadastro de pessoa jurídica, segue abaixo dados cadastrados:</p><br><br>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Razão Social: <b>{{ $cliente->razao_social }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">E-mail: <b>{{ $cliente->email }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 1: <b>{{ $cliente->telefone }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 2: <b>{{ $cliente->telefone2 }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">CEP: <b>{{ $cliente->cep }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Endereço: <b>{{ $cliente->endereco }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Número: <b>{{ $cliente->numero }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Complemento: <b>{{ $cliente->complemento }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Bairro: <b>{{ $cliente->bairro }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Cidade: <b>{{ $cliente->cidade }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Estado: <b>{{ $cliente->estado }}</b></p>
+						@if (!empty($cliente->razao))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Razão Social: <b>{{ $cliente->razao_social }}</b></p>
+						@endif
+						@if (!empty($cliente->email))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">E-mail: <b>{{ $cliente->email }}</b></p>
+						@endif
+						@if (!empty($cliente->telefone))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 1: <b>{{ $cliente->telefone }}</b></p>
+						@endif
+						@if (!empty($cliente->telefone2))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 2: <b>{{ $cliente->telefone2 }}</b></p>
+						@endif
+						@if (!empty($cliente->cep))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">CEP: <b>{{ $cliente->cep }}</b></p>
+						@endif
+						@if (!empty($cliente->endereco))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Endereço: <b>{{ $cliente->endereco }}</b></p>
+						@endif
+						@if (!empty($cliente->numero))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Número: <b>{{ $cliente->numero }}</b></p>
+						@endif
+						@if (!empty($cliente->complemento))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Complemento: <b>{{ $cliente->complemento }}</b></p>
+						@endif
+						@if (!empty($cliente->bairro))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Bairro: <b>{{ $cliente->bairro }}</b></p>
+						@endif
+						@if (!empty($cliente->cidade))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Cidade: <b>{{ $cliente->cidade }}</b></p>
+						@endif
+						@if (!empty($cliente->estado))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Estado: <b>{{ $cliente->estado }}</b></p>
+						@endif
 					</td>
 					<td bgcolor="#f4f4f4" style="background-color: #f4f4f4;" width="30" style="width: 30px;"></td>
 				</td>

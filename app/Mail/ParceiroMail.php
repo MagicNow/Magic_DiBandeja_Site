@@ -34,6 +34,7 @@ class ParceiroMail extends Mailable
                     ->with([
                         'parceiro' => $this->parceiro
                     ])
+                    ->cc(['fernando@magictech.co'])
                     ->from('noreply@dibandeja.com.br', 'DiBandeja')
                     ->subject('DiBandeja - Novo parceiro');
     }

@@ -37,20 +37,46 @@
 				<tr style="background-color: #f4f4f4;">
 					<td bgcolor="#f4f4f4" style="background-color: #f4f4f4;">
 						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">DiBandeja recebeu um novo cadastro de fornecedor, segue abaixo dados cadastrados:</p><br><br>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Razão Social: <b>{{ $fornecedor->razao_social }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">
-						Especialidade: <b>{{ $fornecedor->especialidade }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">URL: <b>{{ $fornecedor->url }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Nome do contato: <b>{{ $fornecedor->nome_contato }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone: <b>{{ $fornecedor->telefone }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 2: <b>{{ $fornecedor->telefone2 }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">CEP: <b>{{ $fornecedor->cep }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Endereço: <b>{{ $fornecedor->endereco }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Número: <b>{{ $fornecedor->numero }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Complemento: <b>{{ $fornecedor->complemento }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Bairro: <b>{{ $fornecedor->bairro }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Cidade: <b>{{ $fornecedor->cidade }}</b></p>
-						<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Estado: <b>{{ $fornecedor->estado }}</b></p>
+						@if (!empty($fornecedor->razao_social))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Razão Social: <b>{{ $fornecedor->razao_social }}</b></p>
+						@endif
+						@if (!empty($fornecedor->especialidade))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">
+							Especialidade: <b>{{ $fornecedor->especialidade }}</b></p>
+						@endif
+						@if (!empty($fornecedor->url))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">URL: <b>{{ $fornecedor->url }}</b></p>
+						@endif
+						@if (!empty($fornecedor->nome_contato))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Nome do contato: <b>{{ $fornecedor->nome_contato }}</b></p>
+						@endif
+						@if (!empty($fornecedor->telefone))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone: <b>{{ $fornecedor->telefone }}</b></p>
+						@endif
+						@if (!empty($fornecedor->telefone2))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Telefone 2: <b>{{ $fornecedor->telefone2 }}</b></p>
+						@endif
+						@if (!empty($fornecedor->cep))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">CEP: <b>{{ $fornecedor->cep }}</b></p>
+						@endif
+						@if (!empty($fornecedor->endereco))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Endereço: <b>{{ $fornecedor->endereco }}</b></p>
+						@endif
+						@if (!empty($fornecedor->numero))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Número: <b>{{ $fornecedor->numero }}</b></p>
+						@endif
+						@if (!empty($fornecedor->complemento))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Complemento: <b>{{ $fornecedor->complemento }}</b></p>
+						@endif
+						@if (!empty($fornecedor->bairro))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Bairro: <b>{{ $fornecedor->bairro }}</b></p>
+						@endif
+						@if (!empty($fornecedor->cidade))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Cidade: <b>{{ $fornecedor->cidade }}</b></p>
+						@endif
+						@if (!empty($fornecedor->estado))
+							<p style="margin: 0; color:#333; font: 14px Arial,'Helvetica Neue',Helvetica,sans-serif;">Estado: <b>{{ $fornecedor->estado }}</b></p>
+						@endif
 					</td>
 					<td bgcolor="#f4f4f4" style="background-color: #f4f4f4;" width="30" style="width: 30px;"></td>
 				</td>

@@ -34,6 +34,7 @@ class NovoPedidoPJ extends Mailable
                     ->with([
                         'cliente' => $this->cliente
                     ])
+                    ->cc(['fernando@magictech.co'])
                     ->from('noreply@dibandeja.com.br', 'DiBandeja')
                     ->subject('DiBandeja - Novo pedido para seu negócio');
     }
