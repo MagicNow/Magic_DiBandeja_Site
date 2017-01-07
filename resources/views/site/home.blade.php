@@ -15,7 +15,8 @@
 		<div class="content_destaque dibandeja_voce" style="">
 			<figure>
 				<a href="#">
-					<img class="image_destaque" src="assets/images/bg_01.jpg">
+					<img class="image_destaque banner-desktop" src="assets/images/bg_01.jpg">
+					<img class="image_destaque banner-mobile" src="assets/images/bg_01-mobile.jpg">
 				</a>
 			</figure>
 			<a href="{{ route('dibandeja-pra-voce') }}" class="btn_escolha">Clique & Escolha</a>

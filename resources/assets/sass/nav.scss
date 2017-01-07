@@ -2,18 +2,64 @@
 	float: left;
 	margin-top: 35px;
 
+	@media screen and (max-width: 920px) {
+		float: none;
+		margin-top: 10px;
+	}
+
+	&.show {
+		.nav-list {
+			display: inline-block;
+		}
+	}
+
 	&-list {
 		display: inline-block;
 		margin: 0;
+
+		@media screen and (max-width: 920px) {
+			width: 98%;
+			margin-top: 10px;
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 5px;
+			margin-left: 1%;
+			margin-right: 1%;
+			display: none;
+			box-sizing: border-box;
+		}
+	}
+
+	&-button {
+		display: none;
+		background: url(../images/menu-icon.png) no-repeat;
+		background-size: contain;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		content: "";
+		position: absolute;
+		right: 20px;
+		top: 35px;
+		border: 0;
+
+		@media screen and (min-width: 921px) {
+			display: none;
+		}
 	}
 
 	&-link {
 		cursor: pointer;
-		font: normal 14px 'Abel', sans-serif;
+		font: normal 14px/22px 'Abel', sans-serif;
 		text-transform: uppercase;
 		color: #000;
 		display: block;
 		padding-bottom: 5px;
+
+		@media screen and (max-width: 920px) {
+			width: 100%;
+			display: inline-block;
+		}
 	}
 
 	&-submenu {
@@ -25,10 +71,30 @@
 		padding: 10px;
 		z-index: 1;
 
+		@media screen and (max-width: 920px) {
+			display: block;
+			position: relative;
+			margin-bottom: 5px;
+			padding: 5px;
+			background-color: #BF1E2E;
+		}
+
 		&-link {
 			color: #333;
-			font: bold 14px 'Abel', sans-serif;
+			font: bold 14px/22px 'Abel', sans-serif;
 			text-transform: uppercase;
+
+			@media screen and (max-width: 920px) {
+				color: #fff;
+				width: 100%;
+				display: inline-block;
+			}
+
+			&:hover {
+				@media screen and (max-width: 920px) {
+					color: #fff;
+				}
+			}
 		}
 	}
 
@@ -37,14 +103,22 @@
 		list-style: none;
 		margin-left: 15px;
 
+		.has-submenu {
+			position: relative;
+		}
+
 		&:hover {
 			.nav-submenu {
-				display: block;
+				@media screen and (min-width: 921px) {
+					display: block;
+				}
 			}
 		}
 
-		.has-submenu {
-			position: relative;
+		@media screen and (max-width: 920px) {
+			width: 100%;
+			margin-left: 0;
+			float: none;
 		}
 	}
 }

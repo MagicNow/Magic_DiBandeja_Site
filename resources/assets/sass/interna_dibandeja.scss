@@ -1,13 +1,18 @@
-#interna_dibandeja{
+.interna-dibandeja{
 	position: relative;
 
-
 	&.content{
+		@media screen and (max-width: 767px) {
+			text-align: center;
+		}
 
 		.container{
 			padding: 0 30px;
-		}
 
+			@media screen and (max-width: 767px) {
+				padding: 0 10px;
+			}
+		}
 
 		.content_infos{
 			position: relative;
@@ -22,9 +27,19 @@
 				}
 
 			}
-
 		}
-
 	}
 
+	&-image {
+		max-width: 100%;
+	}
+
+	&-column {
+		@media screen and (max-width: 767px) {
+			padding-right: 0;
+			padding-left: 0;
+			margin-bottom: 20px;
+			display: inline-block;
+		}
+	}
 }

@@ -6,8 +6,27 @@ body{
 	font-family: 'Abel', Arial, sans-serif;
 }
 
+.banner {
+	&-desktop {
+		display: block;
+
+		@media screen and (max-width: 767px) {
+			display: none;
+		}
+	}
+
+	&-mobile {
+		display: none;
+
+		@media screen and (max-width: 767px) {
+			display: block;
+		}
+	}
+}
+
 .breadcrumb{
 	background-color: transparent;
+	text-align: left;
 
 	ul{
 		padding: 0;
@@ -17,6 +36,10 @@ body{
 			text-transform: uppercase;
 			font-size: 14px;
 			color: #293666;
+
+			@media screen and (max-width: 767px) {
+				font-size: 11px;
+			}
 
 			a{
 				color: #6f6f6f;
@@ -35,29 +58,70 @@ body{
 	background-repeat: no-repeat;
 	background-position: top center;
 
+	@media screen and (max-width: 767px) {
+		margin-top: 20px;
+		background-size: cover;
+	}
+
+	@media screen and (min-width: 376px) and (max-width: 414px) { //iphone 6 plus
+		height: 85px;
+	}
+
+	@media screen and (min-width: 321px) and (max-width: 375px) { //iphone 6
+		height: 75px;
+	}
+
+	@media screen and (min-width: 0) and (max-width: 320px) { //iphone 5
+		height: 65px;
+	}
+
 	&.title {
 		&-sobre{
-			background-image: url('../images/bg_sobre.png') ;
+			background-image: url('../images/bg_sobre.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_sobre-mobile.png');
+			}
 		}
 
 		&-dibandeja{
 			background-image: url('../images/bg_dibandeja_interna.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_dibandeja_interna-mobile.png');
+			}
 		}
 
 		&-pf{
 			background-image: url('../images/bg_paraasuacasa.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_paraasuacasa-mobile.png');
+			}
 		}
 
 		&-pj{
 			background-image: url('../images/bg_paraoseunegocio.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_paraoseunegocio-mobile.png');
+			}
 		}
 
 		&-parceiro{
 			background-image: url('../images/bg_parceirocolaborador.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_parceirocolaborador-mobile.png');
+			}
 		}
 
 		&-fornecedor {
 			background-image: url('../images/bg_sejaumfornecedor.png');
+
+			@media screen and (max-width: 767px) {
+				background-image: url('../images/bg_sejaumfornecedor-mobile.png');
+			}
 		}
 	}
 }
@@ -70,6 +134,11 @@ body{
 	position: relative;
 	display: block;
 	margin: 30px 0 0 10px;
+
+	@media screen and (max-width: 767px) {
+		padding-left: 0;
+		margin: 30px auto 0;
+	}
 
 	&.bt_red_veja_after{
 
@@ -94,6 +163,12 @@ body{
 	display: block;
 	margin: 30px 50px 0 0;
 	float: right;
+
+	@media screen and (max-width: 767px) {
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	&.bt_red_solicite_after{
 

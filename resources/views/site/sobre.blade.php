@@ -7,7 +7,7 @@
 	<h2 class="header-title title-sobre">Sobre o DiBandeja</h2>
 </div>	
 
-<section id="interna_dibandeja" class="content">
+<section class="interna-dibandeja content">
 	<div class="container">
 
 		<div class="breadcrumb">

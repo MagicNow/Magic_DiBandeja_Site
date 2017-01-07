@@ -7,7 +7,7 @@
 	<h2 class="title-fornecedor header-title">Seja um fornecedor</h2>
 </div>	
 
-<section id="interna_dibandeja" class="content">
+<section class="interna_dibandeja content">
 	<div class="container">
 
 		<div class="breadcrumb">
