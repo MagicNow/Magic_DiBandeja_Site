@@ -22,9 +22,6 @@
 							<li class="menu-rodape-item">
 								<a class="menu-rodape-link" href="{{ route('parceiro') }}">Seja um Parceiro / Colaborador </a>
 							</li>
-							<li class="menu-rodape-item">
-								<a class="menu-rodape-link" href="{{ route('contato') }}">Contato</a>
-							</li>
 						</ul>
 					</div>
 				</div>

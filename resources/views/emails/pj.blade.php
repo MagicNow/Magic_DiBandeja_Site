@@ -17,7 +17,6 @@
 				<td>&nbsp;</td>
 				<td class="preheader" style="color: #fff; width: 500px; text-align: center;" width="500">
 					<p style="margin: 0; text-align: center;"><b>Cadastro nº {{ $cliente->id }}!</b></p>
-					<p style="margin: 0; text-align: center;">Adicione <a href="mailto:noreply@dibandeja.com.br" target="_blank" style="color: #fff">noreply@dibandeja.com.br</a> aos seus contatos.</p>
 				</td>
 				<td>&nbsp;</td>
 			</tr>
