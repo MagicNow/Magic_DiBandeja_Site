@@ -42,7 +42,7 @@
 		    @endif
 		    @if (!session('success'))
 		   		<div class="row">
-					<div class="col-sm-6 col-md-5 col-lg-5">
+					<div class="col-sm-7 col-md-6 col-lg-6">
 						<p>Escreva para o DiBandeja! Você é um escritor, um blogger de comida, é da área de nutrição, é fotógrafo, criador de receitas, um amante da gastronomia e quer escrever para o site? Mande um artigo para <a href="mailto:ola@dibandeja.com.br">ola@dibandeja.com.br</a> e, se quiser, anexe fotos de alta resolução e ilustrações exclusivas. Siga as seguintes guidelines:</p>
 
 						<p><strong>Frescor!</strong> Por favor não envie receitas que você já enviou antes.</p>
@@ -58,7 +58,7 @@
 						Tem novas idéias? Mande um email para <a href="mailto:ola@dibandeja.com.br"> ola@dibandeja.com.br</a> e nós adoraremos recebê-las!</p>
 					</div>
 
-					<form class="form_cliente col-sm-6 col-md-7 col-lg-7" action="{{route('parceiro.store')}}" method="post">
+					<form class="form_cliente col-sm-5 col-md-6 col-lg-6" action="{{route('parceiro.store')}}" method="post">
 						<fieldset>
 							<label for="tipo-parceiro" class="parceiro-tipo"><input class="radio" id="tipo-parceiro" type="radio" name="tipo" value="PARCEIRO" @if (old('tipo') == "PARCEIRO") checked="checked" @endif>PARCEIRO</label>
 							<label for="tipo-colaborador" class="parceiro-tipo"><input type="radio" id="tipo-colaborador" class="radio" name="tipo" value="COLABORADOR" @if (old('tipo') == "COLABORADOR") checked="checked" @endif>COLABORADOR</label>
