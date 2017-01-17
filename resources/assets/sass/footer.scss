@@ -172,6 +172,12 @@ footer{
 			}
 		}
 
+		&:last-child {
+			&:after{
+				display: none;
+			}
+		}
+
 		&.second{
 
 			&:after{
@@ -185,9 +191,8 @@ footer{
 	}
 
 	&-link {
-		font-family: 'Abel', sans-serif;
-		font-size: 0.78em;
-		color: #969696;
+		font: normal 12px/22px 'Abel', sans-serif;
+		color: #000;
 		text-transform: uppercase;
 
 		@media screen and (max-width: 767px) {

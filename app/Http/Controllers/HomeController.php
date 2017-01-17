@@ -189,7 +189,7 @@ class HomeController extends Controller {
 			$mail->send(new ParceiroMail($parceiro));
 
 			return redirect()->route('parceiro')
-					->with('success', 'É um prazer tê-lo cadastrado no DiBandeja. O nosso negócio é ajudar o seu. E vice-versa.');
+					->with('success', 'É um prazer tê-lo ao nosso lado no DiBandeja. Também estamos ao seu lado.');
 		} catch (\Exception $ex) {
 			return back()
 				->withErrors($ex->getMessage())

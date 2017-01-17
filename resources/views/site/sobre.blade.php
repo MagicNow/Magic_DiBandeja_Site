@@ -28,7 +28,7 @@
 
 		<div class="content_contato">
 			<div class="container sobre">
-				<p>O DiBandeja, como o próprio nome diz, quer simplificar e facilitar o seu dia-a- dia na cozinha.</p>
+				<p>O DiBandeja, como o próprio nome diz, quer simplificar e facilitar o seu dia-a-dia na cozinha.</p>
 				<p>É um site que reinventa o funcionamento gastronômico de uma casa, de forma organizada, customizada, prática e deliciosa.</p>
 				<p>Para pessoas de todas as idades, para famílias de todos os tamanhos, o DiBandeja veio para acabar com aquela eterna dúvida: o que temos hoje para o café, para o lanche, para o almoço, para o jantar…você passa o seu briefing gastronômico e a gente responde com sugestões de cardápios.</p>
 				<p>O DiBandeja cria cardápios especiais, específicos para sua família, com receitas que selecionamos em nosso Banco de Dados. Tudo pesquisado a partir de receitas de famílias, de amigos, de famosos e nem tão famosos chefs, de bloggers, de colaboradores, de autores culinários e amantes da gastronomia.</p>

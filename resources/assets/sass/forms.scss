@@ -54,7 +54,13 @@ select {
 
 .content_form{
 	position: relative;
-	// margin-bottom: 145px;
+	
+	&.form {
+		p {
+			font-size: 17px;
+			color: #000;
+		}
+	}
 
 	.form_cliente{
 		label{
@@ -79,6 +85,7 @@ select {
 			height: 40px;
 			background-color: #fff;
 			padding: 5px;
+			font-size: 17px;
 
 			&.radio{
 				display: inline-block;
@@ -100,6 +107,7 @@ select {
 			-webkit-border-radius: 5px;
 			height: 40px;
 			background-color: #fff;
+			font-size: 17px;
 		}
 
 		textarea{
@@ -112,6 +120,7 @@ select {
 			border-radius: 5px;
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
+			font-size: 17px;
 		}
 
 		#enviar{

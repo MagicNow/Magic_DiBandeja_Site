@@ -5,7 +5,7 @@
 					<div class="menu-rodape">
 						<ul class="list_2 menu-rodape-list">
 							<li class="menu-rodape-item">
-								<a class="menu-rodape-link" href="{{ route('dibandeja-pra-voce') }}">DiBandeja Para Você:</a>
+								<a class="menu-rodape-link" href="{{ route('dibandeja-pra-voce') }}">DiBandeja Para Você</a>
 							</li>
 							<li class="menu-rodape-item">
 								<a class="menu-rodape-link" href="{{ route('sobre') }}">Sobre o DiBandeja</a>
