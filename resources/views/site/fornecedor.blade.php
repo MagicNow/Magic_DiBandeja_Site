@@ -55,7 +55,7 @@
 								<input type="text" placeholder="ESPECIALIDADE" name="especialidade" value="{{ old('especialidade') }}">
 							</label>		
 							<label>
-								<input type="url" placeholder="URL" name="url" value="{{ old('url') }}">
+								<input type="text" placeholder="URL" name="url" value="{{ old('url') }}">
 							</label>
 							{{-- <label>
 								<input type="text" placeholder="Cotação" name="cotacao" value="{{ old('cotacao') }}">

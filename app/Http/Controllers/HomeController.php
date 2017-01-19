@@ -82,7 +82,7 @@ class HomeController extends Controller {
 		$validator = Validator::make($dados, [
 			'nome'    	=> 'required',
 			'email'		=> 'required',
-			'telefone'	=> 'required'
+			'telefone'	=> 'required',
 		]);
 
 		if ($validator->fails()) {
@@ -145,7 +145,8 @@ class HomeController extends Controller {
 			'razao_social'      => 'required',
 			'nome_fantasia'     => 'required',
 			'telefone'          => 'required',
-			'nome_contato'		=> 'required'
+			'nome_contato'		=> 'required',
+			'url'				=> 'regex:/[^.]([\.])[^.]/',
 		]);
 
 		if ($validator->fails()) {
@@ -174,7 +175,8 @@ class HomeController extends Controller {
 		$validator = Validator::make($dados, [
 			'nome'          => 'required',
 			'email'         => 'required',
-			'telefone'      => 'required'
+			'telefone'      => 'required',
+			'url'			=> 'regex:/[^.]([\.])[^.]/',
 		]);
 
 		if ($validator->fails()) {

@@ -81,7 +81,7 @@
 								<input type="tel" placeholder="TELEFONE" id="phone" name="telefone" value="{{ old('telefone') }}">
 							</label>
 							<label>
-								<input type="url" placeholder="URL" name="url" value="{{ old('url') }}">
+								<input type="text" placeholder="URL" name="url" value="{{ old('url') }}">
 							</label>
 							
 							<label>
