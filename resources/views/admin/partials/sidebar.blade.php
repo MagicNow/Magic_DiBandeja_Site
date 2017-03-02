@@ -3,18 +3,14 @@
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">Menu</li>
-            <li class="active"><a href="{{ route('admin.ingredientes') }}"><i class='fa fa-user'></i> <span>Ingredientes</span></a></li>
-            <li class=""><a href="{{ route('admin.receitas') }}"><i class='fa fa-user'></i> <span>Receitas</span></a></li>
-            <li class=""><a href="{{ route('admin.caracteristicas') }}"><i class='fa fa-user'></i> <span>Caracteristicas</span></a></li>
-            <li class=""><a href="{{ route('admin.fornecedores') }}"><i class='fa fa-user'></i> <span>Fornecedores</span></a></li>
-            <li class=""><a href="{{ route('admin.grupos') }}"><i class='fa fa-user'></i> <span>Grupos</span></a></li>
-           
-
-
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.ingredientes' ? 'active' : '' }}"><a href="{{ route('admin.ingredientes') }}"><i class='fa fa-user'></i> <span>Ingredientes</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.receitas' ? 'active' : '' }}"><a href="{{ route('admin.receitas') }}"><i class='fa fa-user'></i> <span>Receitas</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.caracteristicas' ? 'active' : '' }}"><a href="{{ route('admin.caracteristicas') }}"><i class='fa fa-user'></i> <span>Caracteristicas</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.fornecedores' ? 'active' : '' }}"><a href="{{ route('admin.fornecedores') }}"><i class='fa fa-user'></i> <span>Fornecedores</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.grupos' ? 'active' : '' }}"><a href="{{ route('admin.grupos') }}"><i class='fa fa-user'></i> <span>Grupos</span></a></li>
 
             {{-- <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
