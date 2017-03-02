@@ -15,14 +15,6 @@ class Grupos extends Model {
         'descricao', 'created_at',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $table = 'grupos';
-
-
     // public function receitas()
     // { 
     //     return $this->belongsToMany('App\Receitas','receitas_ingredientes','receita_id','ingrediente_id');

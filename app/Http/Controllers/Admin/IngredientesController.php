@@ -26,7 +26,7 @@ class IngredientesController extends Controller {
         if (Auth::check()) {
            $ingredientes = Ingredientes::orderby('id', 'desc')->get();
 
-           return view('admin.ingredientes.list',compact('ingredientes'));
+           return view('admin.ingredientes.list', compact('ingredientes'));
         } else {
             return view('auth.login');
         }
@@ -34,13 +34,12 @@ class IngredientesController extends Controller {
 
     public function create(){
 
-        $caracteristicas = Caracteristicas::lists('descricao','id');
-        $grupos = Grupos::lists('descricao','id');
-        $fornecedores = Fornecedores::lists('razao_social','id');
-        $ingredientes = Ingredientes::lists('ingrediente','id');
+        $caracteristicas = Caracteristicas::pluck('descricao','id');
+        $grupos = Grupos::pluck('descricao','id');
+        $fornecedores = Fornecedores::pluck('razao_social','id');
+        $ingredientes = Ingredientes::pluck('ingrediente','id');
 
-        return view('admin.ingredientes.create',compact('caracteristicas','grupos','fornecedores','ingredientes'));
-
+        return view('admin.ingredientes.create',compact('caracteristicas', 'grupos', 'fornecedores', 'ingredientes'));
     }
 
     public function edit($id = null){

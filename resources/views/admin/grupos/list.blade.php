@@ -28,7 +28,7 @@
 					@foreach($grupos as $grupo)
 						<tr>
 							<td>{!! $grupo->id!!}</td>
-							<td>{!! $grupo->descricao!!}</td>
+							<td>{!! $grupo->nome!!}</td>
 							<td>{!! date('d/m/Y H:i:s',strtotime($grupo->created_at))!!}</td>
 							<td>
 								<a href="{{ route('admin.grupos.edit',$grupo->id) }}" class="btn btn-primary">Editar</a>
@@ -48,7 +48,7 @@
 			</table>
 		</div><!-- /.box-body -->
 	</div><!-- /.box -->
-	<div class="modal fade modal-danger " id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="false">
+	<div class="modal fade modal-danger" id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modals-content">
             

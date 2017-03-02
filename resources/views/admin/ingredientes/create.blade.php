@@ -18,8 +18,7 @@
             {{ session('sucess') }}
         </div>
     @endif
-    {!! Form::open(array('route' => array('admin.ingredientes.store',isset($ingrediente->id) ? $ingrediente->id : ''),'method' => 'POST','files'=>true)) !!}
-
+    {!! Form::open(['route' => ['admin.ingredientes.store', isset($ingrediente->id) ? $ingrediente->id : ''],'method' => 'POST','files'=>true]) !!}
 
         <div class="form-group">
             <label for="">Ingrediente</label>
@@ -31,12 +30,12 @@
         </div>
         <div class="form-group">
             <label>Caracteristicas</label>
-            {!! Form::select('caracteristicas[]', $caracteristicas, isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '',array('class' => 'form-control select2','id'=>'caracteristicas','multiple'=>'multiple')) !!}        
+            {!! Form::select('caracteristicas[]', $caracteristicas, isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2','id'=>'caracteristicas','multiple'=>'multiple')) !!}
         </div>
 
         <div class="form-group">
             <label>Grupos</label>
-            {!! Form::select('grupos[]', $grupos, isset($ingrediente->grupos) ? $grupos_ingredientes : '',array('class' => 'form-control select2','id'=>'grupos','multiple'=>'multiple')) !!}        
+            {!! Form::select('grupos[]', $grupos, isset($ingrediente->grupos) ? $grupos_ingredientes : '',array('class' => 'form-control select2','id'=>'grupos','multiple'=>'multiple')) !!}
         </div>
 
         <div class="form-group">
@@ -57,7 +56,7 @@
         </div>
         <div class="form-group">
             <label>Ingrediente de afinidade</label>
-            {!! Form::select('ingredientes_relacionados[]', $ingredientes, isset($ingrediente->relacionados) ? $ingredientes_relacionados : '',array('class' => 'form-control select2','id'=>'ingredientes_relacionados','multiple'=>'multiple')) !!}        
+            {!! Form::select('ingredientes_relacionados[]', $ingredientes, isset($ingrediente->relacionados) ? $ingredientes_relacionados : '', array('class' => 'form-control select2','id'=>'ingredientes_relacionados','multiple'=>'multiple')) !!}
         </div>
         <div class="form-group">
             <label for="">Sazonalidade inicial</label>
@@ -74,7 +73,7 @@
         </div>
         <div class="form-group">
             <label>Fornecedores</label>
-            {!! Form::select('fornecedores[]', $fornecedores, isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '',array('class' => 'form-control select2','id'=>'fornecedores','multiple'=>'multiple')) !!}        
+            {!! Form::select('fornecedores[]', $fornecedores, isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '',array('class' => 'form-control select2','id'=>'fornecedores','multiple'=>'multiple')) !!}
         </div>
 
         <div class="form-group">

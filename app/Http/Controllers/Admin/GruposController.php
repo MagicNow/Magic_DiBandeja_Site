@@ -14,55 +14,45 @@ use Validator;
 use Redirect;
 
 class GruposController extends Controller {
-
-
     public function index() {
         if (Auth::check()) { 
-
-
            $grupos = Grupos::orderby('id', 'desc')->get();
 
-           return view('admin.grupos.list',compact('grupos'));
+           return view('admin.grupos.list', compact('grupos'));
         } else {
             return view('auth.login');
         }
     }
 
     public function create(){
-
-       
         return view('admin.grupos.create');
-
     }
 
     public function edit($id = null){
-
         $grupo = Grupos::find($id);
        
         return view('admin.grupos.create',compact('grupo'));
-
     }
-    public function destroy($id = null){
 
+    public function destroy($id = null){
         Ingredientes_grupos::where('grupo_id',$id)->delete();
 
         $grupos = Grupos::find($id);
         
         $grupos->delete();
         return Redirect::route('admin.grupos')->with('sucess', 'Registro apagado com sucesso!');;
-
     }
 
     public function store($id = null){
-        
         $dados = Input::all();
+
         if($id){
             $rules = array(
                 'descricao'      =>'required|unique:grupos,descricao'
 
             );
             $msg = "Registro alterado com sucesso!";
-        }else{
+        } else {
            $rules = array(
                 'descricao'      =>'required|unique:grupos,descricao,'.$id
              ); 
@@ -75,17 +65,13 @@ class GruposController extends Controller {
 
             if($id){
                 $grupos = Grupos::find($id);
-               
-            }else{
+            } else {
                 $grupos = new Grupos;
             }
-            
-            
-            $grupos->descricao               = $dados['descricao'];
-          
+
+            $grupos->descricao               = $dados['descricao'];          
             $grupos->save();
-            
-         
+
             return Redirect::route('admin.grupos')->with('sucess', $msg);
         }else{
 
