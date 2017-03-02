@@ -8,7 +8,7 @@ use Auth;
 use Session;
 use Request;
 use App\Models\Fornecedores;
-use App\Models\Ingredientes_fornecedores;
+use App\Models\Fornecedores_Ingredientes;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
@@ -18,8 +18,6 @@ class FornecedoresController extends Controller {
 
     public function index() {
         if (Auth::check()) { 
-
-
            $fornecedores = Fornecedores::orderby('id', 'desc')->get();
 
            return view('admin.fornecedores.list',compact('fornecedores'));
@@ -29,10 +27,7 @@ class FornecedoresController extends Controller {
     }
 
     public function create(){
-
-       
         return view('admin.fornecedores.create');
-
     }
 
     public function edit($id = null){
@@ -43,12 +38,11 @@ class FornecedoresController extends Controller {
 
     }
     public function destroy($id = null){
-        Ingredientes_fornecedores::where('fornecedor_id',$id)->delete();
+        Fornecedores_ingredientes::where('fornecedor_id',$id)->delete();
         $fornecedores = Fornecedores::find($id);
         
         $fornecedores->delete();
         return Redirect::route('admin.fornecedores')->with('sucess', 'Registro apagado com sucesso!');;
-
     }
 
     public function store($id = null){
@@ -73,8 +67,7 @@ class FornecedoresController extends Controller {
 
             if($id){
                 $fornecedores = Fornecedores::find($id);
-               
-            }else{
+            } else {
                 $fornecedores = new Fornecedores;
             }
             
@@ -102,18 +95,13 @@ class FornecedoresController extends Controller {
             }
 
             $fornecedores->save();
-            
-         
-            return Redirect::route('admin.fornecedores')->with('sucess', $msg);
-        }else{
 
+            return Redirect::route('admin.fornecedores')->with('sucess', $msg);
+        } else {
             return Redirect::route('admin.fornecedores.create')
                 ->withErrors($validator)
                 ->withInput();
             
         }
-    }
-   
-
-    
+    } 
 }

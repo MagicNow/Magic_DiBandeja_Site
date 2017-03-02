@@ -45,7 +45,7 @@ class Ingredientes extends Model {
 
     public function fornecedores()
     { 
-        return $this->belongsToMany('App\Models\Fornecedores','ingredientes_fornecedores','ingrediente_id','fornecedor_id');
+        return $this->belongsToMany('App\Models\Fornecedores','fornecedores_ingredientes','ingrediente_id','fornecedor_id');
     }
 
     public function relacionados()

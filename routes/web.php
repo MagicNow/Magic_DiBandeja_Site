@@ -38,8 +38,8 @@ Route::post('/parceiro/store', ['as' => 'parceiro.store', 'uses' => 'HomeControl
 
 Route::group(['prefix' => 'admin'], function() {
 	Auth::routes();
-	
-	// Route::get('/', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);
+
+	Route::get('/home', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);
 	// Route::get('login', ['as'=> 'admin.login','uses' => 'Admin\AdminController@index']);
 	// Route::post('login', ['uses' => 'Admin\AdminController@login']);
 	// Route::get('logout', ['as'=> 'admin.logout','uses' => 'Admin\AdminController@logout']);

@@ -13,7 +13,7 @@ use App\Models\Grupos;
 use App\Models\Fornecedores;
 use App\Models\Ingredientes_caracteristicas;
 use App\Models\Ingredientes_grupos;
-use App\Models\Ingredientes_fornecedores;
+use App\Models\Fornecedores_ingredientes;
 use App\Models\Ingredientes_relacionados;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -23,9 +23,7 @@ class IngredientesController extends Controller {
 
 
     public function index() {
-        if (Auth::check()) { 
-
-
+        if (Auth::check()) {
            $ingredientes = Ingredientes::orderby('id', 'desc')->get();
 
            return view('admin.ingredientes.list',compact('ingredientes'));
@@ -82,7 +80,7 @@ class IngredientesController extends Controller {
 
         Ingredientes_grupos::where('ingrediente_id',$id)->delete();
         Ingredientes_caracteristicas::where('ingrediente_id',$id)->delete();
-        Ingredientes_fornecedores::where('ingrediente_id',$id)->delete();
+        Fornecedores_ingredientes::where('ingrediente_id',$id)->delete();
         Ingredientes_relacionados::where('ingrediente_id_to',$id)->delete();
         Ingredientes_relacionados::where('ingrediente_id_from',$id)->delete();
 
@@ -163,13 +161,13 @@ class IngredientesController extends Controller {
                 }
             }
 
-            Ingredientes_fornecedores::where('ingrediente_id',$ingrediente->id)->delete();
+            Fornecedores_ingredientes::where('ingrediente_id',$ingrediente->id)->delete();
             if(isset($dados['fornecedores'])){
 
                 foreach ($dados['fornecedores'] as $forne) {
-                    $frn = new Ingredientes_fornecedores;
-                    $frn->ingrediente_id         = $ingrediente->id;
-                    $frn->fornecedor_id      = $forne;
+                    $frn = new Fornecedores_ingredientes;
+                    $frn->ingrediente_id    = $ingrediente->id;
+                    $frn->fornecedor_id     = $forne;
                     $frn->save();
                 }
             }

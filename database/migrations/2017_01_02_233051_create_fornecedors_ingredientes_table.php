@@ -12,7 +12,7 @@ class CreateFornecedorsIngredientesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('fornecedors_ingredientes', function(Blueprint $table)
+		Schema::create('fornecedores_ingredientes', function(Blueprint $table)
 		{
 			$table->integer('fornecedor_id')->nullable();
 			$table->integer('ingrediente_id')->nullable();

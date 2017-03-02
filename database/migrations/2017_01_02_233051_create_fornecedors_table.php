@@ -12,7 +12,7 @@ class CreateFornecedorsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('fornecedors', function(Blueprint $table)
+		Schema::create('fornecedores', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->string('nome')->nullable();

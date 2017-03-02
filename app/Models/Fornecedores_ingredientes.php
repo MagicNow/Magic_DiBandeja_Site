@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredientes_fornecedores extends Model {
+class Fornecedores_ingredientes extends Model {
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +17,6 @@ class Ingredientes_fornecedores extends Model {
      *
      * @var array
      */
-    protected $table = 'ingredientes_fornecedores';
+    protected $table = 'fornecedores_ingredientes';
     public $timestamps = false;
-
-
-    
-
 }
