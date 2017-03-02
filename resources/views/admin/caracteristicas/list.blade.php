@@ -15,7 +15,7 @@
 			</div>
       @endif
 		<div class="box-body">
-			<table id="datatables" class="table table-bordered table-striped">
+			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.caracteristicas.create") }}'>Cadastre uma nova característica aqui</a>">
 				<thead>
 					<tr>
 						<th>Id</th>

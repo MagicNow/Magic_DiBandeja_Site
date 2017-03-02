@@ -34,6 +34,8 @@
 <!-- The File Upload user interface plugin -->
 <script src="{{ asset('/assets/admin/js/jquery.fileupload-ui.js') }}"></script>
 
+<script src="{{ asset('/assets/admin/plugins/select2/i18n/pt-BR.js') }}" type="text/javascript"></script>
+
 
 <script src="{{ asset('/assets/admin/js/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/js/admin.js') }}" type="text/javascript"></script>

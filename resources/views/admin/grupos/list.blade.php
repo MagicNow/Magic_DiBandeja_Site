@@ -15,7 +15,7 @@
 			</div>
       @endif
 		<div class="box-body">
-			<table id="datatables" class="table table-bordered table-striped">
+			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.grupos.create") }}'>Cadastre um novo grupo aqui</a>">
 				<thead>
 					<tr>
 						<th>Id</th>
