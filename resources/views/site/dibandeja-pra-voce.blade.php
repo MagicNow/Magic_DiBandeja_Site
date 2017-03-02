@@ -28,9 +28,12 @@
 		<div class="content_infos">
 			 
 			 <div class="container">
-			 	
 				<div class="infos_left col-xs-12 col-sm-6 col-md-6 col-lg-6 interna-dibandeja-column">
-					<img src="assets/images/interna_01.png" class="interna-dibandeja-image"><br>
+					@desktop
+						<img src="assets/images/interna_01.png" class="interna-dibandeja-image"><br>
+					@elsedesktop
+						<img src="assets/images/interna_02-mobile.png" class="interna-dibandeja-image"><br>
+					@enddesktop
 					<a href="{{ route('cliente.pf') }}" class="bt_red_solicite"></a>
 				</div>
 

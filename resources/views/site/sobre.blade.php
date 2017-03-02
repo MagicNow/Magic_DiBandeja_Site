@@ -26,7 +26,7 @@
 		</div> 
 
 
-		<div class="content_contato">
+		<div class="content_sobre">
 			<div class="container sobre">
 				<p>O DiBandeja, como o próprio nome diz, quer simplificar e facilitar o seu dia-a-dia na cozinha.</p>
 				<p>É um site que reinventa o funcionamento gastronômico de uma casa, de forma organizada, customizada, prática e deliciosa.</p>

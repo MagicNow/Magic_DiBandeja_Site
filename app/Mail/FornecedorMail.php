@@ -34,7 +34,7 @@ class FornecedorMail extends Mailable
                     ->with([
                         'fornecedor' => $this->fornecedor
                     ])
-                    ->cc(['fernando@magictech.co'])
+                    // ->cc(['fernando@magictech.co'])
                     ->from('noreply@dibandeja.com.br', 'DiBandeja')
                     ->subject('DiBandeja - Novo fornecedor');
     }

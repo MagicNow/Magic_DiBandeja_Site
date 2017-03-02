@@ -9,7 +9,7 @@
         
         <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-        {!! Html::style('public/assets/css/app.css') !!}
+        {!! Html::style('assets/css/app.css') !!}
         <title>DiBandeja</title>
     </head>
     <body>

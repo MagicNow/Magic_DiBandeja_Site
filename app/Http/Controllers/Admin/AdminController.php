@@ -7,14 +7,11 @@ use URL;
 use Auth;
 use Session;
 use Request;
+
 class AdminController extends Controller {
-
-
-   
-
     public function index() {
         if (Auth::check()) {
-            return redirect ('/admin/ingredientes');
+            return redirect('/admin/ingredientes');
         } else {
         	return view('auth.login');
         }
@@ -24,7 +21,6 @@ class AdminController extends Controller {
         if (Auth::attempt(['email' => request::input('username'), 'password' => request::input('password')])) {
             return redirect ('/admin/ingredientes');
         } else {
-            
             return view('auth.login');
         }
     }
