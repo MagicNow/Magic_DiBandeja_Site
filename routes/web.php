@@ -74,6 +74,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/fornecedores', ['as'=> 'admin.fornecedores','uses' => 'Admin\FornecedoresController@index']);
 	Route::post('fornecedores/store/{id?}', ['as' =>'admin.fornecedores.store','uses' => 'Admin\FornecedoresController@store']);
 	Route::get('fornecedores/create', ['as' =>'admin.fornecedores.create','uses' => 'Admin\FornecedoresController@create']);
+	Route::get('fornecedores/list', ['as' =>'admin.fornecedores.list','uses' => 'Admin\FornecedoresController@list']);
 	Route::get('fornecedores/edit/{id}', ['as' =>'admin.fornecedores.edit','uses' => 'Admin\FornecedoresController@edit']);
 	Route::get('fornecedores/destroy/{id?}', ['as' =>'admin.fornecedores.destroy','uses' => 'Admin\FornecedoresController@destroy']);
 });

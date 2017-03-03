@@ -15,7 +15,7 @@ use Redirect;
 
 class FornecedoresController extends Controller {
 	public function index() {
-		if (Auth::check()) { 
+		if (Auth::check()) {
 		   $fornecedores = Fornecedores::orderby('id', 'desc')->get();
 
 		   return view('admin.fornecedores.list',compact('fornecedores'));
@@ -24,12 +24,15 @@ class FornecedoresController extends Controller {
 		}
 	}
 
-	// public function list() {
-	//     $fornecedores = Fornecedores::orderby('id', 'desc')->get();
-	//     return response()
-	//         ->json(['name' => 'Abigail', 'state' => 'CA'])
-	//         ->withCallback($request->input('callback'));
-	// }
+	public function list() {
+		$dados = Input::all();
+
+		$fornecedores = Fornecedores::where('razao_social', 'LIKE', '%' . $dados['q'] . '%')
+								->select('razao_social AS text', 'id')
+								->get();
+
+		return response()->json($fornecedores);
+	}
 
 	public function create(){
 		return view('admin.fornecedores.create');

@@ -1,5 +1,6 @@
 $(function() {
-	var registerModal = $('#register');
+	var registerModal = $('#register'),
+		selectAjax = $('.select2-ajax');
 
 	$.ajaxSetup({
 		headers: {
@@ -49,6 +50,28 @@ $(function() {
 		escapeMarkup: function (markup) {
 			return markup;
 		}
+	});
+
+	selectAjax.select2({
+		// "language": "pt-BR",
+		escapeMarkup: function (markup) {
+			return markup;
+		},
+		ajax: {
+			url: selectAjax.data('url'),
+			processResults: function (data) {
+				return {
+					results: data
+				};
+			}
+		},
+		language: {
+			noResults: function(){
+				console.log('no results');
+				var select = $(document.activeElement).parents('.select2').prev('.select2-ajax');
+				return "Nenhum resultado encontrado. " + (select.data('notfound') ? select.data('notfound') : '')
+			}
+		},
 	});
 
 	$('#sazonalidade_inicial,#sazonalidade_final').datepicker({

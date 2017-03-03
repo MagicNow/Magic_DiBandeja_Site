@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             <label>Fornecedores</label>
-            {!! Form::select('fornecedores[]', $fornecedores, isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '',array('class' => 'form-control select2', 'id' => 'fornecedores', 'multiple'=>'multiple', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
+            {!! Form::select('fornecedores[]', [], isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'multiple' => 'multiple', 'data-url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
         </div>
 
         <div class="form-group">
