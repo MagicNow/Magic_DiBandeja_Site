@@ -58,22 +58,37 @@ $(function() {
 	});
 
 	registerModal.on('loaded.bs.modal', function (e) {
-		$('.modal form').on('submit', function () {
-			var $this = $(this),
-				data = $this.serialize();
+		$('#register')
 
-			data += '&type=modal';
-			$.post($this.attr('action'), data, function (data) {
-				if (data.success) {
-					registerModal.modal('toggle');
-					registerModal.find('input').val('');
-					$.toaster({ priority : 'success', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
-				} else {
-					$.toaster({ priority : 'danger', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
-				}
+		$('.modal form')
+			.append('<input type="hidden" name="type" value="modal" />')
+			.on('submit', function () {
+				var $this = $(this),
+					data = new FormData(this);
+
+				$.ajax({
+					type: 'post',
+					url: $this.attr('action'),
+					data: data,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success: function(data){
+						if (data.success) {
+							registerModal.modal('toggle');
+							registerModal.find('input').val('');
+							$.toaster({ priority : 'success', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
+						} else {
+							$.toaster({ priority : 'danger', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
+						}
+					}
+				})
+
+				return false;
 			});
-
-			return false;
-		});
-	})
+	}).on('hidden.bs.modal', function (e) {
+		$(e.target)
+			.removeData('bs.modal')
+			.find(".modal-body").html('');
+	});
 });
