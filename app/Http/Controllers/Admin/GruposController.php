@@ -14,74 +14,82 @@ use Validator;
 use Redirect;
 
 class GruposController extends Controller {
-    public function index() {
-        if (Auth::check()) { 
-           $grupos = Grupos::orderby('id', 'desc')->get();
+	public function index() {
+		if (Auth::check()) { 
+		   $grupos = Grupos::orderby('id', 'desc')->get();
 
-           return view('admin.grupos.list', compact('grupos'));
-        } else {
-            return view('auth.login');
-        }
-    }
+		   return view('admin.grupos.list', compact('grupos'));
+		} else {
+			return view('auth.login');
+		}
+	}
 
-    public function create(){
-        return view('admin.grupos.create');
-    }
+	public function create(){
+		return view('admin.grupos.create');
+	}
 
-    public function edit($id = null){
-        $grupo = Grupos::find($id);
-       
-        return view('admin.grupos.create',compact('grupo'));
-    }
+	public function edit($id = null){
+		$grupo = Grupos::find($id);
+	   
+		return view('admin.grupos.create',compact('grupo'));
+	}
 
-    public function destroy($id = null){
-        Ingredientes_grupos::where('grupo_id',$id)->delete();
+	public function destroy($id = null){
+		Ingredientes_grupos::where('grupo_id',$id)->delete();
 
-        $grupos = Grupos::find($id);
-        
-        $grupos->delete();
-        return Redirect::route('admin.grupos')->with('sucess', 'Registro apagado com sucesso!');;
-    }
+		$grupos = Grupos::find($id);
+		
+		$grupos->delete();
+		return Redirect::route('admin.grupos')->with('sucess', 'Registro apagado com sucesso!');;
+	}
 
-    public function store($id = null){
-        $dados = Input::all();
+	public function store($id = null){
+		$dados = Input::all();
 
-        if($id){
-            $rules = array(
-                'descricao'      =>'required|unique:grupos,descricao'
+		if($id){
+			$rules = array(
+				'descricao'      =>'required|unique:grupos,descricao'
 
-            );
-            $msg = "Registro alterado com sucesso!";
-        } else {
-           $rules = array(
-                'descricao'      =>'required|unique:grupos,descricao,'.$id
-             ); 
-           $msg = "Cadastro efetuado com sucesso!";
-        }
+			);
+			$msg = "Registro alterado com sucesso!";
+		} else {
+		   $rules = array(
+				'descricao'      =>'required|unique:grupos,descricao,'.$id
+			 ); 
+		   $msg = "Cadastro efetuado com sucesso!";
+		}
 
-        $validator = Validator::make($dados,$rules);
+		$validator = Validator::make($dados,$rules);
 
-        if(!$validator->fails()){
+		if(!$validator->fails()){
 
-            if($id){
-                $grupos = Grupos::find($id);
-            } else {
-                $grupos = new Grupos;
-            }
+			if($id){
+				$grupos = Grupos::find($id);
+			} else {
+				$grupos = new Grupos;
+			}
 
-            $grupos->descricao               = $dados['descricao'];          
-            $grupos->save();
+			$grupos->descricao               = $dados['descricao'];          
+			$grupos->save();
 
-            return Redirect::route('admin.grupos')->with('sucess', $msg);
-        }else{
-
-            return Redirect::route('admin.grupos.create')
-                ->withErrors($validator)
-                ->withInput();
-            
-        }
-    }
+			if (isset($dados['type']) && $dados['type'] === 'modal') {
+				$return = array();
+				$return[] = $msg;
+				return response()->json(['success' => true, 'message' => $return]);
+			} else {
+				return Redirect::route('admin.grupos')->with('sucess', $msg);
+			}
+		} else {
+			if (isset($dados['type']) && $dados['type'] === 'modal') {
+				return response()->json(['success' => false, 'message' => $validator->errors()->all(), 'fields' => $dados]);
+			} else {
+				return Redirect::route('admin.grupos.create')
+					->withErrors($validator)
+					->withInput();
+			}
+		}
+	}
    
 
-    
+	
 }

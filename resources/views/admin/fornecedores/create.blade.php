@@ -1,9 +1,8 @@
-@extends('admin.app')
+@extends(app('request')->input('type') === 'modal' ? 'admin.app' : 'admin.app')
 
 @section('contentheader_title')
     Novo fornecedor
 @endsection
-
 
 @section('main-content')
     @if(count($errors) > 0)

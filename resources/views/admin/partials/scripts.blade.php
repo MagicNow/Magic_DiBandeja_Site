@@ -3,7 +3,8 @@
 <!-- jQuery 2.1.4 -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Bootstrap 3.3.2 JS -->
-<script src="{{ asset('/assets/admin/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="{{ asset('/assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
@@ -35,6 +36,7 @@
 <script src="{{ asset('/assets/admin/js/jquery.fileupload-ui.js') }}"></script>
 
 <script src="{{ asset('/assets/admin/plugins/select2/i18n/pt-BR.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/plugins/notifications/jquery.toaster.js') }}" type="text/javascript"></script>
 
 
 <script src="{{ asset('/assets/admin/js/app.min.js') }}" type="text/javascript"></script>

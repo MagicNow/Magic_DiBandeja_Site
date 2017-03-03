@@ -30,12 +30,12 @@
         </div>
         <div class="form-group">
             <label>Caracteristicas</label>
-            {!! Form::select('caracteristicas[]', $caracteristicas, isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2','id'=>'caracteristicas','multiple'=>'multiple')) !!}
+            {!! Form::select('caracteristicas[]', $caracteristicas, isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2','id'=>'caracteristicas','multiple'=>'multiple', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
         </div>
 
         <div class="form-group">
             <label>Grupos</label>
-            {!! Form::select('grupos[]', $grupos, isset($ingrediente->grupos) ? $grupos_ingredientes : '', array('class' => 'form-control select2', 'id' => 'grupos', 'multiple' => 'multiple', 'data-notfound' => "<a href='" . route('admin.grupos.create') . "' class='register-modal'>Cadastre um novo grupo</a>")) !!}
+            {!! Form::select('grupos[]', $grupos, isset($ingrediente->grupos) ? $grupos_ingredientes : '', array('class' => 'form-control select2', 'id' => 'grupos', 'multiple' => 'multiple', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
         </div>
 
         <div class="form-group">
@@ -56,17 +56,17 @@
         </div>
         <div class="form-group">
             <label>Ingrediente de afinidade</label>
-            {!! Form::select('ingredientes_relacionados[]', $ingredientes, isset($ingrediente->relacionados) ? $ingredientes_relacionados : '', array('class' => 'form-control select2','id'=>'ingredientes_relacionados','multiple'=>'multiple')) !!}
+            {!! Form::select('ingredientes_relacionados[]', $ingredientes, isset($ingrediente->relacionados) ? $ingredientes_relacionados : '', array('class' => 'form-control select2', 'id'=>'ingredientes_relacionados','multiple'=>'multiple')) !!}
         </div>
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="">Sazonalidade inicial</label>
-                {!! Form::text('sazonalidade_inicial',isset($ingrediente->sazonalidade_inicial) ? date('d/m/Y',strtotime($ingrediente->sazonalidade_inicial)) : '',array('class' => 'form-control','placeholder'=>'Sazonalidade inicial*','id'=>'sazonalidade_inicial','autocomplete'=>'off') )!!}
+                {!! Form::text('sazonalidade_inicial',isset($ingrediente->sazonalidade_inicial) ? date('d/m/Y',strtotime($ingrediente->sazonalidade_inicial)) : '',array('class' => 'form-control','placeholder'=>'Sazonalidade inicial*','id'=>'sazonalidade_inicial', 'autocomplete'=>'off') )!!}
             </div>
 
             <div class="form-group col-md-4">
                 <label for="">Sazonalidade final</label>
-                {!! Form::text('sazonalidade_final', isset($ingrediente->sazonalidade_final) ? date('d/m/Y',strtotime($ingrediente->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final','autocomplete'=>'off') )!!}
+                {!! Form::text('sazonalidade_final', isset($ingrediente->sazonalidade_final) ? date('d/m/Y',strtotime($ingrediente->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final', 'autocomplete'=>'off') )!!}
             </div>
         </div>
         <div class="form-group">
@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             <label>Fornecedores</label>
-            {!! Form::select('fornecedores[]', $fornecedores, isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '',array('class' => 'form-control select2', 'id' => 'fornecedores', 'multiple'=>'multiple', 'data-notfound' => "<a href='" . route('admin.fornecedores.create') . "' class='register-modal'>Cadastre um novo fornecedor</a>")) !!}
+            {!! Form::select('fornecedores[]', $fornecedores, isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '',array('class' => 'form-control select2', 'id' => 'fornecedores', 'multiple'=>'multiple', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
         </div>
 
         <div class="form-group">

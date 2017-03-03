@@ -4,9 +4,9 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
             <meta name="csrf-token" content="{!! csrf_token() !!}">
 
-    <!-- Bootstrap 3.3.4 -->
+    <!-- Bootstrap 3.3.7 -->
 
-    {!! Html::style('assets/admin/css/bootstrap.css') !!}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     {!! Html::style('assets/admin/plugins/select2/select2.min.css') !!}
     {!! Html::style('assets/admin/css/app.css') !!}
 

@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fornecedores extends Model {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
+    protected $fillable = ['nome_fantasia', 'telefone', 'endereco', 'bairro', 'cidade', 'site', 'cep', 'estado', 'pais', 'razao_social', 'url', 'especialidade', 'cotacao', 'complemento'];
 
     /**
      * The attributes that should be hidden for arrays.

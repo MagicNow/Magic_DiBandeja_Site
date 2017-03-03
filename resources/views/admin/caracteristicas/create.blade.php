@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends(app('request')->input('type') === 'modal' ? 'admin.modal' : 'admin.app')
 
 @section('contentheader_title')
     Nova caracteristica

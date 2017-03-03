@@ -158,6 +158,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Riverskies\Laravel\MobileDetect\MobileDetectServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -205,7 +206,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
-        'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class
+        'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

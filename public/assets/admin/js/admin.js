@@ -1,9 +1,12 @@
 $(function() {
+	var registerModal = $('#register');
+
 	$.ajaxSetup({
 		headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		}
 	});
+
 	$('textarea').wysihtml5();
 
 	var datatables = $('#datatables');
@@ -53,4 +56,24 @@ $(function() {
 		language: 'pt-BR',
 		format: 'dd/mm/yyyy',
 	});
+
+	registerModal.on('loaded.bs.modal', function (e) {
+		$('.modal form').on('submit', function () {
+			var $this = $(this),
+				data = $this.serialize();
+
+			data += '&type=modal';
+			$.post($this.attr('action'), data, function (data) {
+				if (data.success) {
+					registerModal.modal('toggle');
+					registerModal.find('input').val('');
+					$.toaster({ priority : 'success', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
+				} else {
+					$.toaster({ priority : 'danger', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
+				}
+			});
+
+			return false;
+		});
+	})
 });

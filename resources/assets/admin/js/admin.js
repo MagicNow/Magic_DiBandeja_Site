@@ -36,7 +36,61 @@ $(function() {
 	});
 
 	$(".select2").select2({
-		"language": "pt-BR"
+		"language": "pt-BR",
+		"language": {
+			"noResults": function(){
+				var select = $(document.activeElement).parents('.select2').prev('.select2');
+				return "Nenhum resultado encontrado. " + (select.data('notfound') ? select.data('notfound') : '')
+			}
+		},
+		escapeMarkup: function (markup) {
+			return markup;
+		}
+	});
+
+	$(".select2-ajax").select2({
+		ajax: {
+			url: "https://api.github.com/search/repositories",
+			dataType: 'json',
+			delay: 250,
+			data: function (params) {
+				return {
+					q: params.term, // search term
+					page: params.page
+				};
+			},
+			processResults: function (data, params) {
+				params.page = params.page || 1;
+
+				return {
+					results: data.items,
+					pagination: {
+					more: (params.page * 30) < data.total_count
+					}
+				};
+			},
+			cache: true
+		},
+		"language": "pt-BR",
+		"language": {
+			"noResults": function(){
+				var select = $(document.activeElement).parents('.select2').prev('.select2');
+				return "Nenhum resultado encontrado. " + (select.data('notfound') ? select.data('notfound') : '')
+			}
+		},
+		escapeMarkup: function (markup) {
+			return markup;
+		},
+		templateResult: function (data) {
+			if (data.id === '') { // adjust for custom placeholder values
+				return 'Custom styled placeholder text';
+			}
+
+			return data.text;
+		},
+		templateSelection: template(data, container) {
+			return data.text;
+		}
 	});
 
 	$('#sazonalidade_inicial,#sazonalidade_final').datepicker({
