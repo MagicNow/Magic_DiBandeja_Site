@@ -17,9 +17,7 @@ class CaracteristicasController extends Controller {
 
 
 	public function index() {
-		if (Auth::check()) { 
-
-
+		if (Auth::check()) {
 		   $caracteristicas = Caracteristicas::orderby('id', 'desc')->get();
 
 		   return view('admin.caracteristicas.list',compact('caracteristicas'));
@@ -30,6 +28,18 @@ class CaracteristicasController extends Controller {
 
 	public function create(){       
 		return view('admin.caracteristicas.create');
+	}
+
+	public function list() {
+		$dados = Input::all();
+
+		if (isset($dados['q'])) {
+			$caracteristicas = Caracteristicas::where('descricao', 'LIKE', '%' . $dados['q'] . '%')
+									->select('descricao AS text','id')
+									->get();
+
+			return response()->json($caracteristicas);
+		}
 	}
 
 	public function edit($id = null){

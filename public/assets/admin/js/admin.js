@@ -1,6 +1,7 @@
 $(function() {
 	var registerModal = $('#register'),
-		selectAjax = $('.select2-ajax');
+		selectAjax = $('.select2-ajax'),
+		selectUrl = '';
 
 	$.ajaxSetup({
 		headers: {
@@ -58,7 +59,7 @@ $(function() {
 			return markup;
 		},
 		ajax: {
-			url: selectAjax.data('url'),
+			// url: selectUrl,
 			processResults: function (data) {
 				return {
 					results: data

@@ -22,8 +22,8 @@
 	
 		
 		<div class="form-group">
-			<label for="">Descrição</label>
-			{!! Form::text('descricao',isset($grupo->descricao) ? $grupo->descricao : '',array('class' => 'form-control','placeholder'=>'Descrição*','id'=>'descricao','autocomplete'=>'off') )!!}
+			<label for="">Nome</label>
+			{!! Form::text('nome',isset($grupo->nome) ? $grupo->nome : '',array('class' => 'form-control','placeholder'=>'Nome*','id'=>'nome','autocomplete'=>'off') )!!}
 		</div>
 
        <div class="form-group">

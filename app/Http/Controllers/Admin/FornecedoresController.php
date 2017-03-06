@@ -27,11 +27,13 @@ class FornecedoresController extends Controller {
 	public function list() {
 		$dados = Input::all();
 
-		$fornecedores = Fornecedores::where('razao_social', 'LIKE', '%' . $dados['q'] . '%')
-								->select('razao_social AS text', 'id')
-								->get();
+		if (isset($dados['q'])) {
+			$fornecedores = Fornecedores::where('razao_social', 'LIKE', '%' . $dados['q'] . '%')
+									->select('razao_social AS text', 'id')
+									->get();
 
-		return response()->json($fornecedores);
+			return response()->json($fornecedores);
+		}
 	}
 
 	public function create(){

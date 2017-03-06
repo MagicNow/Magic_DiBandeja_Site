@@ -23,33 +23,23 @@ class IngredientesController extends Controller {
 
 
     public function index() {
-        if (Auth::check()) {
-           $ingredientes = Ingredientes::orderby('id', 'desc')->get();
+        if (!Auth::check()) { return view('auth.login'); return false; }
 
-           return view('admin.ingredientes.list', compact('ingredientes'));
-        } else {
-            return view('auth.login');
-        }
+        $ingredientes = Ingredientes::orderby('id', 'desc')->get();
+        return view('admin.ingredientes.list', compact('ingredientes'));
     }
 
     public function create(){
-
-        $caracteristicas = Caracteristicas::pluck('descricao','id');
-        $grupos = Grupos::pluck('descricao','id');
-        $fornecedores = Fornecedores::pluck('razao_social','id');
         $ingredientes = Ingredientes::pluck('ingrediente','id');
 
-        return view('admin.ingredientes.create',compact('caracteristicas', 'grupos', 'fornecedores', 'ingredientes'));
+        return view('admin.ingredientes.create',compact('ingredientes'));
     }
 
     public function edit($id = null){
+        if (!Auth::check()) { return view('auth.login'); return false; }
 
         $ingrediente = Ingredientes::find($id);
-        $caracteristicas = Caracteristicas::lists('descricao','id');
-        $grupos = Grupos::lists('descricao','id');
-        $fornecedores = Fornecedores::lists('razao_social','id');
-        $ingredientes = Ingredientes::where('id','<>',$id)->lists('ingrediente','id');
-
+        $ingredientes = Ingredientes::where('id','<>',$id)->pluck('ingrediente','id');
 
         $caracteristicas_ingredientes = array();
         foreach ($ingrediente->caracteristicas as $key => $value) {
@@ -71,8 +61,7 @@ class IngredientesController extends Controller {
             array_push($fornecedores_ingredientes,$value->id);
         }
 
-
-        return view('admin.ingredientes.create',compact('ingrediente','caracteristicas','grupos','fornecedores','ingredientes','caracteristicas_ingredientes','grupos_ingredientes','ingredientes_relacionados','fornecedores_ingredientes'));
+        return view('admin.ingredientes.create',compact('ingrediente','ingredientes','caracteristicas_ingredientes','grupos_ingredientes','ingredientes_relacionados','fornecedores_ingredientes'));
 
     }
     public function destroy($id = null){

@@ -30,12 +30,12 @@
         </div>
         <div class="form-group">
             <label>Caracteristicas</label>
-            {!! Form::select('caracteristicas[]', $caracteristicas, isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2','id'=>'caracteristicas','multiple'=>'multiple', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
+            {!! Form::select('caracteristicas[]', [], isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2-ajax','id'=>'caracteristicas','multiple'=>'multiple', 'data-ajax--url' => '/admin/caracteristicas/list', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
         </div>
 
         <div class="form-group">
             <label>Grupos</label>
-            {!! Form::select('grupos[]', $grupos, isset($ingrediente->grupos) ? $grupos_ingredientes : '', array('class' => 'form-control select2', 'id' => 'grupos', 'multiple' => 'multiple', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
+            {!! Form::select('grupos[]', [], isset($ingrediente->grupos) ? $grupos_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'grupos', 'multiple' => 'multiple', 'data-ajax--url' => '/admin/grupos/list', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
         </div>
 
         <div class="form-group">
@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             <label>Fornecedores</label>
-            {!! Form::select('fornecedores[]', [], isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'multiple' => 'multiple', 'data-url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
+            {!! Form::select('fornecedores[]', [], isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'multiple' => 'multiple', 'data-ajax--url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
         </div>
 
         <div class="form-group">

@@ -38,6 +38,7 @@ Route::post('/parceiro/store', ['as' => 'parceiro.store', 'uses' => 'HomeControl
 
 Route::group(['prefix' => 'admin'], function() {
 	Auth::routes();
+	Route::get('logout', 'Auth\LoginController@logout');
 
 	// Route::get('/home', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);
 	// Route::get('login', ['as'=> 'admin.login','uses' => 'Admin\AdminController@index']);
@@ -62,12 +63,14 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/caracteristicas', ['as'=> 'admin.caracteristicas','uses' => 'Admin\CaracteristicasController@index']);
 	Route::post('caracteristicas/store/{id?}', ['as' =>'admin.caracteristicas.store','uses' => 'Admin\CaracteristicasController@store']);
 	Route::get('caracteristicas/create', ['as' =>'admin.caracteristicas.create','uses' => 'Admin\CaracteristicasController@create']);
+	Route::get('caracteristicas/list', ['as' =>'admin.grupos.list','uses' => 'Admin\CaracteristicasController@list']);
 	Route::get('caracteristicas/edit/{id}', ['as' =>'admin.caracteristicas.edit','uses' => 'Admin\CaracteristicasController@edit']);
 	Route::get('caracteristicas/destroy/{id?}', ['as' =>'admin.caracteristicas.destroy','uses' => 'Admin\CaracteristicasController@destroy']);
 
 	Route::get('/grupos', ['as'=> 'admin.grupos','uses' => 'Admin\GruposController@index']);
 	Route::post('grupos/store/{id?}', ['as' =>'admin.grupos.store','uses' => 'Admin\GruposController@store']);
 	Route::get('grupos/create', ['as' =>'admin.grupos.create','uses' => 'Admin\GruposController@create']);
+	Route::get('grupos/list', ['as' =>'admin.grupos.list','uses' => 'Admin\GruposController@list']);
 	Route::get('grupos/edit/{id}', ['as' =>'admin.grupos.edit','uses' => 'Admin\GruposController@edit']);
 	Route::get('grupos/destroy/{id?}', ['as' =>'admin.grupos.destroy','uses' => 'Admin\GruposController@destroy']);
 

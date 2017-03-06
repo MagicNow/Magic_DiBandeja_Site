@@ -24,7 +24,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            @if (Auth::user())
+                                <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                            @endif
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Footer-->

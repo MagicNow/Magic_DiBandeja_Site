@@ -24,6 +24,18 @@ class GruposController extends Controller {
 		}
 	}
 
+	public function list() {
+		$dados = Input::all();
+
+		if (isset($dados['q'])) {
+			$grupos = Grupos::where('nome', 'LIKE', '%' . $dados['q'] . '%')
+									->select('nome AS text','id')
+									->get();
+
+			return response()->json($grupos);
+		}
+	}
+
 	public function create(){
 		return view('admin.grupos.create');
 	}
@@ -48,13 +60,13 @@ class GruposController extends Controller {
 
 		if($id){
 			$rules = array(
-				'descricao'      =>'required|unique:grupos,descricao'
+				'nome' =>'required|unique:grupos,nome'
 
 			);
 			$msg = "Registro alterado com sucesso!";
 		} else {
 		   $rules = array(
-				'descricao'      =>'required|unique:grupos,descricao,'.$id
+				'nome'      =>'required|unique:grupos,nome,'.$id
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
@@ -69,7 +81,7 @@ class GruposController extends Controller {
 				$grupos = new Grupos;
 			}
 
-			$grupos->descricao               = $dados['descricao'];          
+			$grupos->nome = $dados['nome'];          
 			$grupos->save();
 
 			if (isset($dados['type']) && $dados['type'] === 'modal') {
