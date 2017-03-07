@@ -30,12 +30,12 @@
         </div>
         <div class="form-group">
             <label>Caracteristicas</label>
-            {!! Form::select('caracteristicas[]', [], isset($ingrediente->caracteristicas) ? $caracteristicas_ingredientes : '', array('class' => 'form-control select2-ajax','id'=>'caracteristicas','multiple'=>'multiple', 'data-ajax--url' => '/admin/caracteristicas/list', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
+            {!! Form::select('caracteristicas[]', [], null, array('class' => 'form-control select2-ajax','id'=>'caracteristicas','multiple'=>'multiple', 'data-ajax--url' => '/admin/caracteristicas/list', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
         </div>
 
         <div class="form-group">
             <label>Grupos</label>
-            {!! Form::select('grupos[]', [], isset($ingrediente->grupos) ? $grupos_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'grupos', 'multiple' => 'multiple', 'data-ajax--url' => '/admin/grupos/list', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
+            {!! Form::select('grupos[]', isset($ingrediente->grupos) ? $grupos_ingredientes : '', null, array('class' => 'form-control select2-ajax', 'id' => 'grupos', 'multiple' => 'multiple', 'data-ajax--url' => '/admin/grupos/list', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
         </div>
 
         <div class="form-group">

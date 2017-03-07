@@ -43,22 +43,22 @@ class IngredientesController extends Controller {
 
         $caracteristicas_ingredientes = array();
         foreach ($ingrediente->caracteristicas as $key => $value) {
-            array_push($caracteristicas_ingredientes,$value->id);
+            $caracteristicas_ingredientes[$value->id] = $value->descricao;
         }
 
         $grupos_ingredientes = array();
         foreach ($ingrediente->grupos as $key => $value) {
-            array_push($grupos_ingredientes,$value->id);
+            $grupos_ingredientes[$value->id] = $value->descricao;
         }
 
         $ingredientes_relacionados = array();
         foreach ($ingrediente->relacionados as $key => $value) {
-            array_push($ingredientes_relacionados,$value->id);
+            array_push($ingredientes_relacionados, $value->id);
         }
 
         $fornecedores_ingredientes = array();
         foreach ($ingrediente->fornecedores as $key => $value) {
-            array_push($fornecedores_ingredientes,$value->id);
+            $fornecedores_ingredientes[$value->id] = $value->nome_fantasia;
         }
 
         return view('admin.ingredientes.create',compact('ingrediente','ingredientes','caracteristicas_ingredientes','grupos_ingredientes','ingredientes_relacionados','fornecedores_ingredientes'));
@@ -75,7 +75,6 @@ class IngredientesController extends Controller {
         $ingredientes = Ingredientes::find($id);        
         $ingredientes->delete();
         return Redirect::route('admin.ingredientes')->with('sucess', 'Registro apagado com sucesso!');;
-
     }
 
     public function store($id = null){
@@ -97,15 +96,12 @@ class IngredientesController extends Controller {
         $validator = Validator::make($dados,$rules);
 
         if(!$validator->fails()){
-
             if($id){
                 $ingrediente = Ingredientes::find($id);
-               
-            }else{
+            } else {
                 $ingrediente = new Ingredientes;
             }
-            
-            
+
             $ingrediente->ingrediente               = $dados['ingrediente'];
             $ingrediente->nome_cientifico           = $dados['nome_cientifico'];
             $ingrediente->propriedades_nutricionais = $dados['propriedades_nutricionais'];
@@ -115,8 +111,8 @@ class IngredientesController extends Controller {
             $ingrediente->sazonalidade_inicial      = date('Y/m/d H:i:s',strtotime($dados['sazonalidade_inicial']));
             $ingrediente->sazonalidade_final        = date('Y/m/d H:i:s',strtotime($dados['sazonalidade_final']));
             $ingrediente->historico                 = $dados['historico'];
-            $ingrediente->custo                     = $dados['custo'];
-            $ingrediente->medida                    = $dados['medida'];
+            // $ingrediente->custo                     = $dados['custo'];
+            // $ingrediente->medida                    = $dados['medida'];
 
             $image = Input::file('image');
             if(isset($image)){
