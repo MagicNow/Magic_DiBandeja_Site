@@ -28,8 +28,8 @@ class FornecedoresController extends Controller {
 		$dados = Input::all();
 
 		if (isset($dados['q'])) {
-			$fornecedores = Fornecedores::where('razao_social', 'LIKE', '%' . $dados['q'] . '%')
-									->select('razao_social AS text', 'id')
+			$fornecedores = Fornecedores::where('nome_fantasia', 'LIKE', '%' . $dados['q'] . '%')
+									->select('nome_fantasia AS text', 'id')
 									->get();
 
 			return response()->json($fornecedores);

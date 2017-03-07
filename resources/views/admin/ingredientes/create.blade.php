@@ -73,19 +73,26 @@
             <label for="">Histórico</label>
             {!! Form::textarea('historico',isset($ingrediente->historico) ? $ingrediente->historico : '',array('class' => 'form-control','placeholder'=>'Histórico*','id'=>'historico') )!!}
         </div>
-        <div class="form-group">
-            <label>Fornecedores</label>
-            {!! Form::select('fornecedores[]', [], isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'multiple' => 'multiple', 'data-ajax--url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
-        </div>
-
-        <div class="form-group">
-            <label for="">Custo</label>
-            {!! Form::text('custo',isset($ingrediente->custo) ? $ingrediente->custo : '',array('class' => 'form-control','placeholder'=>'Custo*','id'=>'Custo','autocomplete'=>'off') )!!}
-        </div>
-
-        <div class="form-group">
-            <label for="">Medida</label>
-            {!! Form::text('medida',isset($ingrediente->medida) ? $ingrediente->medida : '',array('class' => 'form-control','placeholder'=>'Medida*','id'=>'medida','autocomplete'=>'off') )!!}
+        <div class="form-group form-providers">
+            <label for="fornecedores">Fornecedores</label>
+            <div class="row fornecedores-linha">
+                <div class="col-md-5 col-sm-12">
+                    {!! Form::select('fornecedores[]', [], isset($ingrediente->fornecedores) ? $fornecedores_ingredientes : '', array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'data-ajax--url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
+                </div>
+                <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
+                    <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
+                    <div class="col-md-2 col-sm-3 col-xs-3">
+                        {!! Form::text('fornecedores_custo[]', isset($ingrediente->fornecedores_custo) ? $ingrediente->fornecedores_custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
+                    <div class="col-md-3 col-sm-4 col-xs-4">
+                        {!! Form::text('fornecedores_medida[]', isset($ingrediente->fornecedores_medida) ? $ingrediente->fornecedores_medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
+                    </div>
+                    <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </button>
+                </label>
+            </div>
         </div>
         @if(isset($ingrediente->image))
             <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">

@@ -1,7 +1,11 @@
+var $registerModal,
+	selectAjax,
+	selectUrl = '',
+	messageNotFound = '',
+	$self;
+
 $(function() {
-	var registerModal = $('#register'),
-		selectAjax = $('.select2-ajax'),
-		selectUrl = '';
+	$registerModal = $('#register'),
 
 	$.ajaxSetup({
 		headers: {
@@ -53,35 +57,13 @@ $(function() {
 		}
 	});
 
-	selectAjax.select2({
-		// "language": "pt-BR",
-		escapeMarkup: function (markup) {
-			return markup;
-		},
-		ajax: {
-			// url: selectUrl,
-			processResults: function (data) {
-				return {
-					results: data
-				};
-			}
-		},
-		language: {
-			noResults: function(){
-				console.log('no results');
-				var select = $(document.activeElement).parents('.select2').prev('.select2-ajax');
-				return "Nenhum resultado encontrado. " + (select.data('notfound') ? select.data('notfound') : '')
-			}
-		},
-	});
-
 	$('#sazonalidade_inicial,#sazonalidade_final').datepicker({
 		autoclose: true,
 		language: 'pt-BR',
 		format: 'dd/mm/yyyy',
 	});
 
-	registerModal.on('loaded.bs.modal', function (e) {
+	$registerModal.on('loaded.bs.modal', function (e) {
 		$('#register')
 
 		$('.modal form')
@@ -99,8 +81,8 @@ $(function() {
 					processData: false,
 					success: function(data){
 						if (data.success) {
-							registerModal.modal('toggle');
-							registerModal.find('input').val('');
+							$registerModal.modal('toggle');
+							$registerModal.find('input').val('');
 							$.toaster({ priority : 'success', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
 						} else {
 							$.toaster({ priority : 'danger', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
@@ -115,4 +97,67 @@ $(function() {
 			.removeData('bs.modal')
 			.find(".modal-body").html('');
 	});
+
+	$('.fornecedores-acrescentar').on('click', function () {
+		var $line,
+			$clone,
+			$button,
+			html;
+
+		$self = $(this);
+		$line = $self.parents('.fornecedores-linha');
+		$clone = $line.clone();
+
+		$clone.find('input, select').val('');
+		$clone.find('.select2-container').remove();
+		$clone.find('select option').remove();
+
+		$button = $clone.find('.fornecedores-acrescentar');
+
+		$button.removeClass('fornecedores-acrescentar')
+				.addClass('fornecedores-remover');
+
+		$button.children()
+				.removeClass('glyphicon-plus-sign')
+				.addClass('glyphicon-minus-sign');
+
+		html = '<div class="row fornecedores-linha">' + $clone.html() + '</div>';
+		$('.form-providers')
+			.append(html)
+			.find('.fornecedores-remover')
+			.one('click', removeSelect);
+
+		changeSelect();
+	});
+
+	changeSelect();
 });
+
+function changeSelect () {
+	selectAjax = $('.select2-ajax'),
+	selectAjax.select2({
+		// "language": "pt-BR",
+		escapeMarkup: function (markup) {
+			return markup;
+		},
+		ajax: {
+			processResults: function (data) {
+				return {
+					results: data
+				};
+			}
+		},
+		language: {
+			noResults: function(){
+				return "Nenhum resultado encontrado. " + messageNotFound;
+			}
+		},
+	}).on('select2:open', function (evt) {
+		messageNotFound = evt.currentTarget.getAttribute('data-notfound');
+	});
+}
+
+function removeSelect () {
+	$self = $(this);
+	$self.parents('.fornecedores-linha').remove();
+}
