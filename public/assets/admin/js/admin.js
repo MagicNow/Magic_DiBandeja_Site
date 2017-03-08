@@ -109,8 +109,13 @@ $(function() {
 		$clone = $line.clone();
 
 		$clone.find('input, select').val('');
-		$clone.find('.select2-container').remove();
+		// $clone.find('.select2-container').remove();
 		$clone.find('select option').remove();
+		$clone.find('.mt-tag-element').remove();
+		$clone.find('.mt-tag-container').remove();
+		$clone.find('.component-mt-select').removeClass('dispatched');
+		$clone.find('input[type="hidden"]').remove();
+		$clone.find('.form-control').removeAttr('style');
 
 		$button = $clone.find('.fornecedores-acrescentar');
 
@@ -129,62 +134,42 @@ $(function() {
 
 		changeSelect();
 	});
-
-	changeSelect();
 });
 
 function changeSelect () {
-	// selectAjax = $('.select2-ajax'),
-	// selectAjax.select2({
-	// 	// allowClear: true,
-	// 	// multiple: true,
-	// 	// "language": "pt-BR",
-	// 	escapeMarkup: function (markup) {
-	// 		return markup;
-	// 	},
-	// 	ajax: {
-	// 		processResults: function (data) {
-	// 			return {
-	// 				results: data
-	// 			};
-	// 		}
-	// 	},
-	// 	language: {
-	// 		noResults: function(){
-	// 			return "Nenhum resultado encontrado. " + messageNotFound;
-	// 		}
-	// 	},
-	// 	// initSelection: function (element, callback) {
-	// 	// 	var $options = element.find('option');
-	// 	// 	console.log($options);
-	// 	// 	$.each($options, function (i, option) {
-	// 	// 		console.log(option.innerHTML);
-	// 	// 		callback({ "text": option.innerHTML, "id": option.getAttribute('value') });
-	// 	// 	});
-	// 	// }
-	// }).on('select2:open', function (evt) {
-	// 	messageNotFound = evt.currentTarget.getAttribute('data-notfound');
-	// });
+	var mtSelectInstances = {},
+		mtSelectInstancesCount = 0;
 
-	// selectAjax.trigger('change.select2');
+	$('.component-mt-select').each(function(){
+		if($(this).hasClass('dispatched'))
+		return;
 
-	selectAjax = $('.select2-ajax');
+		$(this).addClass('dispatched');
 
-  //  	selectAjax.searchableOptionList({
-  //  		showSelectAll: false,
-  //  		maxShow: 5,
-  //  		displaySelectionItem: false,
-  //  		displayContainerAboveInput: false,
-		// texts: {
-		// 	itemsSelected : "{$a} itens selecionados",
-		// 	loadingData: "Carregando dados...",
-		// 	noItemsAvailable : "Nenhum registro encontrado",
-		// 	quickDelete: "&times;",
-		// 	searchplaceholder: "Clique aqui para buscar",
-		// 	selectAll: "Selecionar todos",
-		// 	selectNone: "Nenhuma seleção"
-		// }
-  //  	});
+		mtSelectInstances[mtSelectInstancesCount] = $.extend(1, {}, jQueryMTSelect);
+
+		var attributes = {}, params = {};
+
+		$.each( $(this)[0].attributes, function( index, attr ) {
+			attributes[ attr.name ] = attr.value;
+		} );
+
+		$.each(attributes, function(key, value){
+			if(key.indexOf('data-mt-') == 0) {
+				var name = key.replace('data-mt-', '');
+
+				name = name.replace(/-/g, '_');
+
+				params[name] = value;
+			}
+		});
+
+		params.namespace = "mt_select_" + mtSelectInstancesCount;
+// console.log($(this), params);
+		mtSelectInstances[mtSelectInstancesCount].Init($(this), params);
+
+		mtSelectInstancesCount++;
+	});
 }
 
 function removeSelect () {

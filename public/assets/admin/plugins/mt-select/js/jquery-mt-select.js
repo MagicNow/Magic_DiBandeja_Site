@@ -508,7 +508,7 @@ jQuery(document).ready(function(){
     jQuery(this).addClass('dispatched');
 
     mtSelectInstances[mtSelectInstancesCount] = jQuery.extend(1, {}, jQueryMTSelect);
-console.log(mtSelectInstances[mtSelectInstancesCount]);
+
     var attributes = {}, params = {};
 
     jQuery.each( jQuery(this)[0].attributes, function( index, attr ) {
