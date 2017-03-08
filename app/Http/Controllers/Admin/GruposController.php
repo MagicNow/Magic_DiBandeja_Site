@@ -27,14 +27,18 @@ class GruposController extends Controller {
 	public function list() {
 		$dados = Input::all();
 
-		if (isset($dados['q'])) {
-			$grupos = Grupos::where('nome', 'LIKE', '%' . $dados['q'] . '%')
-									->selectRaw('nome AS label, id AS value, "option" AS type')
-									->get('text', 'values');
+		if (isset($dados['mt_filter'])) {
+			$grupos = Grupos::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+									->selectRaw('nome AS name, id, "" AS description, "" AS picture_path')
+									->get();
 
-			return response()->json($grupos);
+			if (count($grupos) === 0) {
+				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route('admin.grupos.create', ['type' => 'modal']) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo grupo</a>']);
+			} else {
+				return response()->json(['results' => $grupos, 'status' => 'ok']);
+			}
 		} else {
-			return response()->json([]);
+			return response()->json(['results' => [], 'status' => 'empty']);
 		}
 	}
 

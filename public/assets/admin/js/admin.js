@@ -170,18 +170,21 @@ function changeSelect () {
 
 	selectAjax = $('.select2-ajax');
 
-   	selectAjax.searchableOptionList({
-   		showSelectAll: false,
-		texts: {
-			itemsSelected : "{$a} itens selecionados",
-			loadingData: "Carregando dados...",
-			noItemsAvailable : "Nenhum registro encontrado",
-			quickDelete: "&times;",
-			searchplaceholder: "Clique aqui para buscar",
-			selectAll: "Selecionar todos",
-			selectNone: "Nenhuma seleção"
-		}
-   	});
+  //  	selectAjax.searchableOptionList({
+  //  		showSelectAll: false,
+  //  		maxShow: 5,
+  //  		displaySelectionItem: false,
+  //  		displayContainerAboveInput: false,
+		// texts: {
+		// 	itemsSelected : "{$a} itens selecionados",
+		// 	loadingData: "Carregando dados...",
+		// 	noItemsAvailable : "Nenhum registro encontrado",
+		// 	quickDelete: "&times;",
+		// 	searchplaceholder: "Clique aqui para buscar",
+		// 	selectAll: "Selecionar todos",
+		// 	selectNone: "Nenhuma seleção"
+		// }
+  //  	});
 }
 
 function removeSelect () {

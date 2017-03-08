@@ -27,14 +27,18 @@ class FornecedoresController extends Controller {
 	public function list() {
 		$dados = Input::all();
 
-		if (isset($dados['q'])) {
-			$fornecedores = Fornecedores::where('nome_fantasia', 'LIKE', '%' . $dados['q'] . '%')
-									->selectRaw('nome_fantasia AS label, id AS value, "option" AS type')
+		if (isset($dados['mt_filter'])) {
+			$fornecedores = Fornecedores::where('nome_fantasia', 'LIKE', '%' . $dados['mt_filter'] . '%')
+									->selectRaw('nome_fantasia AS name, id, "option" AS type')
 									->get();
 
-			return response()->json($fornecedores);
+			if (count($fornecedores) === 0) {
+				return response()->json(['results' => [], 'status' => 'empty']);
+			} else {
+				return response()->json(['results' => $fornecedores, 'status' => 'ok']);
+			}
 		} else {
-			return response()->json([]);
+			return response()->json(['results' => [], 'status' => 'empty']);
 		}
 	}
 

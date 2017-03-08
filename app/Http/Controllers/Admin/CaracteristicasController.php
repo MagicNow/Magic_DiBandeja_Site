@@ -33,14 +33,18 @@ class CaracteristicasController extends Controller {
 	public function list() {
 		$dados = Input::all();
 
-		if (isset($dados['q'])) {
-			$caracteristicas = Caracteristicas::where('descricao', 'LIKE', '%' . $dados['q'] . '%')
-									->selectRaw('descricao AS label, id AS value, "option" AS type')
+		if (isset($dados['mt_filter'])) {
+			$caracteristicas = Caracteristicas::where('descricao', 'LIKE', '%' . $dados['mt_filter'] . '%')
+									->selectRaw('descricao AS name, id')
 									->get();
 
-			return response()->json($caracteristicas);
+			if (count($caracteristicas) === 0) {
+				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.caracteristicas.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre uma nova característica</a>']);
+			} else {
+				return response()->json(['results' => $caracteristicas, 'status' => 'ok']);
+			}
 		} else {
-			return response()->json([]);
+			return response()->json(['results' => [], 'status' => 'empty']);
 		}
 	}
 

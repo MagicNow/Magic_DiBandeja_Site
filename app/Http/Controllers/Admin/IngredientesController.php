@@ -42,14 +42,17 @@ class IngredientesController extends Controller {
         $ingredientes = Ingredientes::where('id','<>',$id)->pluck('ingrediente','id');
 
         $caracteristicas_ingredientes = array();
+
         foreach ($ingrediente->caracteristicas as $key => $value) {
             $caracteristicas_ingredientes[$value->id] = $value->descricao;
         }
+        $caracteristicas_ingredientes = json_encode($caracteristicas_ingredientes);
 
         $grupos_ingredientes = array();
         foreach ($ingrediente->grupos as $key => $value) {
             $grupos_ingredientes[$value->id] = $value->descricao;
         }
+        $grupos_ingredientes = json_encode($grupos_ingredientes);
 
         $ingredientes_relacionados = array();
         foreach ($ingrediente->relacionados as $key => $value) {
@@ -60,6 +63,7 @@ class IngredientesController extends Controller {
         foreach ($ingrediente->fornecedores as $key => $value) {
             $fornecedores_ingredientes[$value->id] = $value->nome_fantasia;
         }
+        $fornecedores_ingredientes = json_encode($fornecedores_ingredientes);
 
         return view('admin.ingredientes.create',compact('ingrediente','ingredientes','caracteristicas_ingredientes','grupos_ingredientes','ingredientes_relacionados','fornecedores_ingredientes'));
 
@@ -80,10 +84,10 @@ class IngredientesController extends Controller {
     public function store($id = null){
         
         $dados = Input::all();
+
         if($id){
             $rules = array(
                 'ingrediente'      =>'required|unique:ingredientes,ingrediente,'.$id
-
             );
             $msg = "Registro alterado com sucesso!";
         }else{
@@ -123,13 +127,13 @@ class IngredientesController extends Controller {
             }
 
             $ingrediente->save();
-            
+
             Ingredientes_caracteristicas::where('ingrediente_id',$ingrediente->id)->delete();
             if(isset($dados['caracteristicas'])){
                 foreach ($dados['caracteristicas'] as $carac) {
                     $ing = new Ingredientes_caracteristicas;
                     $ing->ingrediente_id         = $ingrediente->id;
-                    $ing->caracteristica_id      = $carac;
+                    $ing->caracteristica_id      = $carac[key($carac)];
                     $ing->save();
                 }
             }

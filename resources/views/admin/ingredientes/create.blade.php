@@ -22,20 +22,25 @@
 
         <div class="form-group">
             <label for="">Ingrediente</label>
-            {!! Form::text('ingrediente', isset($ingrediente->ingrediente) ? $ingrediente->ingrediente : '',array('class' => 'form-control','placeholder'=>'Ingrediente*','id'=>'ingrediente','autocomplete'=>'off') )!!}
+            {!! Form::text('ingrediente',isset($ingrediente->ingrediente) ? $ingrediente->ingrediente : '',array('class' => 'form-control','placeholder'=>'Ingrediente*','id'=>'ingrediente','autocomplete'=>'off') )!!}
         </div>
         <div class="form-group">
             <label for="">Nome científico</label>
             {!! Form::text('nome_cientifico',isset($ingrediente->nome_cientifico) ? $ingrediente->nome_cientifico : '',array('class' => 'form-control','placeholder'=>'Nome científico*','id'=>'nome_cientifico','autocomplete'=>'off') )!!}
         </div>
-        <div class="form-group ">
+        <div class="form-group">
             <label>Caracteristicas</label>
-            {!! Form::select('caracteristicas[]', [], null, array('class' => 'form-control form-control-select select2-ajax','id'=>'caracteristicas','multiple'=>'multiple', 'data-sol-options' => '{"multiple": true, "data": "/admin/caracteristicas/list"}', 'data-notfound' => "<a href='" . route('admin.caracteristicas.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre uma nova característica</a>")) !!}
+            <div class="col-sm-10 component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ $caracteristicas_ingredientes }}">
+                <input type="text" class="form-control" data-mt-filter-control/>
+            </div>
         </div>
 
         <div class="form-group">
             <label>Grupos</label>
-            {!! Form::select('grupos[]', [], null, array('class' => 'form-control form-control-select select2-ajax', 'id' => 'grupos', 'multiple' => 'multiple', 'data-sol-options' => '{"multiple": true, "data": "/admin/grupos/list"}', 'data-notfound' => "<a href='" . route('admin.grupos.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo grupo</a>")) !!}
+            <div class="col-sm-10 component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]">
+                <input type="text" class="form-control" data-mt-filter-control/>
+                {{-- {!! Form::select('grupos[]', [], null, array('class' => 'form-control select2-ajax', 'id' => 'grupos', 'multiple' => 'multiple', 'data-mt-request-url' => '/admin/grupos/list', 'data-notfound' => "")) !!} --}}
+            </div>
         </div>
 
         <div class="form-group">
@@ -76,8 +81,9 @@
         <div class="form-group form-providers">
             <label for="fornecedores">Fornecedores</label>
             <div class="row fornecedores-linha">
-                <div class="col-md-5 col-sm-12">
-                    {!! Form::select('fornecedores[]', [], null, array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'data-sol-options' => '{"data": "/admin/fornecedores/list"}', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!}
+                <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="99" data-mt-tag-input-name="fornecedores[]">
+                    <input type="text" class="form-control" data-mt-filter-control/>
+                    {{-- {!! Form::select('fornecedores[]', [], null, array('class' => 'form-control select2-ajax', 'id' => 'fornecedores', 'data-mt-request-url' => '/admin/fornecedores/list', 'data-notfound' => "<a href='" . route('admin.fornecedores.create', ['type' => 'modal']) . "' class='register-modal' data-toggle='modal' data-target='#register'>Cadastre um novo fornecedor</a>")) !!} --}}
                 </div>
                 <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
                     <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>

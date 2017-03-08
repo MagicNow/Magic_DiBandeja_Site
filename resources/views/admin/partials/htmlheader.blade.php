@@ -19,7 +19,7 @@
     {!! Html::style('assets/admin/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::style('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
     {!! Html::style('assets/admin/plugins/datepicker/datepicker3.css') !!}
-    {!! Html::style('assets/admin/plugins/searchable-option-list/sol.css') !!}
+    {!! Html::style('assets/admin/plugins/mt-select/css/style.css') !!}
     
     <!-- iCheck -->
   
