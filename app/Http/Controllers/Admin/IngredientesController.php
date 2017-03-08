@@ -133,29 +133,27 @@ class IngredientesController extends Controller {
                 foreach ($dados['caracteristicas'] as $carac) {
                     $ing = new Ingredientes_caracteristicas;
                     $ing->ingrediente_id         = $ingrediente->id;
-                    $ing->caracteristica_id      = $carac[key($carac)];
+                    $ing->caracteristica_id      = (int) $carac[key($carac)];
                     $ing->save();
                 }
             }
 
             Ingredientes_grupos::where('ingrediente_id',$ingrediente->id)->delete();
             if(isset($dados['grupos'])){
-
                 foreach ($dados['grupos'] as $grup) {
                     $grupo = new Ingredientes_grupos;
                     $grupo->ingrediente_id          = $ingrediente->id;
-                    $grupo->grupo_id                = $grup;
+                    $grupo->grupo_id                = (int) $grup[key($grup)];
                     $grupo->save();
                 }
             }
 
             Fornecedores_ingredientes::where('ingrediente_id',$ingrediente->id)->delete();
             if(isset($dados['fornecedores'])){
-
                 foreach ($dados['fornecedores'] as $forne) {
                     $frn = new Fornecedores_ingredientes;
                     $frn->ingrediente_id    = $ingrediente->id;
-                    $frn->fornecedor_id     = $forne;
+                    $frn->fornecedor_id     = (int) $forne[key($forne)];
                     $frn->save();
                 }
             }
