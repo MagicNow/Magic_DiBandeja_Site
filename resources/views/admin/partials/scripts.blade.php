@@ -36,6 +36,7 @@
 <script src="{{ asset('/assets/admin/js/jquery.fileupload-ui.js') }}"></script>
 
 <script src="{{ asset('/assets/admin/plugins/select2/i18n/pt-BR.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/plugins/searchable-option-list/sol.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/notifications/jquery.toaster.js') }}" type="text/javascript"></script>
 
 

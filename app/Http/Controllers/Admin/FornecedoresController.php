@@ -29,10 +29,12 @@ class FornecedoresController extends Controller {
 
 		if (isset($dados['q'])) {
 			$fornecedores = Fornecedores::where('nome_fantasia', 'LIKE', '%' . $dados['q'] . '%')
-									->select('nome_fantasia AS text', 'id')
+									->selectRaw('nome_fantasia AS label, id AS value, "option" AS type')
 									->get();
 
 			return response()->json($fornecedores);
+		} else {
+			return response()->json([]);
 		}
 	}
 

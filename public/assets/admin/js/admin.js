@@ -134,27 +134,54 @@ $(function() {
 });
 
 function changeSelect () {
-	selectAjax = $('.select2-ajax'),
-	selectAjax.select2({
-		// "language": "pt-BR",
-		escapeMarkup: function (markup) {
-			return markup;
-		},
-		ajax: {
-			processResults: function (data) {
-				return {
-					results: data
-				};
-			}
-		},
-		language: {
-			noResults: function(){
-				return "Nenhum resultado encontrado. " + messageNotFound;
-			}
-		},
-	}).on('select2:open', function (evt) {
-		messageNotFound = evt.currentTarget.getAttribute('data-notfound');
-	});
+	// selectAjax = $('.select2-ajax'),
+	// selectAjax.select2({
+	// 	// allowClear: true,
+	// 	// multiple: true,
+	// 	// "language": "pt-BR",
+	// 	escapeMarkup: function (markup) {
+	// 		return markup;
+	// 	},
+	// 	ajax: {
+	// 		processResults: function (data) {
+	// 			return {
+	// 				results: data
+	// 			};
+	// 		}
+	// 	},
+	// 	language: {
+	// 		noResults: function(){
+	// 			return "Nenhum resultado encontrado. " + messageNotFound;
+	// 		}
+	// 	},
+	// 	// initSelection: function (element, callback) {
+	// 	// 	var $options = element.find('option');
+	// 	// 	console.log($options);
+	// 	// 	$.each($options, function (i, option) {
+	// 	// 		console.log(option.innerHTML);
+	// 	// 		callback({ "text": option.innerHTML, "id": option.getAttribute('value') });
+	// 	// 	});
+	// 	// }
+	// }).on('select2:open', function (evt) {
+	// 	messageNotFound = evt.currentTarget.getAttribute('data-notfound');
+	// });
+
+	// selectAjax.trigger('change.select2');
+
+	selectAjax = $('.select2-ajax');
+
+   	selectAjax.searchableOptionList({
+   		showSelectAll: false,
+		texts: {
+			itemsSelected : "{$a} itens selecionados",
+			loadingData: "Carregando dados...",
+			noItemsAvailable : "Nenhum registro encontrado",
+			quickDelete: "&times;",
+			searchplaceholder: "Clique aqui para buscar",
+			selectAll: "Selecionar todos",
+			selectNone: "Nenhuma seleção"
+		}
+   	});
 }
 
 function removeSelect () {

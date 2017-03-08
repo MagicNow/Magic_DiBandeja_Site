@@ -29,10 +29,12 @@ class GruposController extends Controller {
 
 		if (isset($dados['q'])) {
 			$grupos = Grupos::where('nome', 'LIKE', '%' . $dados['q'] . '%')
-									->select('nome AS text','id')
-									->get();
+									->selectRaw('nome AS label, id AS value, "option" AS type')
+									->get('text', 'values');
 
 			return response()->json($grupos);
+		} else {
+			return response()->json([]);
 		}
 	}
 

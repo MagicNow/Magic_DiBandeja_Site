@@ -35,10 +35,12 @@ class CaracteristicasController extends Controller {
 
 		if (isset($dados['q'])) {
 			$caracteristicas = Caracteristicas::where('descricao', 'LIKE', '%' . $dados['q'] . '%')
-									->select('descricao AS text','id')
+									->selectRaw('descricao AS label, id AS value, "option" AS type')
 									->get();
 
 			return response()->json($caracteristicas);
+		} else {
+			return response()->json([]);
 		}
 	}
 
