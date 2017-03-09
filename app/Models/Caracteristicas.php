@@ -12,7 +12,7 @@ class Caracteristicas extends Model {
      * @var array
      */
     protected $fillable = [
-        'descricao', 'created_at',
+        'descricao'
     ];
 
     /**

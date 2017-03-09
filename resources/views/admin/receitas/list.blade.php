@@ -34,15 +34,14 @@
 							<td>{!! $receita->subtitulo!!}</td>
 							<td>
 							@foreach($receita->ingredientes as $key => $ing)
-								@if($key >= count($receita->ingredientes )-1)
-									{!! $ing->ingrediente!!}
+								@if($key >= count($receita->ingredientes) -1)
+									{!! $ing->nome!!}
 								@else
-									{!! $ing->ingrediente!!},
-
+									{!! $ing->nome!!},
 								@endif
 							@endforeach
 							</td>
-							<td>{!! date('d/m/Y H:i:s',strtotime($receita->created_at))!!}</td>
+							<td>{!! isset($receita->created_at) && !empty($receita->created_at) ? date('d/m/Y H:i:s', strtotime($receita->created_at)) : '' !!}</td>
 							<td>
 								<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary">Editar</a>
 								<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>

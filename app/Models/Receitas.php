@@ -12,7 +12,7 @@ class Receitas extends Model {
      * @var array
      */
     protected $fillable = [
-        'titulo', 'created_at',
+        'titulo',
     ];
 
     /**

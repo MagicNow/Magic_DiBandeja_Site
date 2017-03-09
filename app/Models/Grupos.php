@@ -12,7 +12,7 @@ class Grupos extends Model {
      * @var array
      */
     protected $fillable = [
-        'descricao', 'created_at',
+        'descricao'
     ];
 
     // public function receitas()

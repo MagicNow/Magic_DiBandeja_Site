@@ -30,7 +30,7 @@ class Ingredientes extends Model {
 
     public static function getList()
     {
-        return static::pluck('ingrediente', 'id');
+        return static::pluck('nome', 'id');
     }
 
     public function caracteristicas()
