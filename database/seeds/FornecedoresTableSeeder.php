@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class FornecedorsTableSeeder extends Seeder
+class FornecedoresTableSeeder extends Seeder
 {
 
     /**
@@ -14,9 +14,9 @@ class FornecedorsTableSeeder extends Seeder
     {
         
 
-        \DB::table('fornecedors')->delete();
+        \DB::table('fornecedores')->delete();
         
-        \DB::table('fornecedors')->insert(array (
+        \DB::table('fornecedores')->insert(array (
             0 => 
             array (
                 'id' => 1,

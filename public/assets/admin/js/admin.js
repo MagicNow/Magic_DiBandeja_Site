@@ -98,6 +98,8 @@ $(function() {
 			.find(".modal-body").html('');
 	});
 
+	$('.fornecedores-remover').on('click', removeSelect);
+
 	$('.fornecedores-acrescentar').on('click', function () {
 		var $line,
 			$clone,
@@ -114,8 +116,10 @@ $(function() {
 		$clone.find('.mt-tag-element').remove();
 		$clone.find('.mt-tag-container').remove();
 		$clone.find('.component-mt-select').removeClass('dispatched');
+		$clone.find('.component-mt-select').removeAttr('data-mt-default-values');
 		$clone.find('input[type="hidden"]').remove();
 		$clone.find('.form-control').removeAttr('style');
+		$clone.find('input').removeAttr('value');
 
 		$button = $clone.find('.fornecedores-acrescentar');
 
@@ -127,6 +131,7 @@ $(function() {
 				.addClass('glyphicon-minus-sign');
 
 		html = '<div class="row fornecedores-linha">' + $clone.html() + '</div>';
+
 		$('.form-providers')
 			.append(html)
 			.find('.fornecedores-remover')

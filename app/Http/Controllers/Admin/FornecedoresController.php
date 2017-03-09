@@ -26,14 +26,15 @@ class FornecedoresController extends Controller {
 
 	public function list() {
 		$dados = Input::all();
+		$image = asset('assets/images/blank.png');
 
 		if (isset($dados['mt_filter'])) {
-			$fornecedores = Fornecedores::where('nome_fantasia', 'LIKE', '%' . $dados['mt_filter'] . '%')
-									->selectRaw('nome_fantasia AS name, id, "option" AS type')
+			$fornecedores = Fornecedores::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+									->selectRaw('nome AS name, id, "" AS description, "' . $image . '" AS picture_path')
 									->get();
 
 			if (count($fornecedores) === 0) {
-				return response()->json(['results' => [], 'status' => 'empty']);
+				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.fornecedores.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo fornecedor</a>']);
 			} else {
 				return response()->json(['results' => $fornecedores, 'status' => 'ok']);
 			}
@@ -86,21 +87,20 @@ class FornecedoresController extends Controller {
 			} else {
 				$fornecedores = new Fornecedores;
 			}
-			
-			
-			$fornecedores->razao_social         = $dados['razao_social'];
-			$fornecedores->nome_fantasia        = $dados['nome_fantasia'];
-			$fornecedores->url                     = $dados['url'];
-			$fornecedores->especialidade                = $dados['especialidade'];
-			$fornecedores->cotacao               = $dados['cotacao'];
-			$fornecedores->endereco               = $dados['endereco'];
-			$fornecedores->complemento               = $dados['complemento'];
-			$fornecedores->bairro               = $dados['bairro'];
-			$fornecedores->cidade               = $dados['cidade'];
-			$fornecedores->estado               = $dados['estado'];
-			$fornecedores->pais               = $dados['pais'];
-			$fornecedores->cep               = $dados['cep'];
-			$fornecedores->telefone               = $dados['telefone'];
+
+			$fornecedores->razao_social = $dados['razao_social'];
+			$fornecedores->nome = $dados['nome'];
+			$fornecedores->url = $dados['url'];
+			$fornecedores->especialidade = $dados['especialidade'];
+			$fornecedores->cotacao = $dados['cotacao'];
+			$fornecedores->endereco = $dados['endereco'];
+			$fornecedores->complemento = $dados['complemento'];
+			$fornecedores->bairro = $dados['bairro'];
+			$fornecedores->cidade = $dados['cidade'];
+			$fornecedores->estado = $dados['estado'];
+			$fornecedores->pais = $dados['pais'];
+			$fornecedores->cep = $dados['cep'];
+			$fornecedores->telefone = $dados['telefone'];
 			
 			$image = Input::file('image');
 			if(isset($image)){

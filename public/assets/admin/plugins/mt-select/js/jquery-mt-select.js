@@ -28,13 +28,13 @@ var jQueryMTSelect = {
           '</div>',
       entryInformationSingleContainerIdentifier : '.mt_entry_container',
       entryInformationHTMLSkeleton :'<div class="mt_entry_container addTag" data-tag-id="{id}" data-tag-name="{name}">' +
-          '<div class="left">' +
-          '<img src="{picture_path}"/>' +
-          '</div>' +
-          '<div class="right">' +
+          // '<div class="left">' +
+          // '<img src="{picture_path}"/>' +
+          // '</div>' +
+          // '<div class="right">' +
           '<p class="name">{name|boldSearch}</p>' +
           '<p class="description">{description|boldSearch}</p>' +
-          '</div>' +
+          // '</div>' +
           '</div>',
       responseMessageSkeleton : '<div class="mt_search_message">{message}</div>'
     }

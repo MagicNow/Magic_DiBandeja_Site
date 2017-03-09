@@ -26,10 +26,11 @@ class GruposController extends Controller {
 
 	public function list() {
 		$dados = Input::all();
+		$image = asset('assets/images/blank.png');
 
 		if (isset($dados['mt_filter'])) {
 			$grupos = Grupos::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
-									->selectRaw('nome AS name, id, "" AS description, "" AS picture_path')
+									->selectRaw('nome AS name, id, "" AS description, "' . $image . '" AS picture_path')
 									->get();
 
 			if (count($grupos) === 0) {

@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="">Ingrediente</label>
-            {!! Form::text('ingrediente',isset($ingrediente->ingrediente) ? $ingrediente->ingrediente : '',array('class' => 'form-control','placeholder'=>'Ingrediente*','id'=>'ingrediente','autocomplete'=>'off') )!!}
+            {!! Form::text('nome',isset($ingrediente->nome) ? $ingrediente->nome : '',array('class' => 'form-control','placeholder'=>'Ingrediente*','id'=>'ingrediente','autocomplete'=>'off') )!!}
         </div>
         <div class="form-group">
             <label for="">Nome científico</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group form-group-select">
             <label>Caracteristicas</label>
-            <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ $caracteristicas_ingredientes }}">
+            <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
                 <div class="col-md-12 row">
                     <input type="text" class="form-control" data-mt-filter-control/>
                 </div>
@@ -39,7 +39,7 @@
 
         <div class="form-group form-group-select">
             <label>Grupos</label>
-            <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]" data-mt-default-values="{{ $grupos_ingredientes }}">
+            <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]" data-mt-default-values="{{ isset($grupos_ingredientes) ? $grupos_ingredientes : '{}' }}">
                 <div class="col-md-12 row">
                     <input type="text" class="form-control" data-mt-filter-control/>
                 </div>
@@ -74,7 +74,7 @@
 
             <div class="form-group col-md-4">
                 <label for="">Sazonalidade final</label>
-                {!! Form::text('sazonalidade_final', isset($ingrediente->sazonalidade_final) ? date('d/m/Y',strtotime($ingrediente->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final', 'autocomplete'=>'off') )!!}
+                {!! Form::text('sazonalidade_final', isset($ingrediente->sazonalidade_final) ? date('d/m/Y', strtotime($ingrediente->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final', 'autocomplete'=>'off') )!!}
             </div>
         </div>
         <div class="form-group">
@@ -83,26 +83,35 @@
         </div>
         <div class="form-group form-providers">
             <label for="fornecedores">Fornecedores</label>
-            <div class="row fornecedores-linha">
-                <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values="{{ $fornecedores_ingredientes }}">
-                    <div class="col-md-12 row">
-                        <input type="text" class="form-control" data-mt-filter-control/>
+            @foreach ($fornecedores_ingredientes as $key => $fornecedor)
+                <div class="row fornecedores-linha">
+                    
+                    <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
+                        <div class="col-md-12 row">
+                            <input type="text" class="form-control" data-mt-filter-control/>
+                        </div>
                     </div>
+                    <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
+                        <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
+                        <div class="col-md-2 col-sm-3 col-xs-3">
+                            {!! Form::text('fornecedores_custo[]', isset($fornecedor->pivot->custo) ? $fornecedor->pivot->custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
+                        <div class="col-md-3 col-sm-4 col-xs-4">
+                            {!! Form::text('fornecedores_medida[]', isset($fornecedor->pivot->medida) ? $fornecedor->pivot->medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
+                        </div>
+                        @if ($key === 0)
+                            <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                            </button>
+                        @else
+                            <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-remover">
+                                <span class="glyphicon glyphicon-minus-sign"></span>
+                            </button>
+                        @endif
+                    </label>
                 </div>
-                <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
-                    <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
-                    <div class="col-md-2 col-sm-3 col-xs-3">
-                        {!! Form::text('fornecedores_custo[]', isset($ingrediente->fornecedores_custo) ? $ingrediente->fornecedores_custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
-                    </div>
-                    <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
-                    <div class="col-md-3 col-sm-4 col-xs-4">
-                        {!! Form::text('fornecedores_medida[]', isset($ingrediente->fornecedores_medida) ? $ingrediente->fornecedores_medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
-                    </div>
-                    <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                    </button>
-                </label>
-            </div>
+            @endforeach
         </div>
         @if(isset($ingrediente->image))
             <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">

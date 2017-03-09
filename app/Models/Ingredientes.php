@@ -12,7 +12,7 @@ class Ingredientes extends Model {
      * @var array
      */
     protected $fillable = [
-        'ingrediente', 'created_at',
+        'nome', 'created_at',
     ];
 
     /**
@@ -45,11 +45,12 @@ class Ingredientes extends Model {
 
     public function fornecedores()
     { 
-        return $this->belongsToMany('App\Models\Fornecedores', 'fornecedores_ingredientes', 'ingrediente_id', 'fornecedor_id');
+        return $this->belongsToMany('App\Models\Fornecedores', 'fornecedores_ingredientes', 'ingrediente_id', 'fornecedor_id')
+            ->withPivot("custo", "medida");
     }
 
     public function relacionados()
     { 
-        return $this->belongsToMany('App\Models\Ingredientes', 'ingredientes_relacionados', 'ingrediente_id_to', 'ingrediente_id_to');
+        return $this->belongsToMany('App\Models\Ingredientes', 'ingredientes_relacionados', 'ingrediente_id_to', 'ingrediente_id_from');
     }
 }

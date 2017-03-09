@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FontesTableSeeder::class);
         $this->call(FornecedorEspecialidadesTableSeeder::class);
         $this->call(FornecedoresSiteTableSeeder::class);
-        $this->call(FornecedorsTableSeeder::class);
-        $this->call(FornecedorsIngredientesTableSeeder::class);
+        $this->call(FornecedoresTableSeeder::class);
+        $this->call(FornecedoresIngredientesTableSeeder::class);
         $this->call(GruposTableSeeder::class);
         $this->call(IngredienteBebidasTableSeeder::class);
         $this->call(IngredienteReceitasTableSeeder::class);

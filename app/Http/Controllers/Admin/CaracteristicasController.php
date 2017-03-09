@@ -32,10 +32,11 @@ class CaracteristicasController extends Controller {
 
 	public function list() {
 		$dados = Input::all();
+		$image = asset('assets/images/blank.png');
 
 		if (isset($dados['mt_filter'])) {
 			$caracteristicas = Caracteristicas::where('descricao', 'LIKE', '%' . $dados['mt_filter'] . '%')
-									->selectRaw('descricao AS name, id')
+									->selectRaw('descricao AS name, id, "" AS description, "' . $image . '" AS picture_path')
 									->get();
 
 			if (count($caracteristicas) === 0) {
