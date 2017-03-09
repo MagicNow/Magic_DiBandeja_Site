@@ -16,13 +16,20 @@ class CreateIngredientesTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('nome')->nullable();
+			$table->string('nome_cientifico')->nullable();
 			$table->float('preco', 10, 0)->nullable();
+			$table->string('propriedades_nutricionais')->nullable();
 			$table->integer('grupo_id')->nullable();
 			$table->text('descricao', 65535)->nullable();
-			$table->string('picture_file_name')->nullable();
-			$table->string('picture_content_type')->nullable();
-			$table->integer('picture_file_size')->nullable();
+			$table->string('beneficios')->nullable();
+			$table->string('qualificacoes')->nullable();
+			$table->string('restricoes')->nullable();
+			$table->text('historico', 65535)->nullable();
 			$table->dateTime('picture_updated_at')->nullable();
+			$table->dateTime('sazonalidade_inicial')->nullable();
+			$table->dateTime('sazonalidade_final')->nullable();
+			$table->string('image')->nullable();
+			$table->timestamps();
 		});
 	}
 

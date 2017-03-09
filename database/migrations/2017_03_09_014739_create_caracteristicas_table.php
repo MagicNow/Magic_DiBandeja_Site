@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFornecedorsIngredientesTable extends Migration {
+class CreateCaracteristicasTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateFornecedorsIngredientesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('fornecedores_ingredientes', function(Blueprint $table)
+		Schema::create('caracteristicas', function(Blueprint $table)
 		{
-			$table->integer('fornecedor_id')->nullable();
-			$table->integer('ingrediente_id')->nullable();
+			$table->integer('id', true);
+			$table->string('descricao')->nullable();
+			$table->timestamps();
 		});
 	}
 
@@ -27,7 +28,7 @@ class CreateFornecedorsIngredientesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('fornecedors_ingredientes');
+		Schema::drop('caracteristicas');
 	}
 
 }

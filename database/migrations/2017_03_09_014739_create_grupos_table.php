@@ -16,6 +16,7 @@ class CreateGruposTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->string('nome')->nullable();
+			$table->timestamps();
 		});
 	}
 

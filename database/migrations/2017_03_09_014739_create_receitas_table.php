@@ -15,7 +15,8 @@ class CreateReceitasTable extends Migration {
 		Schema::create('receitas', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('nome')->nullable();
+			$table->string('titulo')->nullable();
+			$table->string('subtitulo');
 			$table->integer('tipo_receita_id')->nullable();
 			$table->date('data')->nullable();
 			$table->integer('congela')->nullable();
@@ -23,11 +24,9 @@ class CreateReceitasTable extends Migration {
 			$table->integer('fonte_id')->nullable();
 			$table->string('picture_file_name')->nullable();
 			$table->integer('qtd_porcao')->nullable();
+			$table->text('observacoes', 65535)->nullable();
 			$table->text('preparo', 65535)->nullable();
-			$table->text('historico', 65535)->nullable();
-			$table->string('picture_content_type')->nullable();
-			$table->integer('picture_file_size')->nullable();
-			$table->dateTime('picture_updated_at')->nullable();
+			$table->timestamps();
 		});
 	}
 

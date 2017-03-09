@@ -12,7 +12,7 @@ class CreateReceitasIngredientesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ingrediente_receitas', function(Blueprint $table)
+		Schema::create('receitas_ingredientes', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->integer('receita_id')->nullable();
@@ -30,7 +30,7 @@ class CreateReceitasIngredientesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ingrediente_receitas');
+		Schema::drop('receitas_ingredientes');
 	}
 
 }

@@ -16,10 +16,11 @@ class CreateUsersTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->timestamps();
-			$table->string('login')->index('index_users_on_login');
-			$table->string('crypted_password');
+			$table->string('name')->nullable();
+			$table->string('email')->index('index_users_on_login');
+			$table->string('password');
 			$table->string('password_salt');
-			$table->string('persistence_token')->index('index_users_on_persistence_token');
+			$table->string('remember_token')->index('index_users_on_persistence_token');
 			$table->integer('login_count')->default(0);
 			$table->dateTime('last_request_at')->nullable()->index('index_users_on_last_request_at');
 			$table->dateTime('last_login_at')->nullable();

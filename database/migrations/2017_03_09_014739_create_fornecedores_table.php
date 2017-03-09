@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFornecedorsTable extends Migration {
+class CreateFornecedoresTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -17,6 +17,7 @@ class CreateFornecedorsTable extends Migration {
 			$table->integer('id', true);
 			$table->string('nome')->nullable();
 			$table->string('telefone')->nullable();
+			$table->string('complemento')->nullable();
 			$table->string('endereco')->nullable();
 			$table->string('bairro')->nullable();
 			$table->string('cidade')->nullable();
@@ -24,6 +25,12 @@ class CreateFornecedorsTable extends Migration {
 			$table->string('cep')->nullable();
 			$table->string('estado')->nullable();
 			$table->string('pais')->nullable();
+			$table->string('razao_social')->nullable();
+			$table->string('url')->nullable();
+			$table->string('especialidade')->nullable();
+			$table->string('cotacao')->nullable();
+			$table->string('imagem')->nullable();
+			$table->timestamps();
 		});
 	}
 
