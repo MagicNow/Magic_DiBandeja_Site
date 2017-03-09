@@ -34,13 +34,13 @@
 						<tr>
 							<td>{!! $fornecedor->id!!}</td>
 							<td>{!! $fornecedor->razao_social!!}</td>
-							<td>{!! $fornecedor->nome_fantasia!!}</td>
+							<td>{!! $fornecedor->nome!!}</td>
 							<td>{!! $fornecedor->especialidade!!}</td>
 							<td>{!! $fornecedor->url!!}</td>
 							<td>{!! $fornecedor->cotacao!!}</td>
 							<td>
-								@if(isset($ingrediente->image))
-						            <img width="100" src="{!!asset('upload/fornecedores').'/'.$ingrediente->image !!}">
+								@if(isset($fornecedor->imagem))
+						            <img width="100" src="{{ asset('upload/fornecedores/' . $fornecedor->imagem) }}">
 						        @endif</td>
 							<td>{!! date('d/m/Y H:i:s',strtotime($fornecedor->created_at))!!}</td>
 							<td>

@@ -83,10 +83,38 @@
         </div>
         <div class="form-group form-providers">
             <label for="fornecedores">Fornecedores</label>
-            @foreach ($fornecedores_ingredientes as $key => $fornecedor)
+            @if (isset($fornecedores_ingredientes))
+                @foreach ($fornecedores_ingredientes as $key => $fornecedor)
+                    <div class="row fornecedores-linha">
+                        <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
+                            <div class="col-md-12 row">
+                                <input type="text" class="form-control" data-mt-filter-control/>
+                            </div>
+                        </div>
+                        <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
+                            <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
+                            <div class="col-md-2 col-sm-3 col-xs-3">
+                                {!! Form::text('fornecedores_custo[]', isset($fornecedor->pivot->custo) ? $fornecedor->pivot->custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
+                            <div class="col-md-3 col-sm-4 col-xs-4">
+                                {!! Form::text('fornecedores_medida[]', isset($fornecedor->pivot->medida) ? $fornecedor->pivot->medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
+                            </div>
+                            @if ($key === 0)
+                                <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                </button>
+                            @else
+                                <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-remover">
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                </button>
+                            @endif
+                        </label>
+                    </div>
+                @endforeach
+            @else
                 <div class="row fornecedores-linha">
-                    
-                    <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
+                    <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]">
                         <div class="col-md-12 row">
                             <input type="text" class="form-control" data-mt-filter-control/>
                         </div>
@@ -94,24 +122,18 @@
                     <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
                         <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
                         <div class="col-md-2 col-sm-3 col-xs-3">
-                            {!! Form::text('fornecedores_custo[]', isset($fornecedor->pivot->custo) ? $fornecedor->pivot->custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
+                            {!! Form::text('fornecedores_custo[]', '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
                         </div>
                         <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
                         <div class="col-md-3 col-sm-4 col-xs-4">
-                            {!! Form::text('fornecedores_medida[]', isset($fornecedor->pivot->medida) ? $fornecedor->pivot->medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
+                            {!! Form::text('fornecedores_medida[]', '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
                         </div>
-                        @if ($key === 0)
-                            <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                            </button>
-                        @else
-                            <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-remover">
-                                <span class="glyphicon glyphicon-minus-sign"></span>
-                            </button>
-                        @endif
+                        <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
                     </label>
                 </div>
-            @endforeach
+            @endif
         </div>
         @if(isset($ingrediente->image))
             <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">

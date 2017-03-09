@@ -25,7 +25,7 @@
 .mt_search_list_container .mt_entry_container {
   padding: 15px;
   padding-bottom: 0;
-  // min-height: 50px;
+  min-height: 60px;
   cursor: pointer;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
@@ -44,13 +44,13 @@
   width: 36px;
   height: 36px;
 }
-// .mt_search_list_container .mt_entry_container .left {
-//   position: absolute;
-// }
-// .mt_search_list_container .mt_entry_container .right {
-//   margin-bottom: -10px;
-//   margin-left: 50px;
-// }
+.mt_search_list_container .mt_entry_container .left {
+  position: absolute;
+}
+.mt_search_list_container .mt_entry_container .right {
+  margin-bottom: -10px;
+  margin-left: 50px;
+}
 .mt_search_list_container .mt_entry_container .name {
   color: #616161;
   font-size: 14px;

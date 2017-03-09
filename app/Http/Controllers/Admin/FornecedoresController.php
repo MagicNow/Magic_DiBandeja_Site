@@ -26,12 +26,18 @@ class FornecedoresController extends Controller {
 
 	public function list() {
 		$dados = Input::all();
-		$image = asset('assets/images/blank.png');
+		$image = asset('upload/fornecedores');
 
 		if (isset($dados['mt_filter'])) {
 			$fornecedores = Fornecedores::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
-									->selectRaw('nome AS name, id, "" AS description, "' . $image . '" AS picture_path')
+									->selectRaw('nome AS name, id, "" AS description, CONCAT("' . $image . '/", imagem) AS picture_path')
 									->get();
+
+			foreach ($fornecedores as $key => $fornecedor) {
+				if (empty($fornecedor->picture_path)) {
+					$fornecedor->picture_path = asset('assets/images/blank.png');
+				}
+			}
 
 			if (count($fornecedores) === 0) {
 				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.fornecedores.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo fornecedor</a>']);

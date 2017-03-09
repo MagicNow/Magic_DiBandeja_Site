@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="">Nome Fantasia</label>
-            {!! Form::text('nome_fantasia',isset($fornecedor->nome_fantasia) ? $fornecedor->nome_fantasia : '',array('class' => 'form-control','placeholder'=>'Nome Fantasia*','id'=>'razao_social','autocomplete'=>'off') )!!}
+            {!! Form::text('nome', isset($fornecedor->nome) ? $fornecedor->nome : '',array('class' => 'form-control','placeholder'=>'Nome Fantasia*','id'=>'razao_social','autocomplete'=>'off') )!!}
         </div>
 
         <div class="form-group">
