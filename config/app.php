@@ -147,6 +147,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -207,6 +208,7 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'MobileDetect' => Riverskies\Laravel\MobileDetect\Facades\MobileDetect::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
