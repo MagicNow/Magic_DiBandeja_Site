@@ -56,7 +56,7 @@
 						            <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">
 						        @endif
 						    </td>
-							<td>{!! date('d/m/Y H:i:s',strtotime($ingrediente->created_at))!!}</td>
+							<td>{{ isset($ingrediente->created_at) && !empty($ingrediente->created_at) ? date('d/m/Y H:i:s', strtotime($ingrediente->created_at)) : NULL }}</td>
 							<td>
 								<a href="{{ route('admin.ingredientes.edit',$ingrediente->id) }}" class="btn btn-primary">Editar</a>
 								<a href="{{ route('admin.ingredientes.destroy',$ingrediente->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>

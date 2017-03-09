@@ -27,9 +27,9 @@
 				<tbody>
 					@foreach($grupos as $grupo)
 						<tr>
-							<td>{!! $grupo->id!!}</td>
-							<td>{!! $grupo->nome!!}</td>
-							<td>{!! date('d/m/Y H:i:s',strtotime($grupo->created_at))!!}</td>
+							<td>{{ $grupo->id }}</td>
+							<td>{{ $grupo->nome }}</td>
+							<td>{{ isset($grupo->created_at) && !empty($grupo->created_at) ? date('d/m/Y H:i:s', strtotime($grupo->created_at)) : NULL }}</td>
 							<td>
 								<a href="{{ route('admin.grupos.edit',$grupo->id) }}" class="btn btn-primary">Editar</a>
 								<a href="{{ route('admin.grupos.destroy',$grupo->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>

@@ -42,7 +42,7 @@
 								@if(isset($fornecedor->imagem))
 						            <img width="100" src="{{ asset('upload/fornecedores/' . $fornecedor->imagem) }}">
 						        @endif</td>
-							<td>{!! date('d/m/Y H:i:s',strtotime($fornecedor->created_at))!!}</td>
+							<td>{{ isset($fornecedor->created_at) && !empty($fornecedor->created_at) ? date('d/m/Y H:i:s', strtotime($fornecedor->created_at)) : NULL }}</td>
 							<td>
 								<a href="{{ route('admin.fornecedores.edit',$fornecedor->id) }}" class="btn btn-primary">Editar</a>
 								<a href="{{ route('admin.fornecedores.destroy',$fornecedor->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
