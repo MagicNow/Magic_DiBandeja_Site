@@ -30,7 +30,7 @@ class CaracteristicasController extends Controller {
 		return view('admin.caracteristicas.create');
 	}
 
-	public function list() {
+	public function listItems() {
 		$dados = Input::all();
 		$image = asset('assets/images/blank.png');
 
@@ -70,12 +70,12 @@ class CaracteristicasController extends Controller {
 		$dados = Input::all();
 		if($id){
 			$rules = array(
-				'descricao'      =>'required|unique:caracteristicas,descricao'
+				'descricao'      =>'required|unique:caracteristicas,descricao,'.$id
 			);
 			$msg = "Registro alterado com sucesso!";
 		}else{
 		   $rules = array(
-				'descricao'      =>'required|unique:caracteristicas,descricao,'.$id
+				'descricao'      =>'required|unique:caracteristicas,descricao'
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}

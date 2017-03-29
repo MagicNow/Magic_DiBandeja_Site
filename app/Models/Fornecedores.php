@@ -15,6 +15,10 @@ class Fornecedores extends Model {
      */
     protected $table = 'fornecedores';
 
+    public function distribuidores()
+    { 
+        return $this->belongsToMany('App\Models\Distribuidores', 'fornecedores_distribuidores', 'distribuidor_id', 'fornecedor_id');
+    }
 
     // public function receitas()
     // { 

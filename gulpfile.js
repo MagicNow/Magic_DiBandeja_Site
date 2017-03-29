@@ -2,6 +2,7 @@ var elixir = require('laravel-elixir');
 require('laravel-elixir-browser-sync-simple');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var less = require('gulp-less');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ elixir(function(mix) {
     mix.sass([
         'app.scss',
     ], 'public/assets/css')
-    .browserSync({
-      proxy: 'dibandeja.local',
-    })
+    // .browserSync({
+    //   proxy: 'dibandeja.local',
+    // })
     .less([
         '../bootstrap/bootstrap.less'
     ], 'public/assets/admin/css/bootstrap.css')
@@ -43,6 +44,22 @@ elixir(function(mix) {
     .scripts(['main.js'], 'public/assets/js/main.js');
 });
 
+gulp.task('lessStyles', function() {
+
+    gulp.src(['../bootstrap/bootstrap.less'])
+        .pipe(less())
+        .pipe(gulp.dest('public/assets/admin/css/bootstrap.css'));
+
+
+    gulp.src(['../admin/AdminLTE.less'])
+        .pipe(less())
+        .pipe(gulp.dest('public/assets/admin/css'));
+
+    gulp.src(['../admin/skins/skin-blue.less'])
+        .pipe(less())
+        .pipe(gulp.dest('public/assets/admin/css/skins/skin-blue.css'));
+});
+
 gulp.task('styles', function() {
     gulp.src(['resources/assets/sass/**/*'])
     .pipe(sass())
@@ -62,5 +79,6 @@ gulp.task('images', function (){
 gulp.task('watch', function() {
     gulp.watch('resources/assets/js/**/*.js', ['scripts']);
     gulp.watch('resources/assets/sass/**/*.scss', ['styles']);
+    gulp.watch('resources/assets/admin/**/*.less', ['lessStyles']);
     gulp.watch('resources/assets/images/**/*', ['images']);
 });

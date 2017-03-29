@@ -14,10 +14,11 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.ingredientes.create") }}'>Cadastre um novo ingrediente aqui</a>">
 				<thead>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Ingrediente</th>
 						<th>Nome científico</th>
@@ -28,54 +29,61 @@
 						<th>Sazonalidade</th>
 						<th>Imagem</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($ingredientes as $ingrediente)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.ingredientes.edit',$ingrediente->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.ingredientes.destroy', $ingrediente->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{!! $ingrediente->id!!}</td>
-							<td>{!! $ingrediente->ingrediente!!}</td>
+							<td>{!! $ingrediente->nome!!}</td>
 							<td>{!! $ingrediente->nome_cientifico!!}</td>
 							<td>{!! $ingrediente->propriedades_nutricionais!!}</td>
 							<td>{!! $ingrediente->qualificacoes!!}</td>
 							<td>{!! $ingrediente->beneficios!!}</td>
 							<td>
 								@foreach($ingrediente->fornecedores as $key => $forn)
-									@if($key == count($ingrediente->fornecedores)-1)
-										{!! $forn->razao_social !!}
+									@if($key == count($ingrediente->fornecedores) - 1 )
+										{!! $forn->nome !!}
 									@else
-										{!! $forn->razao_social !!},
+										{!! $forn->nome !!},
 									@endif
 								@endforeach
 							</td>
-							<td>Sazonalidade Inicial: {!! date('d/m/Y',strtotime($ingrediente->sazonalidade_inicial))!!}<br /> Final: {!! date('d/m/Y',strtotime($ingrediente->sazonalidade_final))!!}</td>
-							
+							<td>@if (!empty($ingrediente->sazonalidade_inicial))
+									Sazonalidade Inicial: {!! date('d/m/Y',strtotime($ingrediente->sazonalidade_inicial))!!}<br />
+								@endif
+								@if (!empty($ingrediente->sazonalidade_final))
+									Final: {!! date('d/m/Y',strtotime($ingrediente->sazonalidade_final))!!}
+								@endif
+							</td>
 							<td>
 								@if(isset($ingrediente->image))
 						            <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">
 						        @endif
 						    </td>
 							<td>{{ isset($ingrediente->created_at) && !empty($ingrediente->created_at) ? date('d/m/Y H:i:s', strtotime($ingrediente->created_at)) : NULL }}</td>
-							<td>
-								<a href="{{ route('admin.ingredientes.edit',$ingrediente->id) }}" class="btn btn-primary">Editar</a>
-								<a href="{{ route('admin.ingredientes.destroy',$ingrediente->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Ingrediente</th>
 						<th>Nome científico</th>
 						<th>Propriedades nutricionais</th>
 						<th>Qualificações</th>
 						<th>Benefícios</th>
+						<th>Fornecedores</th>
 						<th>Sazonalidade</th>
 						<th>Imagem</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</tfoot>
 			</table>

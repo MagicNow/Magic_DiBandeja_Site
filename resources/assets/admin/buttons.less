@@ -8,6 +8,16 @@
   .box-shadow(@btn-boxshadow);
   border: 1px solid transparent;
 
+  &.btn-secondary {
+    border: 1px solid #ccc;
+    background: white;
+
+    &.active {
+      background-color: darken(@light-blue, 5%);
+      color: #fff;
+    }
+  }
+
   &.uppercase {
     text-transform: uppercase
   }

@@ -30,16 +30,18 @@ class IngredientesController extends Controller {
     }
 
     public function create(){
-        $ingredientes = Ingredientes::pluck('nome','id');
+        $ingrediente = new Ingredientes();
+        $ingredientes_relacionados = array();
+        $ingrediente_afinidade = Ingredientes::pluck('nome','id');
 
-        return view('admin.ingredientes.create',compact('ingredientes'));
+        return view('admin.ingredientes.create',compact('ingrediente_afinidade', 'ingrediente', 'ingredientes_relacionados'));
     }
 
     public function edit($id = null){
         if (!Auth::check()) { return view('auth.login'); return false; }
 
         $ingrediente = Ingredientes::find($id);
-        $ingredientes = Ingredientes::where('id','<>',$id)->pluck('nome','id');
+        $ingrediente_afinidade = Ingredientes::where('id','<>',$id)->pluck('nome','id');
 
         $caracteristicas_ingredientes = array();
 
@@ -61,7 +63,7 @@ class IngredientesController extends Controller {
 
         $fornecedores_ingredientes = $ingrediente->fornecedores;
 
-        return view('admin.ingredientes.create',compact('ingrediente','ingredientes','caracteristicas_ingredientes','grupos_ingredientes','ingredientes_relacionados','fornecedores_ingredientes'));
+        return view('admin.ingredientes.create',compact('ingrediente_afinidade', 'ingrediente', 'caracteristicas_ingredientes', 'grupos_ingredientes', 'ingredientes_relacionados', 'fornecedores_ingredientes'));
 
     }
     public function destroy($id = null){

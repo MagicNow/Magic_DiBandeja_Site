@@ -88,7 +88,7 @@ $(function() {
 
 			return data.text;
 		},
-		templateSelection: template(data, container) {
+		templateSelection: function (data, container) {
 			return data.text;
 		}
 	});

@@ -12,6 +12,7 @@
     "laravel-elixir-livereload": "^1.1.4"
   },
   "dependencies": {
+    "gulp-less": "^3.3.0",
     "gulp-sass": "^2.3.1"
   }
 }

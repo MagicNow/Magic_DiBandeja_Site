@@ -24,7 +24,7 @@ class FornecedoresController extends Controller {
 		}
 	}
 
-	public function list() {
+	public function listItems() {
 		$dados = Input::all();
 		$image = asset('upload/fornecedores');
 

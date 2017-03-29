@@ -63,21 +63,28 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('/caracteristicas', ['as'=> 'admin.caracteristicas','uses' => 'Admin\CaracteristicasController@index']);
 	Route::post('caracteristicas/store/{id?}', ['as' =>'admin.caracteristicas.store','uses' => 'Admin\CaracteristicasController@store']);
 	Route::get('caracteristicas/create', ['as' =>'admin.caracteristicas.create','uses' => 'Admin\CaracteristicasController@create']);
-	Route::post('caracteristicas/list', ['as' =>'admin.grupos.list','uses' => 'Admin\CaracteristicasController@list']);
+	Route::post('caracteristicas/list', ['as' =>'admin.grupos.list','uses' => 'Admin\CaracteristicasController@listItems']);
 	Route::get('caracteristicas/edit/{id}', ['as' =>'admin.caracteristicas.edit','uses' => 'Admin\CaracteristicasController@edit']);
 	Route::get('caracteristicas/destroy/{id?}', ['as' =>'admin.caracteristicas.destroy','uses' => 'Admin\CaracteristicasController@destroy']);
 
 	Route::get('/grupos', ['as'=> 'admin.grupos','uses' => 'Admin\GruposController@index']);
 	Route::post('grupos/store/{id?}', ['as' =>'admin.grupos.store','uses' => 'Admin\GruposController@store']);
 	Route::get('grupos/create', ['as' =>'admin.grupos.create','uses' => 'Admin\GruposController@create']);
-	Route::post('grupos/list', ['as' =>'admin.grupos.list','uses' => 'Admin\GruposController@list']);
+	Route::post('grupos/list', ['as' =>'admin.grupos.list','uses' => 'Admin\GruposController@listItems']);
 	Route::get('grupos/edit/{id}', ['as' =>'admin.grupos.edit','uses' => 'Admin\GruposController@edit']);
 	Route::get('grupos/destroy/{id?}', ['as' =>'admin.grupos.destroy','uses' => 'Admin\GruposController@destroy']);
 
 	Route::get('/fornecedores', ['as'=> 'admin.fornecedores','uses' => 'Admin\FornecedoresController@index']);
 	Route::post('fornecedores/store/{id?}', ['as' =>'admin.fornecedores.store','uses' => 'Admin\FornecedoresController@store']);
 	Route::get('fornecedores/create', ['as' =>'admin.fornecedores.create','uses' => 'Admin\FornecedoresController@create']);
-	Route::post('fornecedores/list', ['as' =>'admin.fornecedores.list','uses' => 'Admin\FornecedoresController@list']);
+	Route::post('fornecedores/list', ['as' =>'admin.fornecedores.list','uses' => 'Admin\FornecedoresController@listItems']);
 	Route::get('fornecedores/edit/{id}', ['as' =>'admin.fornecedores.edit','uses' => 'Admin\FornecedoresController@edit']);
 	Route::get('fornecedores/destroy/{id?}', ['as' =>'admin.fornecedores.destroy','uses' => 'Admin\FornecedoresController@destroy']);
+
+	Route::get('/distribuidores', ['as'=> 'admin.distribuidores','uses' => 'Admin\DistribuidoresController@index']);
+	Route::post('distribuidores/store/{id?}', ['as' =>'admin.distribuidores.store','uses' => 'Admin\DistribuidoresController@store']);
+	Route::get('distribuidores/create', ['as' =>'admin.distribuidores.create','uses' => 'Admin\DistribuidoresController@create']);
+	Route::post('distribuidores/list', ['as' =>'admin.distribuidores.list','uses' => 'Admin\DistribuidoresController@listItems']);
+	Route::get('distribuidores/edit/{id}', ['as' =>'admin.distribuidores.edit','uses' => 'Admin\DistribuidoresController@edit']);
+	Route::get('distribuidores/destroy/{id?}', ['as' =>'admin.distribuidores.destroy','uses' => 'Admin\DistribuidoresController@destroy']);
 });

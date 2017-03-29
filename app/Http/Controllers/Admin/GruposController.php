@@ -24,7 +24,7 @@ class GruposController extends Controller {
 		}
 	}
 
-	public function list() {
+	public function listItems() {
 		$dados = Input::all();
 		$image = asset('assets/images/blank.png');
 

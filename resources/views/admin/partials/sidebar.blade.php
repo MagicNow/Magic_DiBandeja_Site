@@ -10,7 +10,8 @@
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.receitas' ? 'active' : '' }}"><a href="{{ route('admin.receitas') }}"><i class='fa fa-user'></i> <span>Receitas</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.caracteristicas' ? 'active' : '' }}"><a href="{{ route('admin.caracteristicas') }}"><i class='fa fa-user'></i> <span>Caracteristicas</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.fornecedores' ? 'active' : '' }}"><a href="{{ route('admin.fornecedores') }}"><i class='fa fa-user'></i> <span>Fornecedores</span></a></li>
-            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.grupos' ? 'active' : '' }}"><a href="{{ route('admin.grupos') }}"><i class='fa fa-user'></i> <span>Grupos</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.grupos' ? 'active' : '' }}"><a href="{{ route('admin.grupos') }}"><i class='fa fa-users'></i> <span>Grupos</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.distribuidores' ? 'active' : '' }}"><a href="{{ route('admin.distribuidores') }}"><i class='fa fa-user'></i> <span>Distribuidores</span></a></li>
 
             {{-- <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
