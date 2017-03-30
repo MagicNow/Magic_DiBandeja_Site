@@ -45,11 +45,9 @@ elixir(function(mix) {
 });
 
 gulp.task('lessStyles', function() {
-
     gulp.src(['../bootstrap/bootstrap.less'])
         .pipe(less())
         .pipe(gulp.dest('public/assets/admin/css/bootstrap.css'));
-
 
     gulp.src(['../admin/AdminLTE.less'])
         .pipe(less())
@@ -68,7 +66,10 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     gulp.src(['resources/assets/js/**/*'])
-    .pipe(gulp.dest('public/assets/js'));;
+        .pipe(gulp.dest('public/assets/js'));;
+
+    gulp.src(['resources/assets/admin/js/**/*'])
+        .pipe(gulp.dest('public/assets/admin/js'));;
 });
 
 gulp.task('images', function (){
@@ -78,6 +79,7 @@ gulp.task('images', function (){
 
 gulp.task('watch', function() {
     gulp.watch('resources/assets/js/**/*.js', ['scripts']);
+    gulp.watch('resources/assets/admin/js/**/*', ['scripts']);
     gulp.watch('resources/assets/sass/**/*.scss', ['styles']);
     gulp.watch('resources/assets/admin/**/*.less', ['lessStyles']);
     gulp.watch('resources/assets/images/**/*', ['images']);

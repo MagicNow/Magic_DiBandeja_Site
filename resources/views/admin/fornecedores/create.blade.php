@@ -106,8 +106,8 @@
             <div class="row form-group">
                 <div class="col-md-4">&nbsp;</div>
                 <div class="btn-group col-md-4" data-toggle="buttons">
-                    <label class="btn btn-primary col-md-6">
-                        <input type="radio" autocomplete="off" name="tipo_distribuicao"> Direto
+                    <label class="btn btn-primary col-md-6 active">
+                        <input type="radio" autocomplete="off" name="tipo_distribuicao" checked> Direto
                     </label>
                     <label class="btn btn-primary col-md-6">
                         <input type="radio" autocomplete="off" name="tipo_distribuicao"> Indireto
@@ -117,19 +117,25 @@
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="row">
             <div class="form-group-select col-md-12">
-                <label>Distribuição</label>
-                <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/distribuidores/list" data-mt-max-tags="99" data-mt-tag-input-name="distribuidores[]" data-mt-default-values="{{ isset($distribuidores) ? $distribuidores : '{}' }}">
-                    <div class="col-md-12 row">
-                        <input type="text" class="form-control" data-mt-filter-control/>
+                <div class="fornecedores-dist-form" data-request-url="{{ route('admin.distribuidores.store') }}">
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label>Distribuição</label>
+                            <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/distribuidores/list" data-mt-max-tags="99" data-mt-tag-input-name="distribuidores[]" data-mt-default-values="{{ isset($distribuidores) ? $distribuidores : '{}' }}">
+                                <div class="col-md-12 row">
+                                    <input type="text" class="form-control" data-mt-filter-control name="nome" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="form-group pull-right">
+            <button type="submit" class="btn btn-primary">Salvar fornecedor</button>
         </div>
 	{!! Form::close() !!}
 @endsection

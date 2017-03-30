@@ -193,3 +193,23 @@ body{
 		}
 	}
 }
+
+.page-error {
+	text-align: center;
+
+	&-title {
+		font: bold 50px/100px 'Abel', sans-serif;
+		color: #486C9B;
+		text-transform: uppercase;
+	}
+
+	&-description {
+		font: 30px 'Abel', sans-serif;
+		color: #000;
+		padding: 0 0 100px;
+	}
+
+	&-image {
+		padding: 100px 0 0;
+	}
+}

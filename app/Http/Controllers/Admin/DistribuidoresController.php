@@ -33,7 +33,7 @@ class DistribuidoresController extends Controller {
 									->get();
 
 			if (count($distribuidores) === 0) {
-				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route('admin.distribuidores.create', ['type' => 'modal']) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo distribuidor</a>']);
+				return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route('admin.distribuidores.create', ['type' => 'modal']) . '" class="register-inline" data-target="#register">Cadastre um novo distribuidor</a>']);
 			} else {
 				return response()->json(['results' => $distribuidores, 'status' => 'ok']);
 			}
