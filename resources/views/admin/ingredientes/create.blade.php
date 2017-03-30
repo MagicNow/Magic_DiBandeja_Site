@@ -145,8 +145,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary pull-left">Salvar</button>
+                @if (isset($ingrediente->id))
+                    <a href="{{ route('admin.ingredientes.destroy', $ingrediente->id) }}" class="btn btn-danger pull-right">Excluir</a>
+                @endif
+            </div>
         </div>
     {!! Form::close() !!}
 

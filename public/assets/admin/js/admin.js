@@ -176,10 +176,6 @@ function clickOnMtSelectOption (id) {
 	}
 }
 
-function getInlineContent () {
-
-}
-
 function changeSelect () {
 	var mtSelectInstances = {},
 		mtSelectInstancesCount = 0;

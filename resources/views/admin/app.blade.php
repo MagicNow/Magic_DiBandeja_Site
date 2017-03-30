@@ -47,11 +47,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             @yield('main-content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-
-   
-
-    @include('admin.partials.footer')
-
 </div><!-- ./wrapper -->
 
 @include('admin.partials.scripts')
