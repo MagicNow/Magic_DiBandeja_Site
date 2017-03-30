@@ -145,8 +145,8 @@ class IngredientesController extends Controller {
 
                 Fornecedores_ingredientes::where('ingrediente_id', $ingrediente->id)->delete();
 
-                $custo  = $dados['fornecedores_custo'];
-                $medida = $dados['fornecedores_medida'];
+                $custo  = isset($dados['fornecedores_custo']) ? $dados['fornecedores_custo'] : NULL;
+                $medida = isset($dados['fornecedores_medida']) ? $dados['fornecedores_medida'] : NULL;
 
                 if(isset($dados['fornecedores'])){
                     foreach ($dados['fornecedores'] as $key => $forne) {

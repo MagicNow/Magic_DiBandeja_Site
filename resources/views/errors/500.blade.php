@@ -11,4 +11,6 @@
 	</div>
 </section>
 
+<p style="display: none">{{$exception}}</p>
+
 @endsection

@@ -45,8 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (!$this->isHttpException($e))
+        $message = $e->getMessage();
+
+        if (!$this->isHttpException($e) && getenv('APP_ENV') == 'production') {
             $e = new \Symfony\Component\HttpKernel\Exception\HttpException(500);
+            return response()->view('errors.' . $e->getStatusCode(), ['exception' => $message], $e->getStatusCode());
+        }
 
         return parent::render($request, $e);
     }

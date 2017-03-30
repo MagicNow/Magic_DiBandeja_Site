@@ -1,4 +1,5 @@
 var $registerModal,
+	$targetModalButton,
 	selectAjax,
 	selectUrl = '',
 	messageNotFound = '',
@@ -64,12 +65,16 @@ $(function() {
 	});
 
 	$registerModal.on('loaded.bs.modal', function (e) {
+		var $targetInput;
+
 		$('.modal form')
 			.append('<input type="hidden" name="type" value="modal" />')
 			.on('submit', function () {
 				var $this = $(this),
-					data = new FormData(this);
-
+					data = new FormData(this),
+					inputValue = '';
+					
+				inputValue = $this.find('input[name="descricao"]').val();
 				$.ajax({
 					type: 'post',
 					url: $this.attr('action'),
@@ -79,6 +84,15 @@ $(function() {
 					processData: false,
 					success: function(data){
 						if (data.success) {
+							if ($targetModalButton) {
+								$targetInput = $($targetModalButton.data('inputTarget'));
+								if ($targetInput.length > 0 && inputValue !== undefined) {
+									$targetInput.val(inputValue);
+									$targetInput.trigger('keyup');
+									clickOnMtSelectOption(data.id);
+								}
+							}
+
 							$registerModal.modal('toggle');
 							$registerModal.find('input').val('');
 							$.toaster({ priority : 'success', title : 'Mensagem', message : data.message.length > 0 ? data.message[0] : '' });
@@ -99,10 +113,14 @@ $(function() {
 		});
 
 		changeSelect();
+	}).on('show.bs.modal', function (e) {
+		$targetModalButton = $(e.relatedTarget);
 	}).on('hidden.bs.modal', function (e) {
 		$(e.target)
 			.removeData('bs.modal')
 			.find(".modal-body").html('');
+
+		$targetModalButton = '';
 	});
 
 	$('.fornecedores-remover').on('click', removeSelect);
@@ -147,6 +165,16 @@ $(function() {
 		changeSelect();
 	});
 });
+
+function clickOnMtSelectOption (id) {
+	if (!$(".mt_search_list_container").size()) {
+		setTimeout(function () {
+			clickOnMtSelectOption(id)
+		}, 500);
+	} else {
+		$(".mt_search_list_container").find('.mt_entry_container[data-tag-id="' + id + '"]').trigger('click');
+	}
+}
 
 function getInlineContent () {
 

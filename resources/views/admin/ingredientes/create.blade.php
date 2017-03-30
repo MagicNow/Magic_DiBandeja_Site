@@ -32,7 +32,7 @@
             <label>Caracteristicas</label>
             <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
                 <div class="col-md-12 row">
-                    <input type="text" class="form-control" data-mt-filter-control/>
+                    <input type="text" class="form-control form-ingredientes-caracteristicas" data-mt-filter-control/>
                 </div>
             </div>
         </div>
@@ -143,11 +143,12 @@
                 <span class="btn btn-default btn-file"><span>Image</span>{!! Form::file('image')!!}</span>
                 <span class="fileinput-filename"></span><span class="fileinput-new">nenhum arquivo</span>
             </div>
-            
         </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     {!! Form::close() !!}
+
+    <a href="{{ route("admin.caracteristicas.create", ["type" => "modal"]) }}" class="register-modal btn btn-info form-fixed-button" data-toggle="modal" data-target="#register" data-input-target=".form-ingredientes-caracteristicas">Nova característica</a>
 @endsection

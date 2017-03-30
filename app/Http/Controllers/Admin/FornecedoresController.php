@@ -8,7 +8,7 @@ use Auth;
 use Session;
 use Request;
 use App\Models\Fornecedores;
-use App\Models\Fornecedores_Ingredientes;
+use App\Models\Fornecedores_ingredientes;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;

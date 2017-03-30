@@ -97,7 +97,7 @@ class CaracteristicasController extends Controller {
 			if (isset($dados['type']) && $dados['type'] === 'modal') {
 				$return = array();
 				$return[] = $msg;
-				return response()->json(['success' => true, 'message' => $return]);
+				return response()->json(['success' => true, 'message' => $return, 'id' => $caracteristicas->id]);
 			} else {
 				return Redirect::route('admin.caracteristicas')->with('sucess', $msg);
 			}
