@@ -105,12 +105,42 @@ $(function() {
 				return false;
 			});
 
-		$('body').on('click', '.register-inline', function (e) {
-			e.preventDefault();
-			$.get($(this).attr('href'), function (html) {
-				$('.fornecedores-dist-form').append(html);
+		$('body')
+			.on('click', '.register-inline', function (e) {
+				e.preventDefault();
+				$.get($(this).attr('href'), function (html) {
+					$('.fornecedor-dist-append-form').append(html);
+				});
+			})
+			.on('click', '.fornecedores-dist-form .distribuidores-submit', function (e) {
+				e.preventDefault();
+
+				var $form = $('.fornecedores-dist-form');
+				var data = $form.find('input').serialize();
+				var $alert = $('.fornecedores-dist-form-alert');
+				var $targetInput = $form.find('input[name="nome"]');
+
+				$.post($form.data('requestUrl'), data, function (ret) {
+					if (ret.success && ret.message.length > 0) {
+						$alert
+							.addClass('alert-success')
+							.removeClass('alert-danger')
+							.removeClass('hidden')
+							.text(ret.message[0]);
+
+
+						$('.fornecedor-dist-append-form').html('');
+						$targetInput.trigger('keyup');
+						clickOnMtSelectOption(ret.id);
+					} else if (ret.message.length > 0) {
+						$alert
+							.addClass('alert-danger')
+							.removeClass('alert-success')
+							.removeClass('hidden')
+							.text(ret.message[0]);
+					}
+				});
 			});
-		});
 
 		changeSelect();
 	}).on('show.bs.modal', function (e) {

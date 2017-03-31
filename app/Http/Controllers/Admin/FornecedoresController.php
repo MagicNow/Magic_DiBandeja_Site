@@ -73,13 +73,13 @@ class FornecedoresController extends Controller {
 
 		if($id){
 			$rules = array(
-				'razao_social'      =>'required|unique:fornecedores,razao_social,'.$id
+				'razao_social' =>'required|unique:fornecedores,razao_social,'.$id
 
 			);
 			$msg = "Registro alterado com sucesso!";
 		}else{
 		   $rules = array(
-				'razao_social'      =>'required|unique:fornecedores,razao_social,'.$id
+				'razao_social' =>'required|unique:fornecedores,razao_social,'.$id
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}

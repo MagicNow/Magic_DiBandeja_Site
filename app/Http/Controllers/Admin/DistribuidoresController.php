@@ -81,6 +81,8 @@ class DistribuidoresController extends Controller {
 
 	public function store($id = null){
 		$dados = Input::all();
+		$callback = isset($dados['callback']) ? $dados['callback'] : NULL;
+		$return = '';
 
 		if($id){
 			$rules = array(
@@ -114,21 +116,24 @@ class DistribuidoresController extends Controller {
 			if (isset($dados['type']) && $dados['type'] === 'modal') {
 				$return = array();
 				$return[] = $msg;
-				return response()->json(['success' => true, 'message' => $return]);
+				$return = response()->json(['success' => true, 'message' => $return, 'id' => $distribuidores->id]);
 			} else {
-				return Redirect::route('admin.distribuidores')->with('sucess', $msg);
+				$return = Redirect::route('admin.distribuidores')->with('sucess', $msg);
 			}
 		} else {
 			if (isset($dados['type']) && $dados['type'] === 'modal') {
-				return response()->json(['success' => false, 'message' => $validator->errors()->all(), 'fields' => $dados]);
+				$return = response()->json(['success' => false, 'message' => $validator->errors()->all(), 'fields' => $dados]);
 			} else {
-				return back()
+				$return = back()
 					->withErrors($validator)
 					->withInput();
 			}
 		}
-	}
-   
 
-	
+		if ($callback === 'text') {
+			die($return);
+		} else {
+			return $return;
+		}
+	}	
 }

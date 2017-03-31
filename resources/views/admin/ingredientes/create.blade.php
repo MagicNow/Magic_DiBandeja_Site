@@ -28,24 +28,26 @@
             <label for="">Nome científico</label>
             {!! Form::text('nome_cientifico', isset($ingrediente->nome_cientifico) ? $ingrediente->nome_cientifico : '',array('class' => 'form-control', 'placeholder' => 'Nome científico*', 'id'=>'nome_cientifico', 'autocomplete' => 'off') )!!}
         </div>
-        <div class="form-group form-group-select">
-            <label>Caracteristicas</label>
-            <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
-                <div class="col-md-12 row">
-                    <input type="text" class="form-control form-ingredientes-caracteristicas" data-mt-filter-control/>
+        <div class="row">
+            <div class="form-group form-group-select col-md-12">
+                <label>Caracteristicas</label>
+                <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
+                    <div class="col-md-12 row">
+                        <input type="text" class="form-control form-ingredientes-caracteristicas" data-mt-filter-control/>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group form-group-select">
-            <label>Grupos</label>
-            <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]" data-mt-default-values="{{ isset($grupos_ingredientes) ? $grupos_ingredientes : '{}' }}">
-                <div class="col-md-12 row">
-                    <input type="text" class="form-control" data-mt-filter-control/>
+        <div class="row">
+            <div class="form-group form-group-select col-md-12">
+                <label>Grupos</label>
+                <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]" data-mt-default-values="{{ isset($grupos_ingredientes) ? $grupos_ingredientes : '{}' }}">
+                    <div class="col-md-12 row">
+                        <input type="text" class="form-control" data-mt-filter-control/>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <label for="">Propriedades nutricionais</label>
             {!! Form::text('propriedades_nutricionais', isset($ingrediente->propriedades_nutricionais) ? $ingrediente->propriedades_nutricionais : '', array('class' => 'form-control', 'placeholder' => 'Propriedades nutricionais*', 'id' => 'propriedades_nutricionais', 'autocomplete'=>'off') )!!}
