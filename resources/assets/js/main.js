@@ -18,8 +18,6 @@ var Index = {
 
 			$('.destaque div').hide();
 			$('.'+tipo).show();
-
-			console.log(tipo);
 		})
 	},
 

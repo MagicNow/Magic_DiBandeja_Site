@@ -69,6 +69,7 @@ var jQueryMTSelect = {
   tagInputType        : 'hidden',
   tagInputName        : 'tag',
   closeOnUnFocus      : 1,
+  triggerOnAdd        : '',
   skeleton            : 'default',
 
   _currentAJAXRequestObject : false,
@@ -97,6 +98,7 @@ var jQueryMTSelect = {
 
     this.closeModalOnSelect = typeof settings.close_on_select  != "undefined"  ? parseInt(settings.close_on_select)   : this.closeModalOnSelect;
     this.closeOnUnFocus     = typeof settings.close_on_unfocus != "undefined"  ? parseInt(settings.close_on_unfocus)  : this.closeOnUnFocus;
+    this.triggerOnAdd       = typeof settings.trigger_on_add   != "undefined"  ? settings.trigger_on_add              : this.triggerOnAdd;
     this.clearInputOnSelect = typeof settings.clear_on_select  != "undefined"  ? parseInt(settings.clear_on_select)   : this.clearInputOnSelect;
 
     this.tagInputName       = typeof settings.tag_input_name   != "undefined"  ? settings.tag_input_name  : this.tagInputName;
@@ -293,6 +295,10 @@ var jQueryMTSelect = {
 
     if(this.tagContainerObject.find('input[type="' + this.tagInputType + '"][data-tag-id]').length >= this.maxTags)
       this.containerObject.find(this.triggerInformationMAP.searchTriggerIdentifier).fadeOut('slow');
+
+    if (this.triggerOnAdd !== '') {
+      eval(this.triggerOnAdd)(tagId, tagName);
+    }
   },
 
   removeTag : function(tagId) {

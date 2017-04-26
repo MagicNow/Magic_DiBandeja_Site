@@ -38,7 +38,7 @@
 <script src="{{ asset('/assets/admin/plugins/select2/i18n/pt-BR.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/mt-select/js/jquery-mt-select.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/notifications/jquery.toaster.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('/assets/admin/plugins/rateyo/jquery.rateyo.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('/assets/admin/js/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/js/admin.js') }}" type="text/javascript"></script>
