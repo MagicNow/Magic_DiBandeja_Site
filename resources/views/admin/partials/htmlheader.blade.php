@@ -6,6 +6,9 @@
 
     <!-- Bootstrap 3.3.7 -->
 
+    <script type="text/javascript">
+        var apiUrl = "{{ url('/api') . '/' }}"
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     {!! Html::style('assets/admin/plugins/select2/select2.min.css') !!}
     {!! Html::style('assets/admin/css/app.css') !!}
@@ -21,6 +24,7 @@
     {!! Html::style('assets/admin/plugins/datepicker/datepicker3.css') !!}
     {!! Html::style('assets/admin/plugins/mt-select/css/style.css') !!}
     {!! Html::style('assets/admin/plugins/rateyo/jquery.rateyo.min.css') !!}
+    {!! Html::style('assets/admin/plugins/jQuery-Impromptu/jquery-impromptu.min.css') !!}
     
     <!-- iCheck -->
   

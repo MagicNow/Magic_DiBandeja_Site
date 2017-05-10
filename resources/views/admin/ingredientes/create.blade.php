@@ -18,11 +18,11 @@
             {{ session('sucess') }}
         </div>
     @endif
-    {!! Form::open(['route' => ['admin.ingredientes.store', isset($ingrediente->id) ? $ingrediente->id : ''], 'method' => 'POST','files'=>true]) !!}
+    {!! Form::open(['route' => ['admin.ingredientes.store', isset($ingrediente->id) ? $ingrediente->id : ''], 'method' => 'POST', 'files' => true, 'class' => 'ingredients-form']) !!}
 
         <div class="form-group">
             <label for="">Ingrediente</label>
-            {!! Form::text('nome', isset($ingrediente->nome) ? $ingrediente->nome : '', array('class' => 'form-control','placeholder' => 'Ingrediente*', 'id' => 'ingrediente', 'autocomplete' => 'off')) !!}
+            {!! Form::text('nome', isset($ingrediente->nome) ? $ingrediente->nome : '', array('class' => 'form-control ingredients-name','placeholder' => 'Ingrediente*', 'id' => 'ingrediente', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
             <label for="">Nome científico</label>
@@ -149,7 +149,7 @@
 
         <div class="row">
             <div class="form-group col-md-12">
-                <button type="submit" class="btn btn-primary pull-left">Salvar</button>
+                <button type="submit" class="btn btn-primary pull-left ingredients-save">Salvar</button>
                 @if (isset($ingrediente->id))
                     <a href="{{ route('admin.ingredientes.destroy', $ingrediente->id) }}" class="btn btn-danger pull-right">Excluir</a>
                 @endif

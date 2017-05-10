@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use URL;
 use Auth;
 use Session;
-use Request;
+use Illuminate\Http\Request;
 use App\Models\Ingredientes;
 use App\Models\Caracteristicas;
 use App\Models\Grupos;
@@ -177,7 +177,25 @@ class IngredientesController extends Controller {
                 ->withInput();
         }
     }
-   
 
-    
+    public function dicionario (Request $request) {
+        $url = 'https://languagetool.org/api/v2/check';
+        $data = 'text=' . $request->input('text') . '&language=pt-BR&enabledRules=HUNSPELL_RULE&enabledOnly=true';
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        $output = curl_exec ($ch);
+        curl_close ($ch);
+
+        $output = json_decode($output);
+        if (!empty($output->matches)) {
+            $sugestoes = $output->matches[0]->replacements;
+            return response()->json(['palavra' => $sugestoes[0]->value]);
+        }
+    }
 }

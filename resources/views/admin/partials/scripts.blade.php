@@ -10,6 +10,7 @@
 <script src="{{ asset('/assets/admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
+<script src="{{ asset('/assets/admin/plugins/jQuery-Impromptu/jquery-impromptu.min.js') }}"></script>
 
 
 <script src="{{ asset('/assets/admin/plugins/select2/select2.full.min.js') }}"></script>

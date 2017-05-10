@@ -236,11 +236,10 @@
 	"buffers":
 	[
 		{
-			"file": "resources/views/admin/fornecedores/create.blade.php",
+			"file": "resources/assets/admin/ingredients.less",
 			"settings":
 			{
-				"buffer_size": 7384,
-				"encoding": "UTF-8",
+				"buffer_size": 56,
 				"line_ending": "Unix"
 			}
 		},
@@ -248,7 +247,7 @@
 			"file": "resources/assets/js/main.js",
 			"settings":
 			{
-				"buffer_size": 2409,
+				"buffer_size": 2386,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -257,16 +256,34 @@
 			"file": "resources/assets/admin/js/admin.js",
 			"settings":
 			{
-				"buffer_size": 6741,
+				"buffer_size": 8611,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "public/assets/admin/plugins/mt-select/js/jquery-mt-select.js",
+			"file": "routes/web.php",
 			"settings":
 			{
-				"buffer_size": 20468,
+				"buffer_size": 6384,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/Controllers/Admin/IngredientesController.php",
+			"settings":
+			{
+				"buffer_size": 8340,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/api.php",
+			"settings":
+			{
+				"buffer_size": 525,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -274,18 +291,35 @@
 			"file": "resources/views/admin/ingredientes/create.blade.php",
 			"settings":
 			{
-				"buffer_size": 10691,
+				"buffer_size": 10759,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "https://www.zapimoveis.com.br/aluguel/apartamentos/brasil/1-quarto/#{\"precomaximo\":\"1000\",\"filtrodormitorios\":\"1;2;\",\"filtrovagas\":\"1;2;\",\"areautilminima\":\"45\",\"parametrosautosuggest\":[{\"Bairro\":\"Petropolis\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Rio Branco\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Moinhos de Vento\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Menino Deus\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"São João\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Sta Maria Goretti\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Santana\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"Tres Figueiras\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"},{\"Bairro\":\"São Geraldo\",\"Zona\":\"\",\"Cidade\":\"PORTO ALEGRE\",\"Agrupamento\":\"\",\"Estado\":\"RS\"}],\"pagina\":\"1\",\"paginaOrigem\":\"ResultadoBusca\",\"semente\":\"1620286298\",\"formato\":\"Lista\"}",
+			"file": "resources/views/admin/partials/htmlheader.blade.php",
 			"settings":
 			{
-				"buffer_size": 1087,
-				"line_ending": "Unix",
-				"name": "https://www.zapimoveis.com.br/aluguel/apartamentos"
+				"buffer_size": 2045,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/admin/partials/scripts.blade.php",
+			"settings":
+			{
+				"buffer_size": 3200,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/index.php",
+			"settings":
+			{
+				"buffer_size": 1786,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -326,18 +360,32 @@
 	"expanded_folders":
 	[
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Admin",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Models",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/js",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/js",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/fornecedores",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/ingredientes"
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/ingredientes",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/routes"
 	],
 	"file_history":
 	[
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/scripts.blade.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Models/Dicionarios.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Models/Ingredientes.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/routes/api.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/fornecedores/create.blade.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/htmlheader.blade.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public/assets/admin/plugins/mt-select/js/jquery-mt-select.js",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/ingredientes/create.blade.php",
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/AdminLTE.less",
 		"/var/www/Uniritter/clube-do-hardware-gradle/gradle/osSpecificDownloads.gradle",
 		"/private/var/www/Uniritter/clube-do-hardware-gradle/gradle/idea.gradle",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/modal.less",
@@ -358,7 +406,6 @@
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/gulpfile.js",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/bootstrap/bootstrap.less",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public/assets/admin/js/admin.js",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Models/Ingredientes.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/database/dumps/update_2017-03-28.sql",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/buttons.less",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/table.less",
@@ -369,7 +416,6 @@
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Admin/FornecedoresController.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/assets/admin/js/admin.js",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/sidebar.blade.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/fornecedores/create.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/layouts/app.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/package.json",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/storage/framework/views/74830c0e1c78f997e7bf946131f0aa6582c31ea5.php",
@@ -426,7 +472,6 @@
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/vendor/laravel/framework/src/Illuminate/Notifications/Notifiable.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Auth/ResetPasswordController.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/auth/passwords/reset.blade.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public/assets/admin/plugins/mt-select/js/jquery-mt-select.js",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/auth/register.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/auth.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Auth/RegisterController.php",
@@ -435,8 +480,6 @@
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/database/migrations/2017_01_02_233051_create_fornecedors_table.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/database/seeds/FornecedoresIngredientesTableSeeder.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public/assets/admin/plugins/searchable-option-list/sol.js",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/scripts.blade.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/htmlheader.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/public/assets/admin/plugins/select2/select2.js",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/grupos/create.blade.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/mainheader.blade.php",
@@ -461,11 +504,7 @@
 		"/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Auth/RegisterController.php",
 		"/var/www/MagicTech/Magic_DiBandeja_Site/app/Http/Controllers/Auth/LoginController.php",
 		"/private/var/www/MagicTech/Magic_DiBandeja_Site/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authorize.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/resources/views/admin/partials/scripts_auth.blade.php",
-		"/private/var/www/MagicTech/Magic_DiBandeja_Site/.htaccess",
-		"/private/var/folders/47/gltgs_yn7c3544q4552tfp180000gn/T/fz3temp-2/wp-config.php"
+		"/private/var/www/MagicTech/Magic_DiBandeja_Site/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authorize.php"
 	],
 	"find":
 	{
@@ -547,6 +586,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"indredients",
+			"\"",
+			"Request",
+			",&",
+			": ",
+			"                    ",
+			"'",
+			"\"",
+			"m-b",
+			"triggerOnAdd",
+			"changeDistributorSelect",
+			"close_on_unfocus",
+			"triggerOnAdd",
+			"consol",
+			"add",
+			"mtse",
+			"changeSelect",
+			"addTag",
+			"nome",
+			"distri",
 			"Estado\":\"\"",
 			"Cidade\":\"\"",
 			"clickOnMtSelectOption",
@@ -654,27 +713,7 @@
 			"close",
 			"myDateTime",
 			"new",
-			"eot",
-			"#myList",
-			"$tasks",
-			")\n",
-			"$tasks",
-			"['",
-			"$project",
-			"project",
-			"sortableLi",
-			"\\",
-			"sortableLi",
-			"sortabl",
-			"sortableLists",
-			"/var",
-			"/var/www",
-			"APPLICATION",
-			"APACHE_HOST_HTTP_PORT",
-			"crist",
-			"888",
-			"\\",
-			"888"
+			"eot"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -718,38 +757,36 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "resources/views/admin/fornecedores/create.blade.php",
+					"file": "resources/assets/admin/ingredients.less",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7384,
+						"buffer_size": 56,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								56,
+								56
 							]
 						],
 						"settings":
 						{
 							"git_gutter_enabled": true,
-							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/LESS/LESS.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -758,15 +795,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2409,
+						"buffer_size": 2386,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								517,
+								517
 							]
 						],
 						"settings":
@@ -776,7 +813,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 719.0,
+						"translation.y": 685.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
@@ -788,15 +825,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6741,
+						"buffer_size": 8611,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3160,
-								3160
+								6296,
+								6296
 							]
 						],
 						"settings":
@@ -806,38 +843,37 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1732.0,
+						"translation.y": 3519.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "public/assets/admin/plugins/mt-select/js/jquery-mt-select.js",
+					"file": "routes/web.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20468,
+						"buffer_size": 6384,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								995,
+								909
 							]
 						],
 						"settings":
 						{
 							"git_gutter_enabled": true,
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 72.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -845,19 +881,110 @@
 				},
 				{
 					"buffer": 4,
-					"file": "resources/views/admin/ingredientes/create.blade.php",
+					"file": "app/Http/Controllers/Admin/IngredientesController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10691,
+						"buffer_size": 8340,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7448,
-								7397
+								8319,
+								8319
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "routes/api.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 525,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "resources/views/admin/ingredientes/create.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10759,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								852,
+								836
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 100.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "resources/views/admin/partials/htmlheader.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2045,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1632,
+								1570
 							]
 						],
 						"settings":
@@ -875,31 +1002,61 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
+					"file": "resources/views/admin/partials/scripts.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1087,
+						"buffer_size": 3200,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1087,
-								1087
+								989,
+								989
 							]
 						],
 						"settings":
 						{
-							"auto_name": "https://www.zapimoveis.com.br/aluguel/apartamentos",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"git_gutter_enabled": true,
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "public/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								647,
+								650
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 25.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
@@ -953,6 +1110,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"mt-se",
+				"public/assets/admin/plugins/mt-select/js/jquery-mt-select.js"
+			],
 			[
 				"mtselect",
 				"public/assets/admin/plugins/mt-select/js/jquery-mt-select.js"
@@ -1460,10 +1621,6 @@
 			[
 				"bootstrap/js/",
 				"bower_components/bootstrap/js/carousel.js"
-			],
-			[
-				"modal",
-				"bower_components/bootstrap/js/modal.js"
 			]
 		],
 		"width": 0.0

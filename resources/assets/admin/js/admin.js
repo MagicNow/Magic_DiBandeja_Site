@@ -109,6 +109,16 @@ $(function() {
 						.text(ret.message[0]);
 				}
 			});
+		})
+		.on('click', '.ingredients-save', function (e) {
+			e.preventDefault();
+
+			var $form = $(this).parents('.ingredients-form');
+			var $indredientsInp = $form.find('.ingredients-name');
+			var $indredientsTxt = $indredientsInp.val();
+			var $ingredientsArr = $indredientsTxt.split(" ");
+			
+			findWord(0, $indredientsInp, $indredientsTxt, $ingredientsArr, $form);
 		});
 
 	$('.fornecedores-nota').rateYo({
@@ -213,6 +223,34 @@ $(function() {
 		changeSelect();
 	});
 });
+
+function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $form) {
+	var $form = $('.ingredients-form');
+	$.ajax({
+		method: 'POST',
+		url: apiUrl + 'dicionario',
+		data: {
+			'text': $ingredientsArr[number],
+		}
+	}).done(function( data ) {
+		if (data.palavra) {
+			word = $indredientsTxt.replace($ingredientsArr[number], '"' + data.palavra + '"');
+			$.prompt("Você quis dizer " + word + "?", {
+				buttons: { "Sim": true, "Não": false },
+				submit: function(e, v, m, f){
+					if (v) {
+						$indredientsInp.val($indredientsTxt.replace($ingredientsArr[number], data.palavra));
+						$form.submit();
+					} else {
+						$form.submit();
+					}
+				}
+			});
+		} else if (number < $ingredientsArr.length - 1) {
+			findWord(number+1, $indredientsInp, $indredientsTxt, $ingredientsArr, $form)
+		}
+	});
+}
 
 function clickOnMtSelectOption (id) {
 	if (!$(".mt_search_list_container").size()) {
