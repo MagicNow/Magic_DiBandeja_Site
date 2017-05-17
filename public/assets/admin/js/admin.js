@@ -222,6 +222,40 @@ $(function() {
 
 		changeSelect();
 	});
+
+	$('.ingredientes-revisoes-aprovar').on('click', function (e) {
+		var $self = $(this);
+		var $item = $self.parents('.ingredientes-revisoes-item');
+
+		$.ajax({
+			method: 'POST',
+			url: apiUrl + 'ingredientes/revisao',
+			data: {
+				'id': $item.find('.ingredientes-revisoes-id').val(),
+				'status': 1
+			}
+		}).done(function( data ) {
+			$item.fadeOut();
+			$('#historico').data("wysihtml5").editor.setValue($item.find('.ingredientes-revisoes-original-text').html());
+		});
+	});
+
+	$('.ingredientes-revisoes-reprovar').on('click', function (e) {
+		var $self = $(this);
+		var $item = $self.parents('.ingredientes-revisoes-item');
+
+		$.ajax({
+			method: 'POST',
+			url: apiUrl + 'ingredientes/revisao',
+			data: {
+				'id': $item.find('.ingredientes-revisoes-id').val(),
+				'status': 2
+			}
+		}).done(function( data ) {
+			$item.fadeOut();
+			$('#historico').data("wysihtml5").editor.setValue($item.find('.ingredientes-revisoes-original-text').html());
+		});
+	});
 });
 
 function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $form) {
@@ -248,6 +282,8 @@ function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $f
 			});
 		} else if (number < $ingredientsArr.length - 1) {
 			findWord(number+1, $indredientsInp, $indredientsTxt, $ingredientsArr, $form)
+		} else {
+			$form.submit();
 		}
 	});
 }

@@ -12,3 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/dicionario', ['as' => 'dicionario.store', 'uses' => 'Admin\IngredientesController@dicionario']);
+Route::post('/ingredientes/revisao', ['as' => 'ingredientes.revisao', 'uses' => 'Admin\IngredientesController@revisao']);

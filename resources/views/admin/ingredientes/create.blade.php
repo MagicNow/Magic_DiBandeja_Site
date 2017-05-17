@@ -83,6 +83,32 @@
             <label for="">Histórico</label>
             {!! Form::textarea('historico',isset($ingrediente->historico) ? $ingrediente->historico : '', array('class' => 'form-control', 'placeholder' => 'Histórico*', 'id' => 'historico')) !!}
         </div>
+
+
+        @if (!empty($ingrediente->revisoes))
+            <ul class="ingredientes-revisoes">
+                @foreach ($ingrediente->revisoes as $revisao)
+                    <li class="ingredientes-revisoes-item">
+                        <input type="hidden" name="historico-revisao-id" class="ingredientes-revisoes-id" value="{{ $revisao->id }}">
+                        <span class="hidden ingredientes-revisoes-original-text">{!! $revisao->descricao !!}</span>
+                        <b>{{ $revisao->cliente_site->nome }}</b> propôs uma nova revisão<br>
+                        {{ date_format($revisao->updated_at, 'd/m/Y') }}<br>
+                        <?php
+                        $htmlDiff = new Caxy\HtmlDiff\HtmlDiff($ingrediente->historico, $revisao->descricao);
+                        $content = $htmlDiff->build();
+                        ?>
+                        {!! $content !!}
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-success ingredientes-revisoes-aprovar">Aprovar</button>
+                                <button type="button" class="btn btn-danger ingredientes-revisoes-reprovar">Reprovar</button>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+
         <div class="form-group form-providers">
             <label for="fornecedores">Fornecedores</label>
             @if (isset($fornecedores_ingredientes))

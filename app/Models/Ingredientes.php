@@ -15,6 +15,8 @@ class Ingredientes extends Model {
         'nome', 'created_at',
     ];
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -52,5 +54,10 @@ class Ingredientes extends Model {
     public function relacionados()
     { 
         return $this->belongsToMany('App\Models\Ingredientes', 'ingredientes_relacionados', 'ingrediente_id_to', 'ingrediente_id_from');
+    }
+
+    public function revisoes()
+    { 
+        return $this->hasMany('App\Models\Ingredientes_historico_revisao');
     }
 }

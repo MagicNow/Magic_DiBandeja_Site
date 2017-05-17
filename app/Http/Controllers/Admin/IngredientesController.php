@@ -15,6 +15,7 @@ use App\Models\Ingredientes_caracteristicas;
 use App\Models\Ingredientes_grupos;
 use App\Models\Fornecedores_ingredientes;
 use App\Models\Ingredientes_relacionados;
+use App\Models\Ingredientes_historico_revisao;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
@@ -40,7 +41,12 @@ class IngredientesController extends Controller {
     public function edit($id = null){
         if (!Auth::check()) { return view('auth.login'); return false; }
 
-        $ingrediente = Ingredientes::find($id);
+        $id = intval($id);
+        $ingrediente = Ingredientes::where('id', $id)
+                            ->with(['revisoes' => function ($query) {
+                                $query->whereNull('status');
+                            }, 'revisoes.cliente_site'])->first();
+
         $ingrediente_afinidade = Ingredientes::where('id','<>',$id)->pluck('nome','id');
 
         $caracteristicas_ingredientes = array();
@@ -122,7 +128,6 @@ class IngredientesController extends Controller {
             }
 
             if ($ingrediente->save()) {
-
                 Ingredientes_caracteristicas::where('ingrediente_id',$ingrediente->id)->delete();
                 if(isset($dados['caracteristicas'])){
                     foreach ($dados['caracteristicas'] as $carac) {
@@ -196,6 +201,21 @@ class IngredientesController extends Controller {
         if (!empty($output->matches)) {
             $sugestoes = $output->matches[0]->replacements;
             return response()->json(['palavra' => $sugestoes[0]->value]);
+        }
+    }
+
+    public function revisao (Request $request) {
+        $id = $request->input('id');
+        $status = $request->input('status');
+
+        $revisao = Ingredientes_historico_revisao::find($id);
+        if (!empty($revisao)) {
+            $revisao->status = intval($status);
+            $revisao->save();
+
+            $ingrediente = $revisao->ingrediente()->first();
+            $ingrediente->historico = $revisao->descricao;
+            $ingrediente->save();
         }
     }
 }

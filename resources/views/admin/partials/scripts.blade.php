@@ -5,7 +5,9 @@
 <!-- Bootstrap 3.3.2 JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<script src="{{ asset('/assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('/assets/admin/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5-0.0.2.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
