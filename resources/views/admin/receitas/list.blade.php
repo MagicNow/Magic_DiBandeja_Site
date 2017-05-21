@@ -47,8 +47,8 @@
 							</td>
 							<td>{!! isset($receita->created_at) && !empty($receita->created_at) ? date('d/m/Y H:i:s', strtotime($receita->created_at)) : '' !!}</td>
 							<td>
-								<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary">Editar</a>
-								<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
+								<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+								<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
 							</td>
 						</tr>
 					@endforeach
