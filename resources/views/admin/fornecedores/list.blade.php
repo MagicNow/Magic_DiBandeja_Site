@@ -14,44 +14,43 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.fornecedores.create") }}'>Cadastre um novo fornecedor aqui</a>">
 				<thead>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Fornecedor</th>
 						<th>Distribuição</th>
                         <th>Data do registro</th>
                         <th>Ranking Clientes</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($fornecedores as $fornecedor)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.fornecedores.edit',$fornecedor->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.fornecedores.destroy', $fornecedor->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{!! $fornecedor->id!!}</td>
 							<td>{!! $fornecedor->nome!!}</td>
-                            <td>Distribuição</td>
+                            <td>{!! $fornecedor->distribuicao_direta == 1 ? 'Direta' : 'Indireta' !!}</td>
 							<td>{{ isset($fornecedor->created_at) && !empty($fornecedor->created_at) ? date('d/m/Y H:i:s', strtotime($fornecedor->created_at)) : NULL }}</td>
                             <td>{!! $fornecedor->nota!!}</td>
-							<td>
-								<a href="{{ route('admin.fornecedores.edit',$fornecedor->id) }}" class="btn btn-primary">Editar</a>
-								<a href="{{ route('admin.fornecedores.destroy',$fornecedor->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>Id</th>
-						<th>Razão Social</th>
-						<th>Nome Fantasia</th>
-						<th>Especialidade</th>
-						<th>Url</th>
-						<th>Cotação</th>
-						<th>Imagem</th>
-						<th>Data</th>
 						<th>Ações</th>
+						<th>Id</th>
+						<th>Fornecedor</th>
+						<th>Distribuição</th>
+                        <th>Data do registro</th>
+                        <th>Ranking Clientes</th>
 					</tr>
 				</tfoot>
 			</table>

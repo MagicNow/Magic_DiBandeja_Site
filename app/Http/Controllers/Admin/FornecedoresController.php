@@ -62,10 +62,6 @@ class FornecedoresController extends Controller {
         }
         $distribuidores = json_encode($distribuidores, JSON_UNESCAPED_UNICODE);
 
-		// foreach ($fornecedor->distribuidores as $key => $fornecedor) {
-		//  	dd($fornecedor->pivot->nota);
-		// }
-
 		return view('admin.fornecedores.create',compact('fornecedor', 'distribuidores'));
 
 	}
@@ -88,7 +84,7 @@ class FornecedoresController extends Controller {
 			$msg = "Registro alterado com sucesso!";
 		}else{
 		   $rules = array(
-				'razao_social' =>'required|unique:fornecedores,razao_social,'.$id
+				'razao_social' =>'required|unique:fornecedores,razao_social'
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
@@ -116,6 +112,8 @@ class FornecedoresController extends Controller {
 			$fornecedores->cep = $dados['cep'];
 			$fornecedores->telefone = $dados['telefone'];
 			$fornecedores->nota = $dados['nota'];
+			$fornecedores->distribuicao_direta = $dados['distribuicao_direta'];
+			$fornecedores->observacoes = $dados['observacoes'];
 			
 			$image = Input::file('image');
 			if(isset($image)){
@@ -131,6 +129,13 @@ class FornecedoresController extends Controller {
 				if (isset($dados['distribuidores']) && !isset($dados['distribuicao_direta'])) {
 					foreach ($dados['distribuidores'] as $dist) {
 						$nota = $dados['nota-distribuidor'][$dist];
+						$fornecedores->distribuidores()->attach($dist, ['nota' => $nota]);
+					}
+				}
+
+				if (isset($dados['nota-distribuidor'])) {
+					unset($dados['nota-distribuidor'][0]);
+					foreach ($dados['nota-distribuidor'] as $dist => $nota) {
 						$fornecedores->distribuidores()->attach($dist, ['nota' => $nota]);
 					}
 				}
