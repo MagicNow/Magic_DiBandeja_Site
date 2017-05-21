@@ -19,13 +19,10 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Razão Social</th>
-						<th>Nome Fantasia</th>
-						<th>Especialidade</th>
-						<th>Url</th>
-						<th>Cotação</th>
-						<th>Imagem</th>
-						<th>Data</th>
+						<th>Fornecedor</th>
+						<th>Distribuição</th>
+                        <th>Data do registro</th>
+                        <th>Ranking Clientes</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
@@ -33,16 +30,10 @@
 					@foreach($fornecedores as $fornecedor)
 						<tr>
 							<td>{!! $fornecedor->id!!}</td>
-							<td>{!! $fornecedor->razao_social!!}</td>
 							<td>{!! $fornecedor->nome!!}</td>
-							<td>{!! $fornecedor->especialidade!!}</td>
-							<td>{!! $fornecedor->url!!}</td>
-							<td>{!! $fornecedor->cotacao!!}</td>
-							<td>
-								@if(isset($fornecedor->imagem))
-						            <img width="100" src="{{ asset('upload/fornecedores/' . $fornecedor->imagem) }}">
-						        @endif</td>
+                            <td>Distribuição</td>
 							<td>{{ isset($fornecedor->created_at) && !empty($fornecedor->created_at) ? date('d/m/Y H:i:s', strtotime($fornecedor->created_at)) : NULL }}</td>
+                            <td>{!! $fornecedor->nota!!}</td>
 							<td>
 								<a href="{{ route('admin.fornecedores.edit',$fornecedor->id) }}" class="btn btn-primary">Editar</a>
 								<a href="{{ route('admin.fornecedores.destroy',$fornecedor->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
@@ -69,18 +60,18 @@
 	<div class="modal fade modal-danger " id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modals-content">
-            
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Apagar fornecedor?</h4>
                 </div>
-            
+
                 <div class="modal-body">
                     <!-- <p>You are about to delete one track, this procedure is irreversible.</p>
                     <p>Do you want to proceed?</p> -->
                     <p class="debug-url"></p>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button id="#confirm-delete" type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
                     <a type="button" class="btn btn-outline btn-ok">Apagar</a>
