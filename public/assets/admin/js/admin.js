@@ -19,6 +19,16 @@ $(function() {
 		$(this).wysihtml5();
 	});
 
+	$(".cliente-tipo").on("change", function(){
+		var val = $(this).val();
+		var tipo = "Pessoa Física";
+		if(val == 1){
+			var tipo = "Pessoa Jurídica";
+		}
+		$(".label-nome").html(tipo);
+		$("#nome").attr("placeholder",tipo);
+	});
+
 
 
 	var datatables = $('#datatables');
@@ -146,7 +156,7 @@ $(function() {
 			autoclose: true,
 			language: 'pt-BR',
 			format: 'dd/mm/yyyy',
-		});		
+		});
 
 		$('.modal form')
 			.append('<input type="hidden" name="type" value="modal" />')

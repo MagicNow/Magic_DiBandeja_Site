@@ -25,15 +25,24 @@ class ClientesController extends Controller {
     }
 
     public function create(){
-
-        return view('admin.clientes.create');
+        $tipo = [
+			'0' => 'checked',
+			'1' => ''
+		];
+        return view('admin.clientes.create', compact('tipo'));
 
     }
 
     public function edit($id = null){
 
         $cliente = Clientes::find($id);
-        return view('admin.clientes.create',compact('cliente'));
+
+        $tipo = [
+            '0' => $cliente->tipo === 0 ? 'checked' : '',
+            '1' => $cliente->tipo === 1 ? 'checked' : ''
+        ];
+
+        return view('admin.clientes.create',compact('cliente','tipo'));
 
     }
 
@@ -52,47 +61,46 @@ class ClientesController extends Controller {
     public function store($id = null){
 
         $dados = Input::all();
-
-        if($id){
+		if($id){
 			$rules = array(
-				'nome' =>'required|unique:clientes,nome'
-
+				'nome'      =>'required|unique:clientes,nome,'.$id
 			);
 			$msg = "Registro alterado com sucesso!";
-		} else {
+		}else{
 		   $rules = array(
-				'nome'      =>'required|unique:grupos,nome,'.$id
+				'nome'      =>'required|unique:clientes,nome'
 			 );
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
 
+        // dd($dados);
+
 		$validator = Validator::make($dados,$rules);
+
         if(!$validator->fails()){
+
+            $image = Input::file('image');
+            if(isset($image)){
+                $fileName = md5(str_random(60)).'.'.strtolower($image->getClientOriginalExtension());
+                Input::file('image')->move(public_path('upload/clientes'), $fileName);
+
+                $dados['image'] = $fileName;
+            }
 
 			if($id){
 				$clientes = Clientes::find($id);
+                $clientes->update($dados);
 			} else {
 				$clientes = new Clientes;
+                $clientes->create($dados);
 			}
 
-			$clientes->nome = $dados['nome'];
-			$clientes->save();
+			return Redirect::route('admin.clientes')->with('sucess', $msg);
 
-			if (isset($dados['type']) && $dados['type'] === 'modal') {
-				$return = array();
-				$return[] = $msg;
-				return response()->json(['success' => true, 'message' => $return]);
-			} else {
-				return Redirect::route('admin.clientes')->with('sucess', $msg);
-			}
 		} else {
-			if (isset($dados['type']) && $dados['type'] === 'modal') {
-				return response()->json(['success' => false, 'message' => $validator->errors()->all(), 'fields' => $dados]);
-			} else {
-				return Redirect::route('admin.clientes.create')
-					->withErrors($validator)
-					->withInput();
-			}
+    		return Redirect::route('admin.clientes.create')
+    			->withErrors($validator)
+    			->withInput();
 		}
     }
 
