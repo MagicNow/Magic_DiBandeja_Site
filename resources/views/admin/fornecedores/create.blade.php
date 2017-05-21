@@ -27,7 +27,7 @@
 
 		<div class="form-group">
 			<label for="">Nome Fantasia</label>
-			{!! Form::text('nome', isset($fornecedor->nome) ? $fornecedor->nome : '',array('class' => 'form-control','placeholder'=>'Nome Fantasia*','id'=>'razao_social','autocomplete'=>'off') )!!}
+			{!! Form::text('nome', isset($fornecedor->nome) ? $fornecedor->nome : '',array('class' => 'form-control','placeholder'=>'Nome Fantasia*','id'=>'nome_fantasia','autocomplete'=>'off') )!!}
 		</div>
 
 		<div class="form-group">
@@ -121,13 +121,13 @@
 			<div class="form-group-select col-md-12 fornecedores-dist-indirect hidden">
 				<div class="alert fornecedores-dist-form-alert hidden"></div>
 				<div class="fornecedores-dist-form" data-request-url="{{ route('admin.distribuidores.store') }}">
-					<input type="hidden" name="type" value="modal">
+					{{-- <input type="hidden" name="type" value="modal"> --}}
 					<div class="row form-group">
 						<div class="col-md-12">
 							<label>Distribuição</label>
-							<div class="col-md-12 row form-group component-mt-select" data-mt-request-url="/admin/distribuidores/list" data-mt-max-tags="20" data-mt-tag-input-name="distribuidores[]" data-mt-default-values="{{ isset($distribuidores) ? $distribuidores : '{}' }}" data-mt-trigger-on-add="changeDistributorSelect">
+							<div class="col-md-12 row form-group component-mt-select" data-mt-request-url="/admin/distribuidores/list" data-mt-max-tags="20" data-mt-tag-input-name="distribuidores" data-mt-default-values="{{ isset($distribuidores) ? $distribuidores : '{}' }}" data-mt-trigger-on-add="changeDistributorSelect">
 								<div class="col-md-12 row">
-									<input type="text" class="form-control" data-mt-filter-control name="nome" />
+									<input type="text" class="form-control" data-mt-filter-control name="nome-distribuidor" />
 								</div>
 							</div>
 							<div class="fornecedor-dist-append-form"></div>
@@ -147,6 +147,7 @@
 			<div class="distribuidores-nota-container col-md-4 hidden mb-2">
 				Ranking DiBandeja: <span class="distribuidores-nota-nome"></span>
 				<div class="distribuidores-nota"></div>
+				<input type="hidden" name="nota-distribuidor[]" class="distribuidores-nota-dibandeja-input">
 			</div>
 		</div>
 
