@@ -48,6 +48,19 @@ class ReceitasController extends Controller {
         return view('admin.receitas.create',compact('receita','ingredientes','receitas_ingredientes'));
 
     }
+
+    public function show($id = null){
+
+        $receita = Receitas::find($id);
+        $ingredientes = Ingredientes::getList();
+        $receitas_ingredientes = array();
+        foreach ($receita->ingredientes as $key => $value) {
+            array_push($receitas_ingredientes,$value->id);
+        }
+        return view('admin.receitas.show',compact('receita','ingredientes','receitas_ingredientes'));
+
+    }
+
     public function destroy($id = null){
         $receitas = Receitas::find($id);
 

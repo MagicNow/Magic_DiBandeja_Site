@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('receitas/create', ['as' =>'admin.receitas.create','uses' => 'Admin\ReceitasController@create']);
 	Route::get('receitas/edit/{id}', ['as' =>'admin.receitas.edit','uses' => 'Admin\ReceitasController@edit']);
 	Route::get('receitas/destroy/{id?}', ['as' =>'admin.receitas.destroy','uses' => 'Admin\ReceitasController@destroy']);
+	Route::get('receita/{id}', ['as' =>'admin.receitas.show','uses' => 'Admin\ReceitasController@show']);
 
 
 	Route::get('/caracteristicas', ['as'=> 'admin.caracteristicas','uses' => 'Admin\CaracteristicasController@index']);

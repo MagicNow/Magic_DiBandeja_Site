@@ -30,7 +30,11 @@
 					@foreach($receitas as $receita)
 						<tr>
 							<td>{!! $receita->id!!}</td>
-							<td>{!! $receita->titulo!!}</td>
+							<td>
+                                <a href="{!! route('admin.receitas.show', [$receita->id]) !!}">
+                                  {{ $receita->titulo }}
+                                </a>
+                            </td>
 							<td>{!! $receita->subtitulo!!}</td>
 							<td>
 							@foreach($receita->ingredientes as $key => $ing)
@@ -65,18 +69,18 @@
 	<div class="modal fade modal-danger " id="confirm-delete" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modals-content">
-            
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Apagar receita?</h4>
                 </div>
-            
+
                 <div class="modal-body">
                     <!-- <p>You are about to delete one track, this procedure is irreversible.</p>
                     <p>Do you want to proceed?</p> -->
                     <p class="debug-url"></p>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button id="#confirm-delete" type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
                     <a type="button" class="btn btn-outline btn-ok">Apagar</a>
