@@ -89,4 +89,11 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('distribuidores/list', ['as' =>'admin.distribuidores.list','uses' => 'Admin\DistribuidoresController@listItems']);
 	Route::get('distribuidores/edit/{id}', ['as' =>'admin.distribuidores.edit','uses' => 'Admin\DistribuidoresController@edit']);
 	Route::get('distribuidores/destroy/{id?}', ['as' =>'admin.distribuidores.destroy','uses' => 'Admin\DistribuidoresController@destroy']);
+
+	Route::get('/clientes', ['as'=> 'admin.clientes','uses' => 'Admin\ClientesController@index']);
+	Route::post('clientes/store/{id?}', ['as' =>'admin.clientes.store','uses' => 'Admin\ClientesController@store']);
+	Route::get('clientes/create', ['as' =>'admin.clientes.create','uses' => 'Admin\ClientesController@create']);
+	Route::post('clientes/list', ['as' =>'admin.clientes.list','uses' => 'Admin\ClientesController@listItems']);
+	Route::get('clientes/edit/{id}', ['as' =>'admin.clientes.edit','uses' => 'Admin\ClientesController@edit']);
+	Route::get('clientes/destroy/{id?}', ['as' =>'admin.clientes.destroy','uses' => 'Admin\ClientesController@destroy']);
 });
