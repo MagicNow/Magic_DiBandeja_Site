@@ -263,15 +263,23 @@ var jQueryMTSelect = {
 
     this.tagContainerObject.append(
         '<input type="' + this.tagInputType + '" ' +
-            'name="' + this.tagInputName + '[' +
-            (this.tagContainerObject.find('[data-tag-id]').length > 0
-                ? ( parseInt(this.tagContainerObject.find('[data-tag-id]:last').attr('data-tag-id'), 10) + 1 )
-                : 1) +
-            ']" ' +
+            'name="' + this.tagInputName + '[]" ' +
             'value="' + tagId + '"' +
             'data-tag-id="' + tagId + '"' +
             '/>'
     );
+
+    // this.tagContainerObject.append(
+    //     '<input type="' + this.tagInputType + '" ' +
+    //         'name="' + this.tagInputName + '[' +
+    //         (this.tagContainerObject.find('[data-tag-id]').length > 0
+    //             ? ( parseInt(this.tagContainerObject.find('[data-tag-id]:last').attr('data-tag-id'), 10) + 1 )
+    //             : 1) +
+    //         ']" ' +
+    //         'value="' + tagId + '"' +
+    //         'data-tag-id="' + tagId + '"' +
+    //         '/>'
+    // );
 
     this.tagContainerObject.append(
         '<'  + this.elementInformationMAP.tagElement.element + ' ' +

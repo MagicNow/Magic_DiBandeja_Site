@@ -119,14 +119,19 @@ $(function() {
 			var $ingredientsArr = $indredientsTxt.split(" ");
 			
 			findWord(0, $indredientsInp, $indredientsTxt, $ingredientsArr, $form);
+		})
+		.on('click', '.fornecedores-dist-indirect .mt-tag-element[data-tag-remove-id]', function (e) {
+			var $self = $(this),
+				tagId = $self.data('tag-remove-id');
+
+			$('.distribuidores-nota-container[data-distributor-id="' + tagId + '"]').remove();
 		});
 
 	$('.fornecedores-nota').rateYo({
-		// starWidth: "20px",
 		halfStar: true
-	})
-	.on("rateyo.set", function (e, data) {
-		alert("The rating is set to " + data.rating + "!");
+	}).on("rateyo.set", function (e, data) {
+		var $self = $(this);
+		$self.next('input').val(data.rating);
 	});
 
 	$registerModal.on('loaded.bs.modal', function (e) {
@@ -338,9 +343,21 @@ function changeDistributorSelect (tagId, tagName) {
 	var distributorHTML = $('.distribuidores-nota-container').first().get(0).outerHTML;
 		$distributor = $(distributorHTML)
 	
-	$distributor.removeClass('hidden');
-	$distributor.find('.distribuidores-nota').rateYo({ halfStar: true });
-	$distributor.find('.distribuidores-nota-nome').text(tagName);
+	$distributor.removeClass('hidden')
+				.attr('data-distributor-id', tagId);
+
+	$distributor.find('.distribuidores-nota')
+				.rateYo({ halfStar: true })
+				.on("rateyo.set", function (e, data) {
+					var $self = $(this);
+					$self.next('input').val(data.rating);
+				});
+
+	$distributor.find('.distribuidores-nota-nome')
+				.text(tagName);
+
+	$distributor.find('.distribuidores-nota-dibandeja-input').attr('name', 'nota-distribuidor[' + tagId + ']');
+
 	$('.fornecedores-nota-geral').append($distributor);
 }
 

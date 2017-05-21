@@ -142,21 +142,21 @@
                 @endforeach
             @else
                 <div class="row fornecedores-linha">
-                    <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]">
+                    <div class="col-md-4 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]">
                         <div class="col-md-12 row">
                             <input type="text" class="form-control" data-mt-filter-control />
                         </div>
                     </div>
-                    <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
-                        <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
-                        <div class="col-md-2 col-sm-3 col-xs-3">
+                    <label for="fornecedores-custo" class="col-md-8 col-sm-12 col-xs-12">
+                        <span class="col-md-2 col-sm-3 col-xs-3 fornecedores-label">Custo </span>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
                             <input type="text" name="fornecedores_custo[]" class="form-control" class='form-control' placeholder='R$...' id='fornecedores_custo' autocomplete='off'>
                         </div>
-                        <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
-                        <div class="col-md-3 col-sm-4 col-xs-4">
+                        <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label text-center">/</div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
                             <input type="text" name="fornecedores_medida[]" class="form-control" class='form-control' placeholder='Medida' id='fornecedores_medida' autocomplete='off'>
                         </div>
-                        <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                        <button type="button" class="col-md-2 col-sm-2 col-xs-2 fornecedores-acrescentar">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                         </button>
                     </label>

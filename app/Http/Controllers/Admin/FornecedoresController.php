@@ -87,7 +87,6 @@ class FornecedoresController extends Controller {
 		$validator = Validator::make($dados,$rules);
 
 		if(!$validator->fails()){
-
 			if($id){
 				$fornecedores = Fornecedores::find($id);
 			} else {
