@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @include('admin.partials.htmlheader')
 
 <body class="skin-blue sidebar-mini">
-
+<div class="load"></div>
 <!-- Modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

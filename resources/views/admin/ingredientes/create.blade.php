@@ -111,7 +111,7 @@
 
         <div class="form-group form-providers">
             <label for="fornecedores">Fornecedores</label>
-            @if (isset($fornecedores_ingredientes))
+            @if (isset($fornecedores_ingredientes) && count($fornecedores_ingredientes) > 0)
                 @foreach ($fornecedores_ingredientes as $key => $fornecedor)
                     <div class="row fornecedores-linha">
                         <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>

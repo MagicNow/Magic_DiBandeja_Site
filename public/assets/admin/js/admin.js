@@ -1,5 +1,6 @@
 var $registerModal,
 	$targetModalButton,
+	$loading,
 	selectAjax,
 	selectUrl = '',
 	messageNotFound = '',
@@ -7,6 +8,7 @@ var $registerModal,
 
 $(function() {
 	$registerModal = $('#register');
+	$loading = $('.load');
 
 	$.ajaxSetup({
 		headers: {
@@ -18,8 +20,6 @@ $(function() {
 		// $('textarea').wysihtml5();
 		$(this).wysihtml5();
 	});
-
-
 
 	var datatables = $('#datatables');
 	datatables.DataTable({
@@ -123,6 +123,7 @@ $(function() {
 			var $indredientsTxt = $indredientsInp.val();
 			var $ingredientsArr = $indredientsTxt.split(" ");
 
+			$loading.show();
 			findWord(0, $indredientsInp, $indredientsTxt, $ingredientsArr, $form);
 		})
 		.on('click', '.fornecedores-dist-indirect .mt-tag-element[data-tag-remove-id]', function (e) {
@@ -298,6 +299,8 @@ function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $f
 					}
 				}
 			});
+
+			$loading.hide();
 		} else if (number < $ingredientsArr.length - 1) {
 			findWord(number+1, $indredientsInp, $indredientsTxt, $ingredientsArr, $form)
 		} else {
