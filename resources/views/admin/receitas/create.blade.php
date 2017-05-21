@@ -91,9 +91,63 @@
             </div>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Ingredientes</label>
             {!! Form::select('ingredientes[]', $ingredientes, isset($receita->ingredientes) ? $receitas_ingredientes : '',array('class' => 'form-control select2','id'=>'ingredientes','multiple'=>'multiple')) !!}
+        </div> --}}
+        <div class="form-group form-providers">
+            <label for="fornecedores">Ingredientes</label>
+            @if (isset($fornecedores_ingredientes))
+                @foreach ($fornecedores_ingredientes as $key => $fornecedor)
+                    {{-- <div class="row fornecedores-linha">
+                        <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
+                            <div class="col-md-12 row">
+                                <input type="text" class="form-control" data-mt-filter-control/>
+                            </div>
+                        </div>
+                        <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
+                            <span class="col-md-1 col-sm-3 col-xs-3 fornecedores-label">Custo</span>
+                            <div class="col-md-2 col-sm-3 col-xs-3">
+                                {!! Form::input('text', 'fornecedores_custo[]', isset($fornecedor->pivot->custo) ? $fornecedor->pivot->custo : '', array('class' => 'form-control', 'placeholder'=>'R$...','id'=>'fornecedores_custo', 'autocomplete'=>'off') )!!}
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 fornecedores-label">/</div>
+                            <div class="col-md-3 col-sm-4 col-xs-4">
+                                {!! Form::input('text', 'fornecedores_medida[]', isset($fornecedor->pivot->medida) ? $fornecedor->pivot->medida : '', array('class' => 'form-control', 'placeholder'=>'Medida','id'=>'fornecedores_medida', 'autocomplete'=>'off') )!!}
+                            </div>
+                            @if ($key === 0)
+                                <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-acrescentar">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                </button>
+                            @else
+                                <button type="button" class="col-md-1 col-sm-1 col-xs-1 fornecedores-remover">
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                </button>
+                            @endif
+                        </label>
+                    </div> --}}
+                @endforeach
+            @else
+                <div class="row ingredientes-linha">
+                    <div class="col-md-4 col-sm-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes[]">
+                        <div class="col-md-12 row">
+                            <input type="text" class="form-control" data-mt-filter-control />
+                        </div>
+                    </div>
+                    <label for="ingredientes-custo" class="col-md-8 col-sm-12 col-xs-12">
+                        <span class="col-md-2 col-sm-3 col-xs-3 ingredientes-label">Custo </span>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <input type="text" name="ingredientes_custo[]" class="form-control" class='form-control' placeholder='R$...' id='ingredientes_custo' autocomplete='off'>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1 ingredientes-label text-center">/</div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" name="ingredientes_medida[]" class="form-control" class='form-control' placeholder='Medida' id='ingredientes_medida' autocomplete='off'>
+                        </div>
+                        <button type="button" class="col-md-2 col-sm-2 col-xs-2 ingredientes-acrescentar">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </label>
+                </div>
+            @endif
         </div>
 
         <div class="form-group">
@@ -122,20 +176,20 @@
 
         <div class="form-group" >
             <div class="row">
-                <div class="fornecedores-nota-container col-md-4 mb-2">
+                <div class="ranking col-md-4 mb-2">
                     Ranking DiBandeja
-                    <div class="fornecedores-nota"></div>
-                    <input type="hidden" name="nota">
+                    <div class="ranking-nota"></div>
+                    <input type="hidden" name="ranking_dibandeja">
                 </div>
-                <div class="fornecedores-nota-container col-md-4 mb-2">
+                <div class="ranking col-md-4 mb-2">
                     Ranking Clientes
                     <div class="fornecedores-nota"></div>
-                    <input type="hidden" name="nota">
+                    <input type="hidden" name="ranking_clientes">
                 </div>
-                <div class="fornecedores-nota-container col-md-4 mb-2">
+                <div class="ranking col-md-4 mb-2">
                     Ranking Parceiros
                     <div class="fornecedores-nota"></div>
-                    <input type="hidden" name="nota">
+                    <input type="hidden" name="ranking_parceiros">
                 </div>
             </div>
         </div>

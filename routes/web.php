@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('ingredientes/create', ['as' =>'admin.ingredientes.create','uses' => 'Admin\IngredientesController@create']);
 	Route::get('ingredientes/edit/{id}', ['as' =>'admin.ingredientes.edit','uses' => 'Admin\IngredientesController@edit']);
 	Route::get('ingredientes/destroy/{id?}', ['as' =>'admin.ingredientes.destroy','uses' => 'Admin\IngredientesController@destroy']);
+	Route::post('ingredientes/list', ['as' =>'admin.ingredientes.list','uses' => 'Admin\IngredientesController@listItems']);
 
 
 	Route::get('/receitas', ['as'=> 'admin.receitas','uses' => 'Admin\ReceitasController@index']);

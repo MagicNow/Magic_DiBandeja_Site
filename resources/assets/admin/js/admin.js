@@ -132,7 +132,7 @@ $(function() {
 			$('.distribuidores-nota-container[data-distributor-id="' + tagId + '"]').remove();
 		});
 
-	$('.fornecedores-nota').rateYo({
+	$('.fornecedores-nota,.ranking-nota').rateYo({
 		halfStar: true
 	}).on("rateyo.set", function (e, data) {
 		var $self = $(this);
@@ -141,6 +141,12 @@ $(function() {
 
 	$registerModal.on('loaded.bs.modal', function (e) {
 		var $targetInput;
+
+		$('#sazonalidade_inicial, #sazonalidade_final').datepicker({
+			autoclose: true,
+			language: 'pt-BR',
+			format: 'dd/mm/yyyy',
+		});		
 
 		$('.modal form')
 			.append('<input type="hidden" name="type" value="modal" />')
@@ -348,7 +354,7 @@ function changeDistributorSelect (tagId, tagName) {
 	var distributorHTML = $('.distribuidores-nota-container').first().get(0).outerHTML;
 		$distributor = $(distributorHTML)
 
-	
+
 	$distributor.removeClass('hidden')
 				.attr('data-distributor-id', tagId);
 

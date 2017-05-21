@@ -30,6 +30,31 @@ class IngredientesController extends Controller {
         return view('admin.ingredientes.list', compact('ingredientes'));
     }
 
+    public function listItems() {
+        $dados = Input::all();
+        $image = asset('upload/ingredientes');
+
+        if (isset($dados['mt_filter'])) {
+            $ingredientes = Ingredientes::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+                                    ->selectRaw('nome AS name, id, "" AS description, CONCAT("' . $image . '/", image) AS picture_path')
+                                    ->get();
+
+            foreach ($ingredientes as $key => $ingrediente) {
+                if (empty($ingrediente->picture_path)) {
+                    $ingrediente->picture_path = asset('assets/images/blank.png');
+                }
+            }
+
+            if (count($ingredientes) === 0) {
+                return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.ingredientes.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo ingrediente</a>']);
+            } else {
+                return response()->json(['results' => $ingredientes, 'status' => 'ok']);
+            }
+        } else {
+            return response()->json(['results' => [], 'status' => 'empty']);
+        }
+    }
+
     public function create(){
         $ingrediente = new Ingredientes();
         $ingredientes_relacionados = array();
@@ -79,13 +104,13 @@ class IngredientesController extends Controller {
         Ingredientes_relacionados::where('ingrediente_id_to',$id)->delete();
         Ingredientes_relacionados::where('ingrediente_id_from',$id)->delete();
 
-        $ingredientes = Ingredientes::find($id);        
+        $ingredientes = Ingredientes::find($id);
         $ingredientes->delete();
         return Redirect::route('admin.ingredientes')->with('sucess', 'Registro apagado com sucesso!');;
     }
 
     public function store($id = null){
-        
+
         $dados = Input::all();
 
         if($id){
@@ -96,7 +121,7 @@ class IngredientesController extends Controller {
         }else{
            $rules = array(
                 'nome'      =>'required|unique:ingredientes,nome,'.$id
-             ); 
+             );
            $msg = "Cadastro efetuado com sucesso!";
         }
 
@@ -123,8 +148,8 @@ class IngredientesController extends Controller {
             if(isset($image)){
                 $fileName = md5(str_random(60)).'.'.strtolower($image->getClientOriginalExtension());
                 Input::file('image')->move(public_path('upload/ingredientes'), $fileName);
-                
-                $ingrediente->image = $fileName; 
+
+                $ingrediente->image = $fileName;
             }
 
             if ($ingrediente->save()) {
@@ -171,9 +196,9 @@ class IngredientesController extends Controller {
                         $rel->ingrediente_id_to         = $ingrediente->id;
                         $rel->ingrediente_id_from       = $ingre;
                         $rel->save();
-                    }   
+                    }
                 }
-                
+
                 return Redirect::route('admin.ingredientes')->with('sucess', $msg);
             }
         }else{

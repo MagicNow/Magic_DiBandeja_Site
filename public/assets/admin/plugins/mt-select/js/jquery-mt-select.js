@@ -1,7 +1,7 @@
 /**
  * @author Andrei-Robert Rusu
  * @version 1.3
- * @type {{elementInformationMAP: {tagContainer: {element: string, class: string}, tagElement: {element: string, class: string}, tagElementRemove: {element: string, class: string, content: string}}, skeletonStructure: {default: {entryInformationListHTMLSkeleton: string, entryInformationSingleContainerIdentifier: string, entryInformationHTMLSkeleton: string, responseMessageSkeleton: string}}, entryInformationListHTMLSkeleton: string, entryInformationSingleContainerIdentifier: string, entryInformationHTMLSkeleton: string, responseMessageSkeleton: string, triggerInformationMAP: {searchTriggerIdentifier: string, searchTriggerEvent: string, searchTriggerMinimumLength: number, searchTriggerCSSSettings: {width: string}}, namespace: string, containerObject: {}, tagContainerObject: {}, requestURL: string, requestMethod: string, requestSearchedTerm: string, requestSelectedTerms: string, requestExtraParams: {}, closeModalOnSelect: number, clearInputOnSelect: number, maxTags: boolean, defaultValues: Array, tagInputType: string, tagInputName: string, closeOnUnFocus: number, skeleton: string, _currentAJAXRequestObject: boolean, Init: Init, _handleSettings: _handleSettings, _handleDefaultValues: _handleDefaultValues, prependTagContainer: prependTagContainer, assignFilterTriggers: assignFilterTriggers, fetchFilteredResult: fetchFilteredResult, buildTagListDisplay: buildTagListDisplay, buildTagDisplay: buildTagDisplay, addTag: addTag, removeTag: removeTag, lockFormSubmit: lockFormSubmit, unlockFormSubmit: unlockFormSubmit, setWindowResizeEvent: setWindowResizeEvent, ModalHelper: {Controller: {}, container: boolean, displayUnder: number, currentElements: boolean, modalIDPrefix: string, modalID: string, Init: Init, DisplayMessage: DisplayMessage, Display: Display, setContainer: setContainer, arrangeContainer: arrangeContainer, Close: Close}, KeyNavigationHelper: {Controller: {}, Init: Init, keyUp: keyUp, keyDown: keyDown, scrollToElement: scrollToElement, getCurrentPointedElementAndHandleUniversal: getCurrentPointedElementAndHandleUniversal, getCurrentPointedElement: getCurrentPointedElement}}}
+ * @type {{elementInformationMAP: {tagContainer: {element: string, class: string}, tagElement: {element: string, class: string}, tagElementRemove: {element: string, class: string, content: string}}, skeletonStructure: {default: {entryInformationListHTMLSkeleton: string, entryInformationSingleContainerIdentifier: string, entryInformationHTMLSkeleton: string, responseMessageSkeleton: string}}, entryInformationListHTMLSkeleton: string, entryInformationSingleContainerIdentifier: string, entryInformationHTMLSkeleton: string, responseMessageSkeleton: string, triggerInformationMAP: {searchTriggerIdentifier: string, searchTriggerEvent: string, searchTriggerMinimumLength: number, searchTriggerCSSSettings: {width: string}}, namespace: string, containerObject: {}, tagContainerObject: {}, requestURL: string, requestMethod: string, requestSearchedTerm: string, requestSelectedTerms: string, requestExtraParams: {}, closeModalOnSelect: number, clearInputOnSelect: number, maxTags: boolean, defaultValues: Array, tagInputType: string, tagInputName: string, closeOnUnFocus: number, skeleton: string, _currentAJAXRequestObject: boolean, Init: Init, _handleSettings: _handleSettings, _handleDefaultValues: _handleDefaultValues, appendTagContainer: appendTagContainer, assignFilterTriggers: assignFilterTriggers, fetchFilteredResult: fetchFilteredResult, buildTagListDisplay: buildTagListDisplay, buildTagDisplay: buildTagDisplay, addTag: addTag, removeTag: removeTag, lockFormSubmit: lockFormSubmit, unlockFormSubmit: unlockFormSubmit, setWindowResizeEvent: setWindowResizeEvent, ModalHelper: {Controller: {}, container: boolean, displayUnder: number, currentElements: boolean, modalIDPrefix: string, modalID: string, Init: Init, DisplayMessage: DisplayMessage, Display: Display, setContainer: setContainer, arrangeContainer: arrangeContainer, Close: Close}, KeyNavigationHelper: {Controller: {}, Init: Init, keyUp: keyUp, keyDown: keyDown, scrollToElement: scrollToElement, getCurrentPointedElementAndHandleUniversal: getCurrentPointedElementAndHandleUniversal, getCurrentPointedElement: getCurrentPointedElement}}}
  */
 var jQueryMTSelect = {
 
@@ -81,7 +81,7 @@ var jQueryMTSelect = {
     this.ModalHelper         = this.ModalHelper.Init(this);
     this.KeyNavigationHelper = this.KeyNavigationHelper.Init(this);
 
-    this.prependTagContainer();
+    this.appendTagContainer();
     this.assignFilterTriggers();
     this._handleDefaultValues();
     this.setWindowResizeEvent();
@@ -134,8 +134,8 @@ var jQueryMTSelect = {
     }
   },
 
-  prependTagContainer : function() {
-    this.containerObject.prepend(
+  appendTagContainer : function() {
+    this.containerObject.append(
         '<'  + this.elementInformationMAP.tagContainer.element + ' ' +
             'class="' + this.elementInformationMAP.tagContainer.class + '">' +
             '</' + this.elementInformationMAP.tagContainer.element + '>');
