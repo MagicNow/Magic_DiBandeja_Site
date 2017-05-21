@@ -16,9 +16,9 @@ use Redirect;
 class FornecedoresController extends Controller {
 	public function index() {
 		if (Auth::check()) {
-		   $fornecedores = Fornecedores::orderby('id', 'desc')->get();
+			$fornecedores = Fornecedores::orderby('id', 'desc')->get();
 
-		   return view('admin.fornecedores.list',compact('fornecedores'));
+			return view('admin.fornecedores.list',compact('fornecedores'));
 		} else {
 			return view('auth.login');
 		}
@@ -54,10 +54,19 @@ class FornecedoresController extends Controller {
 	}
 
 	public function edit($id = null){
-
 		$fornecedor = Fornecedores::find($id);
-		
-		return view('admin.fornecedores.create',compact('fornecedor'));
+        $distribuidores = [];
+
+        foreach ($fornecedor->distribuidores as $key => $value) {
+            $distribuidores[$value->id] = $value->nome;
+        }
+        $distribuidores = json_encode($distribuidores, JSON_UNESCAPED_UNICODE);
+
+		// foreach ($fornecedor->distribuidores as $key => $fornecedor) {
+		//  	dd($fornecedor->pivot->nota);
+		// }
+
+		return view('admin.fornecedores.create',compact('fornecedor', 'distribuidores'));
 
 	}
 	public function destroy($id = null){

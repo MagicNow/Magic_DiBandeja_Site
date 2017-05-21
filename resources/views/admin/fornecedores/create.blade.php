@@ -18,7 +18,7 @@
 		  </div>
 	  @endif
 	  {!! Form::open(array('route' => array('admin.fornecedores.store', isset($fornecedor->id) ? $fornecedor->id : ''),'method' => 'POST', 'files' => true, 'class' => 'fornecedores-form')) !!}
-	
+		<input type="hidden" name="id" class="fornecedor-id" value="{{ isset($fornecedor->id) ? $fornecedor->id : NULL }}">
 		
 		<div class="form-group">
 			<label for="">Razão social</label>
@@ -140,7 +140,7 @@
 			<div class="fornecedores-nota-container col-md-4 mb-2">
 				Ranking DiBandeja: fornecedor
 				<div class="fornecedores-nota"></div>
-				<input type="hidden" name="nota">
+				<input type="hidden" name="nota" value="{{ isset($fornecedor->nota) ? $fornecedor->nota : 0 }}">
 			</div>
 
 			<div class="distribuidores-nota-container col-md-4 hidden mb-2">
