@@ -18,7 +18,7 @@ class ReceitasController extends Controller {
 
 
     public function index() {
-        if (Auth::check()) { 
+        if (Auth::check()) {
 
 
            $receitas = Receitas::orderby('id', 'desc')->get();
@@ -50,14 +50,14 @@ class ReceitasController extends Controller {
     }
     public function destroy($id = null){
         $receitas = Receitas::find($id);
-        
+
         $receitas->delete();
         return Redirect::route('admin.receitas')->with('sucess', 'Registro apagado com sucesso!');;
 
     }
 
     public function store($id = null){
-        
+
         $dados = Input::all();
         if($id){
             $rules = array(
@@ -72,7 +72,7 @@ class ReceitasController extends Controller {
                 'titulo'      =>'required|unique:receitas,titulo',
                 'preparo'       =>'required',
                 'ingredientes'  =>'required'
-             ); 
+             );
            $msg = "Cadastro efetuado com sucesso!";
         }
 
@@ -82,41 +82,64 @@ class ReceitasController extends Controller {
 
             if($id){
                 $receitas = Receitas::find($id);
-               
+
             }else{
                 $receitas = new Receitas;
             }
-            
-            
-            $receitas->titulo               = $dados['titulo'];
-            $receitas->subtitulo            = $dados['subtitulo'];
-            $receitas->preparo              = $dados['preparo'];
-            $receitas->observacoes         = $dados['observacoes'];
-            $receitas->save();
 
-            Receitas_ingredientes::where('receita_id',$receitas->id)->delete();
-            foreach ($dados['ingredientes'] as $ingre) {
+            $receitas->titulo                       = $dados['titulo'];
+            $receitas->categoria                    = $dados['categoria'];
+            $receitas->propriedades_nutricionais    = $dados['propriedades_nutricionais'];
+            $receitas->qualificacao                 = $dados['qualificacao'];
+            $receitas->beneficios                   = $dados['beneficios'];
+            $receitas->preparo                      = $dados['preparo'];
+            $receitas->tempo                        = $dados['tempo'];
+            $receitas->dificuldade                  = $dados['dificuldade'];
+            $receitas->porcoes                      = $dados['porcoes'];
+            $receitas->conservacao                  = $dados['conservacao'];
+            $receitas->dificuldade                  = $dados['dificuldade'];
+            $receitas->calorias                     = $dados['calorias'];
+            $receitas->custo                        = $dados['custo'];
+            $receitas->fonte                        = $dados['fonte'];
+            $receitas->parceiro                     = $dados['parceiro'];
+            // $receitas->dificuldade          = $dados['dificuldade'];
+            $receitas->sazonalidade_inicial         = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
+            $receitas->sazonalidade_final           = date('Y/m/d', strtotime($dados['sazonalidade_final']));
 
 
-                $ing = new Receitas_ingredientes;
-                $ing->receita_id               = $receitas->id;
-                $ing->ingrediente_id           = $ingre;
-                $ing->save();
+            // dd($dados);
 
+            $image = Input::file('image');
+            if(isset($image)){
+                $fileName = md5(str_random(60)).'.'.strtolower($image->getClientOriginalExtension());
+                Input::file('image')->move(public_path('upload/receitas'), $fileName);
+
+                $receitas->image = $fileName;
             }
-            
-            
-         
-            return Redirect::route('admin.receitas')->with('sucess', $msg);
+
+            if ($receitas->save()) {
+                Receitas_ingredientes::where('receita_id',$receitas->id)->delete();
+                foreach ($dados['ingredientes'] as $ingre) {
+
+
+                    $ing = new Receitas_ingredientes;
+                    $ing->receita_id               = $receitas->id;
+                    $ing->ingrediente_id           = $ingre;
+                    $ing->save();
+
+                return Redirect::route('admin.receitas')->with('sucess', $msg);
+            }
+        }
+
         }else{
 
             return Redirect::route('admin.receitas.create')
                 ->withErrors($validator)
                 ->withInput();
-            
+
         }
     }
-   
 
-    
+
+
 }

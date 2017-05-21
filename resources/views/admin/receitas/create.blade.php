@@ -11,7 +11,7 @@
            @foreach ($errors->all() as $error)
                 <p>{{ $error }}</p>
             @endforeach
-      </div>    
+      </div>
       @endif
       @if (session('sucess'))
           <div class="alert alert-success">
@@ -19,29 +19,135 @@
           </div>
       @endif
       {!! Form::open(array('route' => array('admin.receitas.store',isset($receita->id) ? $receita->id : ''),'method' => 'POST','files'=>false)) !!}
-	
-		
+
 		<div class="form-group">
-			<label for="">Título</label>
+			<label for="">Nome</label>
 			{!! Form::text('titulo',isset($receita->titulo) ? $receita->titulo : '',array('class' => 'form-control','placeholder'=>'Título*','id'=>'titulo','autocomplete'=>'off') )!!}
-
 		</div>
-        <div class="form-group">
-            <label for="">Subtítulo</label>
-            {!! Form::text('subtitulo',isset($receita->subtitulo) ? $receita->subtitulo : '',array('class' => 'form-control','placeholder'=>'Subtítulo','id'=>'titulo','autocomplete'=>'off') )!!}
-        </div>
-        <div class="form-group">
-        <label>Ingredientes</label>
-        {!! Form::select('ingredientes[]', $ingredientes, isset($receita->ingredientes) ? $receitas_ingredientes : '',array('class' => 'form-control select2','id'=>'ingredientes','multiple'=>'multiple')) !!}        
-      </div>
 
         <div class="form-group">
-            <label for="">Modo de Preparo</label>
-            {!! Form::textarea('preparo',isset($receita->preparo) ? $receita->preparo : '',array('class' => 'form-control','placeholder'=>'Modo de Preparo*') )!!}
+            <label for="">Categoria</label>
+            {!! Form::text('categoria',isset($receita->categoria) ? $receita->categoria : '',array('class' => 'form-control','placeholder'=>'Propriedades nutricionais','id'=>'categoria','autocomplete'=>'off') )!!}
         </div>
+
         <div class="form-group">
-            <label for="">Observações</label>
-            {!! Form::textarea('observacoes',isset($receita->observacoes) ? $receita->observacoes : '',array('class' => 'form-control','placeholder'=>'Observações') )!!}
+            <label for="">Propriedades nutricionais</label>
+            {!! Form::text('propriedades_nutricionais',isset($receita->propriedades_nutricionais) ? $receita->propriedades_nutricionais : '',array('class' => 'form-control','placeholder'=>'Propriedades nutricionais','id'=>'propriedades_nutricionais','autocomplete'=>'off') )!!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Qualificação</label>
+            {!! Form::text('qualificacao',isset($receita->qualificacao) ? $receita->qualificacao : '',array('class' => 'form-control','placeholder'=>'Qualificação','id'=>'qualificacao','autocomplete'=>'off') )!!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Benefícios</label>
+            {!! Form::text('beneficios',isset($receita->beneficios) ? $receita->beneficios : '',array('class' => 'form-control','placeholder'=>'Benefícios','id'=>'beneficios','autocomplete'=>'off') )!!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Preparo</label>
+            {!! Form::textarea('preparo',isset($receita->preparo) ? $receita->preparo : '',array('class' => 'form-control','placeholder'=>'Modo de preparo','rows'=>'4') )!!}
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-4 col-sx-12">
+                    <label>Tempo de preparo</label>
+                    {!! Form::select('tempo', [0=>'Até 30 minutos',1=>'Entre 30 minutos e 1 hora',2=>'Mais de 1 hora'], isset($receita->tempo) ? $receita->tempo : '',array('class' => 'form-control','id'=>'tempo')) !!}
+                </div>
+
+                <div class="col-sm-4 col-sx-12">
+                    <label>Dificuldade</label>
+                    {!! Form::select('dificuldade', [0=>'Fácil',1=>'Médio',2=>'Difícil'], isset($receita->dificuldade) ? $receita->dificuldade : '',array('class' => 'form-control','id'=>'tempo')) !!}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Número de Porções</label>
+            {!! Form::text('porcoes',isset($receita->porcoes) ? $receita->porcoes : '',array('class' => 'form-control','placeholder'=>'Número de Porções','id'=>'porcoes','autocomplete'=>'off') )!!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Conservação</label>
+            {!! Form::textarea('conservacao',isset($receita->conservacao) ? $receita->conservacao : '',array('class' => 'form-control','placeholder'=>'Conservação','rows'=>'4') )!!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Calorias</label>
+            {!! Form::text('calorias',isset($receita->calorias) ? $receita->calorias : '',array('class' => 'form-control','placeholder'=>'Calorias','id'=>'calorias','autocomplete'=>'off') )!!}
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="">Sazonalidade inicial</label>
+                {!! Form::text('sazonalidade_inicial', isset($receita->sazonalidade_inicial) ? date('d/m/Y',strtotime($receita->sazonalidade_inicial)) : '',array('class' => 'form-control','placeholder'=>'Sazonalidade inicial*','id'=>'sazonalidade_inicial', 'autocomplete'=>'off') )!!}
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="">Sazonalidade final</label>
+                {!! Form::text('sazonalidade_final', isset($receita->sazonalidade_final) ? date('d/m/Y', strtotime($receita->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final', 'autocomplete'=>'off')) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Ingredientes</label>
+            {!! Form::select('ingredientes[]', $ingredientes, isset($receita->ingredientes) ? $receitas_ingredientes : '',array('class' => 'form-control select2','id'=>'ingredientes','multiple'=>'multiple')) !!}
+        </div>
+
+        <div class="form-group">
+            <label for="">Imagem</label>
+            @if(isset($receita->image))
+                <img width="100" src="{!!asset('upload/receitas').'/'.$receita->image !!}">
+            @endif
+             <div class="fileinput fileinput-new" data-provides="fileinput">
+                <span class="btn btn-default btn-file"><span>Imagem</span>{!! Form::file('image')!!}</span>
+                <span class="fileinput-filename"></span><span class="fileinput-new">nenhum arquivo</span>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <div class="row">
+                <div class="col-sm-6 col-sx-12">
+                    <label for="">Fonte</label>
+                    {!! Form::text('fonte',isset($receita->fonte) ? $receita->fonte : '',array('class' => 'form-control','placeholder'=>'Fonte','id'=>'fonte','autocomplete'=>'off') )!!}
+                </div>
+                <div class="col-sm-6 col-sx-12">
+                    <label for="">Parceiro</label>
+                    {!! Form::text('parceiro',isset($receita->parceiro) ? $receita->parceiro : '',array('class' => 'form-control','placeholder'=>'Parceiro','id'=>'parceiro','autocomplete'=>'off') )!!}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <div class="row">
+                <div class="fornecedores-nota-container col-md-4 mb-2">
+                    Ranking DiBandeja
+                    <div class="fornecedores-nota"></div>
+                    <input type="hidden" name="nota">
+                </div>
+                <div class="fornecedores-nota-container col-md-4 mb-2">
+                    Ranking Clientes
+                    <div class="fornecedores-nota"></div>
+                    <input type="hidden" name="nota">
+                </div>
+                <div class="fornecedores-nota-container col-md-4 mb-2">
+                    Ranking Parceiros
+                    <div class="fornecedores-nota"></div>
+                    <input type="hidden" name="nota">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" >
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                    <label for="">Custo aproximado</label>
+                    {!! Form::text('custo',isset($receita->custo) ? $receita->custo : '',array('class' => 'form-control','placeholder'=>'R$...','id'=>'custo','autocomplete'=>'off') )!!}
+                    <small>* Valores aproximados. Margem de erro R$x,00</small>
+                </div>
+            </div>
         </div>
 
 

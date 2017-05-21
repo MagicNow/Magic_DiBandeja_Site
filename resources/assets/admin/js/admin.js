@@ -14,7 +14,12 @@ $(function() {
 		}
 	});
 
-	$('textarea').wysihtml5();
+	$("textarea").each(function(){
+		// $('textarea').wysihtml5();
+		$(this).wysihtml5();
+	});
+
+
 
 	var datatables = $('#datatables');
 	datatables.DataTable({
@@ -117,7 +122,7 @@ $(function() {
 			var $indredientsInp = $form.find('.ingredients-name');
 			var $indredientsTxt = $indredientsInp.val();
 			var $ingredientsArr = $indredientsTxt.split(" ");
-			
+
 			findWord(0, $indredientsInp, $indredientsTxt, $ingredientsArr, $form);
 		});
 
@@ -138,7 +143,7 @@ $(function() {
 				var $this = $(this),
 					data = new FormData(this),
 					inputValue = '';
-					
+
 				inputValue = $this.find('input[name="descricao"]').val();
 				$.ajax({
 					type: 'post',
@@ -337,7 +342,7 @@ function changeSelect () {
 function changeDistributorSelect (tagId, tagName) {
 	var distributorHTML = $('.distribuidores-nota-container').first().get(0).outerHTML;
 		$distributor = $(distributorHTML)
-	
+
 	$distributor.removeClass('hidden');
 	$distributor.find('.distribuidores-nota').rateYo({ halfStar: true });
 	$distributor.find('.distribuidores-nota-nome').text(tagName);
