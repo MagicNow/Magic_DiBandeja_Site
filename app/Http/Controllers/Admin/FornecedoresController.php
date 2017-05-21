@@ -106,6 +106,7 @@ class FornecedoresController extends Controller {
 			$fornecedores->pais = $dados['pais'];
 			$fornecedores->cep = $dados['cep'];
 			$fornecedores->telefone = $dados['telefone'];
+			$fornecedores->nota = $dados['nota'];
 			
 			$image = Input::file('image');
 			if(isset($image)){
@@ -115,14 +116,23 @@ class FornecedoresController extends Controller {
 				$fornecedores->imagem = $fileName; 
 			}
 
-			$fornecedores->save();
+			if ($fornecedores->save()) {
+				$fornecedores->distribuidores()->detach();
 
-			if (isset($dados['type']) && $dados['type'] === 'modal') {
-				$return = array();
-				$return[] = $msg;
-				return response()->json(['success' => true, 'message' => $return]);
-			} else {
-				return Redirect::route('admin.fornecedores')->with('sucess', $msg);
+				if (isset($dados['distribuidores']) && !isset($dados['distribuicao_direta'])) {
+					foreach ($dados['distribuidores'] as $dist) {
+						$nota = $dados['nota-distribuidor'][$dist];
+						$fornecedores->distribuidores()->attach($dist, ['nota' => $nota]);
+					}
+				}
+
+				if (isset($dados['type']) && $dados['type'] === 'modal') {
+					$return = array();
+					$return[] = $msg;
+					return response()->json(['success' => true, 'message' => $return]);
+				} else {
+					return Redirect::route('admin.fornecedores')->with('sucess', $msg);
+				}
 			}
 		} else {
 			if (isset($dados['type']) && $dados['type'] === 'modal') {

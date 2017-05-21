@@ -20,3 +20,9 @@ ALTER TABLE `ingredientes_historico_revisao`
 ALTER TABLE `ingredientes_historico_revisao`
   ADD CONSTRAINT `ingredientes_historico_cliente_id` FOREIGN KEY (`clientes_site_id`) REFERENCES `clientes_site` (`id`),
   ADD CONSTRAINT `ingredientes_historico_fk` FOREIGN KEY (`ingredientes_id`) REFERENCES `ingredientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `fornecedores_distribuidores` ADD `nota` INT NULL DEFAULT NULL AFTER `distribuidor_id`;
+ALTER TABLE `fornecedores_distribuidores` CHANGE `nota` `nota` DECIMAL NULL DEFAULT NULL;
+
+ALTER TABLE `fornecedores` ADD `distribuicao_direta` TINYINT(1) NULL DEFAULT NULL AFTER `nota`;
+ALTER TABLE `fornecedores` CHANGE `distribuicao_direta` `distribuicao_direta` TINYINT(1) NULL DEFAULT '1';
