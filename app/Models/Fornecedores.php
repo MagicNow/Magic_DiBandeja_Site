@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fornecedores extends Model {
 
-    protected $fillable = ['nome_fantasia', 'telefone', 'endereco', 'bairro', 'cidade', 'site', 'cep', 'estado', 'pais', 'razao_social', 'url', 'especialidade', 'cotacao', 'complemento'];
+    protected $fillable = ['nome', 'telefone', 'endereco', 'bairro', 'cidade', 'site', 'cep', 'estado', 'pais', 'razao_social', 'url', 'especialidade', 'cotacao', 'complemento'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -17,17 +17,6 @@ class Fornecedores extends Model {
 
     public function distribuidores()
     { 
-        return $this->belongsToMany('App\Models\Distribuidores', 'fornecedores_distribuidores', 'distribuidor_id', 'fornecedor_id');
+        return $this->belongsToMany('App\Models\Distribuidores', 'fornecedores_distribuidores', 'fornecedor_id', 'distribuidor_id')->withPivot('nota');
     }
-
-    // public function receitas()
-    // { 
-    //     return $this->belongsToMany('App\Receitas','receitas_ingredientes','receita_id','ingrediente_id');
-    // }
-
-    // public static function getList()
-    // {
-    //     return static::lists('ingrediente', 'id');
-    // }
-
 }

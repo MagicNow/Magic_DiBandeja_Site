@@ -86,12 +86,12 @@ class DistribuidoresController extends Controller {
 
 		if($id){
 			$rules = array(
-				'nome' =>'required|unique:distribuidores,nome,'.$id
+				'nome-distribuidor' =>'required|unique:distribuidores,nome,'.$id
 			);
 			$msg = "Registro alterado com sucesso!";
 		} else {
 		   $rules = array(
-				'nome' =>'required|unique:distribuidores,nome'
+				'nome-distribuidor' =>'required|unique:distribuidores,nome'
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
@@ -105,7 +105,7 @@ class DistribuidoresController extends Controller {
 				$distribuidores = new Distribuidores;
 			}
 
-			$distribuidores->nome = $dados['nome'];          
+			$distribuidores->nome = $dados['nome-distribuidor'];          
 			$distribuidores->url = $dados['url'];
 			$distribuidores->endereco = $dados['endereco'];
 			$distribuidores->telefone = $dados['telefone'];
