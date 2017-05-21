@@ -18,7 +18,7 @@
 		  </div>
 	  @endif
 	  {!! Form::open(array('route' => array('admin.fornecedores.store', isset($fornecedor->id) ? $fornecedor->id : ''),'method' => 'POST', 'files' => true, 'class' => 'fornecedores-form')) !!}
-	
+		<input type="hidden" name="id" class="fornecedor-id" value="{{ isset($fornecedor->id) ? $fornecedor->id : NULL }}">
 		
 		<div class="form-group">
 			<label for="">Razão social</label>
@@ -107,10 +107,10 @@
 				<div class="col-md-4">&nbsp;</div>
 				<div class="btn-group col-md-4" data-toggle="buttons">
 					<label class="btn btn-primary col-md-6 active fornecedores-dist-direct-button">
-						<input type="radio" autocomplete="off" value="1" name="distribuicao_direta" {{ $fornecedor->distribuicao_direta === 1 ? 'checked' : '' }}> Direto
+						<input type="radio" autocomplete="off" value="1" name="distribuicao_direta" {{ isset($fornecedor->distribuicao_direta) && $fornecedor->distribuicao_direta === 1 ? 'checked' : '' }}> Direto
 					</label>
 					<label class="btn btn-primary col-md-6 fornecedores-dist-indirect-button">
-						<input type="radio" autocomplete="off" value="0" name="distribuicao_direta" {{ $fornecedor->distribuicao_direta === 1 ? '' : 'checked' }}> Indireto
+						<input type="radio" autocomplete="off" value="0" name="distribuicao_direta" {{ isset($fornecedor->distribuicao_direta) && $fornecedor->distribuicao_direta === 1 ? '' : 'checked' }}> Indireto
 					</label>
 				</div>
 				<div class="col-md-4">&nbsp;</div>
@@ -118,7 +118,7 @@
 		</div>
 
 		<div class="row">
-			<div class="form-group-select col-md-12 fornecedores-dist-indirect  {{ $fornecedor->distribuicao_direta === 1 ? 'hidden' : '' }}">
+			<div class="form-group-select col-md-12 fornecedores-dist-indirect  {{ isset($fornecedor->distribuicao_direta) && $fornecedor->distribuicao_direta === 1 ? 'hidden' : '' }}">
 				<div class="alert fornecedores-dist-form-alert hidden"></div>
 				<div class="fornecedores-dist-form" data-request-url="{{ url('admin/distribuidores/store?type=modal') }}">
 					<div class="row form-group">
@@ -140,7 +140,7 @@
 			<div class="fornecedores-nota-container col-md-4 mb-2">
 				Ranking DiBandeja: fornecedor
 				<div class="fornecedores-nota"></div>
-				<input type="hidden" name="nota">
+				<input type="hidden" name="nota" value="{{ isset($fornecedor->nota) ? $fornecedor->nota : 0 }}">
 			</div>
 
 			<div class="distribuidores-nota-container col-md-4 hidden mb-2">
@@ -148,6 +148,12 @@
 				<div class="distribuidores-nota"></div>
 				<input type="hidden" name="nota-distribuidor[]" class="distribuidores-nota-dibandeja-input">
 			</div>
+		</div>
+
+        <div class="form-group">
+        	<br>
+            <label for="">Observações</label>
+			{!! Form::textarea('observacoes',isset($fornecedor->observacoes) ? $fornecedor->observacoes : '', array('class' => 'form-control', 'placeholder' => 'Observações*', 'id' => 'observacoes')) !!}
 		</div>
 
 		<div class="form-group pull-right">

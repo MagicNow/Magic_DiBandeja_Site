@@ -16,9 +16,9 @@ use Redirect;
 class FornecedoresController extends Controller {
 	public function index() {
 		if (Auth::check()) {
-		   $fornecedores = Fornecedores::orderby('id', 'desc')->get();
+			$fornecedores = Fornecedores::orderby('id', 'desc')->get();
 
-		   return view('admin.fornecedores.list',compact('fornecedores'));
+			return view('admin.fornecedores.list',compact('fornecedores'));
 		} else {
 			return view('auth.login');
 		}
@@ -54,10 +54,15 @@ class FornecedoresController extends Controller {
 	}
 
 	public function edit($id = null){
-
 		$fornecedor = Fornecedores::find($id);
-		
-		return view('admin.fornecedores.create',compact('fornecedor'));
+        $distribuidores = [];
+
+        foreach ($fornecedor->distribuidores as $key => $value) {
+            $distribuidores[$value->id] = $value->nome;
+        }
+        $distribuidores = json_encode($distribuidores, JSON_UNESCAPED_UNICODE);
+
+		return view('admin.fornecedores.create',compact('fornecedor', 'distribuidores'));
 
 	}
 	public function destroy($id = null){
@@ -79,7 +84,7 @@ class FornecedoresController extends Controller {
 			$msg = "Registro alterado com sucesso!";
 		}else{
 		   $rules = array(
-				'razao_social' =>'required|unique:fornecedores,razao_social,'.$id
+				'razao_social' =>'required|unique:fornecedores,razao_social'
 			 ); 
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
@@ -107,6 +112,8 @@ class FornecedoresController extends Controller {
 			$fornecedores->cep = $dados['cep'];
 			$fornecedores->telefone = $dados['telefone'];
 			$fornecedores->nota = $dados['nota'];
+			$fornecedores->distribuicao_direta = $dados['distribuicao_direta'];
+			$fornecedores->observacoes = $dados['observacoes'];
 			
 			$image = Input::file('image');
 			if(isset($image)){
@@ -122,6 +129,13 @@ class FornecedoresController extends Controller {
 				if (isset($dados['distribuidores']) && !isset($dados['distribuicao_direta'])) {
 					foreach ($dados['distribuidores'] as $dist) {
 						$nota = $dados['nota-distribuidor'][$dist];
+						$fornecedores->distribuidores()->attach($dist, ['nota' => $nota]);
+					}
+				}
+
+				if (isset($dados['nota-distribuidor'])) {
+					unset($dados['nota-distribuidor'][0]);
+					foreach ($dados['nota-distribuidor'] as $dist => $nota) {
 						$fornecedores->distribuidores()->attach($dist, ['nota' => $nota]);
 					}
 				}

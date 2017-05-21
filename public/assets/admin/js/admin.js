@@ -1,5 +1,6 @@
 var $registerModal,
 	$targetModalButton,
+	$loading,
 	selectAjax,
 	selectUrl = '',
 	messageNotFound = '',
@@ -7,6 +8,7 @@ var $registerModal,
 
 $(function() {
 	$registerModal = $('#register');
+	$loading = $('.load');
 
 	$.ajaxSetup({
 		headers: {
@@ -28,8 +30,6 @@ $(function() {
 		$(".label-nome").html(tipo);
 		$("#nome").attr("placeholder",tipo);
 	});
-
-
 
 	var datatables = $('#datatables');
 	datatables.DataTable({
@@ -133,6 +133,7 @@ $(function() {
 			var $indredientsTxt = $indredientsInp.val();
 			var $ingredientsArr = $indredientsTxt.split(" ");
 
+			$loading.show();
 			findWord(0, $indredientsInp, $indredientsTxt, $ingredientsArr, $form);
 		})
 		.on('click', '.fornecedores-dist-indirect .mt-tag-element[data-tag-remove-id]', function (e) {
@@ -142,8 +143,10 @@ $(function() {
 			$('.distribuidores-nota-container[data-distributor-id="' + tagId + '"]').remove();
 		});
 
-	$('.fornecedores-nota,.ranking-nota').rateYo({
-		halfStar: true
+	var fornNota = $('.fornecedores-nota, .ranking-nota').next('input').val();
+	$('.fornecedores-nota').rateYo({
+		halfStar: true,
+		rating: fornNota
 	}).on("rateyo.set", function (e, data) {
 		var $self = $(this);
 		$self.next('input').val(data.rating);
@@ -306,6 +309,8 @@ function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $f
 					}
 				}
 			});
+
+			$loading.hide();
 		} else if (number < $ingredientsArr.length - 1) {
 			findWord(number+1, $indredientsInp, $indredientsTxt, $ingredientsArr, $form)
 		} else {
@@ -368,8 +373,24 @@ function changeDistributorSelect (tagId, tagName) {
 	$distributor.removeClass('hidden')
 				.attr('data-distributor-id', tagId);
 
-	$distributor.find('.distribuidores-nota')
-				.rateYo({ halfStar: true })
+	var $distribuidoresNotas = $distributor.find('.distribuidores-nota'),
+		nota = 0;
+
+	$distribuidoresNotas.on("rateyo.init", function (e, data) {
+		var $self = $(this),
+			fornecedorId = $('.fornecedor-id').val();
+
+		$.get(apiUrl + 'distribuidores/nota/' + fornecedorId + '/' + tagId, function (data) {
+			// $self.attr('data-nota', data.nota);
+			nota = data.nota;
+			$self.rateYo("rating", nota);
+		});
+	});
+
+	$distribuidoresNotas
+				.rateYo({
+					halfStar: true
+				})
 				.on("rateyo.set", function (e, data) {
 					var $self = $(this);
 					$self.next('input').val(data.rating);

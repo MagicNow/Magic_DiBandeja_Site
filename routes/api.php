@@ -15,3 +15,4 @@ use Illuminate\Http\Request;
 
 Route::post('/dicionario', ['as' => 'dicionario.store', 'uses' => 'Admin\IngredientesController@dicionario']);
 Route::post('/ingredientes/revisao', ['as' => 'ingredientes.revisao', 'uses' => 'Admin\IngredientesController@revisao']);
+Route::get('/distribuidores/nota/{fornecedorId}/{id}', ['as' => 'distribuidores.nota', 'uses' => 'Admin\DistribuidoresController@getNota']);
