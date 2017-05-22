@@ -73,11 +73,21 @@ class FontesController extends Controller {
 			$fontes->descricao = $dados['descricao'];
 			$fontes->save();
 
-			return Redirect::route('admin.fontes')->with('sucess', $msg);
+			if (isset($dados['type']) && $dados['type'] === 'modal') {
+				$return = array();
+				$return[] = $msg;
+				return response()->json(['success' => true, 'message' => $return]);
+			} else {
+				return Redirect::route('admin.fontes')->with('sucess', $msg);
+			}
 		} else {
-			return Redirect::route('admin.fontes.edit')
-				->withErrors($validator)
-				->withInput();
+			if (isset($dados['type']) && $dados['type'] === 'modal') {
+				return response()->json(['success' => false, 'message' => $validator->errors()->all(), 'fields' => $dados]);
+			} else {
+				return Redirect::route('admin.fontes.create')
+					->withErrors($validator)
+					->withInput();
+			}
 		}
 	}
 
