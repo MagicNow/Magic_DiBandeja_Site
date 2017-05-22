@@ -14,7 +14,7 @@ use Redirect;
 
 class FontesController extends Controller {
 	public function index() {
-		if (Auth::check()) { 
+		if (Auth::check()) {
 		   $fontes = Fontes::orderby('id', 'nome')->get();
 
 		   return view('admin.fontes.list', compact('fontes'));
@@ -29,13 +29,13 @@ class FontesController extends Controller {
 
 	public function edit($id = null){
 		$fonte = Fontes::find($id);
-	   
+
 		return view('admin.fontes.create',compact('fonte'));
 	}
 
 	public function destroy($id = null){
 		$fontes = Fontes::find($id);
-		
+
 		$fontes->delete();
 		return Redirect::route('admin.fontes')->with('sucess', 'Registro apagado com sucesso!');;
 	}
@@ -52,7 +52,7 @@ class FontesController extends Controller {
 		} else {
 		   $rules = array(
 				'nome'      =>'required|unique:fontes,nome'
-			 ); 
+			 );
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
 
@@ -77,4 +77,29 @@ class FontesController extends Controller {
 				->withInput();
 		}
 	}
+
+    public function listItems() {
+        $dados = Input::all();
+
+        if (isset($dados['mt_filter'])) {
+            $fontes = Fontes::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+                                    ->selectRaw('nome AS name, id, "" AS description')
+                                    ->get();
+
+            foreach ($fontes as $key => $ingrediente) {
+                if (empty($ingrediente->picture_path)) {
+                    $ingrediente->picture_path = asset('assets/images/blank.png');
+                }
+            }
+
+            if (count($fontes) === 0) {
+                return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.fontes.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre uma nova fonte.</a>']);
+            } else {
+                return response()->json(['results' => $fontes, 'status' => 'ok']);
+            }
+        } else {
+            return response()->json(['results' => [], 'status' => 'empty']);
+        }
+    }
+
 }

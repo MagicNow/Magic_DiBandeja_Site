@@ -90,6 +90,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('fontes/create', ['as' =>'admin.fontes.create','uses' => 'Admin\FontesController@create']);
 	Route::get('fontes/edit/{id}', ['as' =>'admin.fontes.edit','uses' => 'Admin\FontesController@edit']);
 	Route::get('fontes/destroy/{id?}', ['as' =>'admin.fontes.destroy','uses' => 'Admin\FontesController@destroy']);
+	Route::post('fontes/list', ['as' =>'admin.fontes.list','uses' => 'Admin\FontesController@listItems']);
 
 	Route::get('/clientes', ['as'=> 'admin.clientes','uses' => 'Admin\ClientesController@index']);
 	Route::post('clientes/store/{id?}', ['as' =>'admin.clientes.store','uses' => 'Admin\ClientesController@store']);
