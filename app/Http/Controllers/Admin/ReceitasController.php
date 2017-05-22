@@ -182,7 +182,7 @@ class ReceitasController extends Controller {
 
         }else{
 
-            return Redirect::route('admin.receitas.create')
+            return Redirect::route('admin.receitas.edit')
                 ->withErrors($validator)
                 ->withInput();
 
