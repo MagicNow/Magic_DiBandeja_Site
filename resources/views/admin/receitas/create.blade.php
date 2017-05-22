@@ -168,11 +168,11 @@
                     <label for="">Fonte</label>
                     <div class="row">
                         @if (isset($receita->fontes_id))
-                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
+                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
                                 <input type="text" class="form-control" data-mt-filter-control/>
                             </div>
                         @else
-                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id">
+                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id">
                                 <input type="text" class="form-control" data-mt-filter-control/>
                             </div>
                         @endif

@@ -122,7 +122,7 @@ class ReceitasController extends Controller {
             $receitas->dificuldade                  = $dados['dificuldade'];
             $receitas->calorias                     = $dados['calorias'];
             $receitas->custo                        = $dados['custo'];
-            $receitas->fontes_id                    = $dados['fonte_id'][0];
+            $receitas->fontes_id                    = $dados['fontes_id'][0];
             $receitas->parceiro                     = $dados['parceiro'];
 
             $receitas->ranking_dibandeja            = $dados['ranking_dibandeja'];
