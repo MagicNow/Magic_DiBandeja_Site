@@ -12,6 +12,6 @@ class Fontes extends Model {
      * @var array
      */
     protected $fillable = [
-        'nome'
+        'nome', 'descricao'
     ];
 }
