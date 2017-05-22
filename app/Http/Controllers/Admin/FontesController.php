@@ -7,21 +7,24 @@ use URL;
 use Auth;
 use Session;
 use Request;
+use App\Models\Receitas;
 use App\Models\Fontes;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
 
 class FontesController extends Controller {
-	public function index() {
-		if (Auth::check()) {
-		   $fontes = Fontes::orderby('id', 'nome')->get();
 
-		   return view('admin.fontes.list', compact('fontes'));
-		} else {
-			return view('auth.login');
-		}
-	}
+ 	public function index() {
+ 		if (Auth::check()) {
+			$receitas = Receitas::orderby('id', 'nome')->with('fontes')->get();
+
+			return view('admin.fontes.list', compact('receitas'));
+ 		} else {
+ 			return view('auth.login');
+ 		}
+ 	}
+
 
 	public function create(){
 		return view('admin.fontes.create');

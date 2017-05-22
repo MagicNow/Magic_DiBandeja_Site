@@ -166,15 +166,17 @@
             <div class="row">
                 <div class="col-sm-6 col-sx-12">
                     <label for="">Fonte</label>
-                    @if (isset($receita->fonte_id))
-                        <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id" data-mt-default-values='{"{{ $receita->fonte_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
-                            <input type="text" class="form-control" data-mt-filter-control/>
-                        </div>
-                    @else
-                        <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id">
-                            <input type="text" class="form-control" data-mt-filter-control/>
-                        </div>
-                    @endif
+                    <div class="row">
+                        @if (isset($receita->fontes_id))
+                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
+                                <input type="text" class="form-control" data-mt-filter-control/>
+                            </div>
+                        @else
+                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fonte_id">
+                                <input type="text" class="form-control" data-mt-filter-control/>
+                            </div>
+                        @endif
+                    </div>
                     {{-- {!! Form::text('fonte',isset($receita->fonte) ? $receita->fonte : '',array('class' => 'form-control','placeholder'=>'Fonte','id'=>'fonte','autocomplete'=>'off') )!!} --}}
                 </div>
                 <div class="col-sm-6 col-sx-12">

@@ -42,10 +42,10 @@
                             @foreach($receita->ingredientes as $key => $ing)
                                 <tr>
                                     <td>
-                                        {{ $ing->pivot->quantidade }}
+                                        {{isset($ing->pivot->quantidade) ? $ing->pivot->quantidade : ''}}
                                     </td>
                                     <td>
-                                        {{$ing->pivot->medida->unidade}}
+                                        {{isset($ing->pivot->medida->unidade) ? $ing->pivot->medida->unidade : ''}}
                                         {{-- {{ $ing->pivot->quantidade }} --}}
                                     </td>
                                     <td>

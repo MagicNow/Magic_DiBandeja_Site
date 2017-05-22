@@ -8,43 +8,37 @@
 @section('main-content')
     <div class="box">
 
-		<div class="box-header"> <a href="{{ route('admin.fontes.create') }}" class="btn btn-primary">Novo Grupo</a></div><!-- /.box-header -->
+		<div class="box-header"> <a href="{{ route('admin.fontes.create') }}" class="btn btn-primary">Nova Fonte</a></div><!-- /.box-header -->
 		@if (session('sucess'))
 			<div class="alert alert-success">
 			  {{ session('sucess') }}
 			</div>
-      @endif
+      	@endif
 		<div class="box-body">
-			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.fontes.create") }}'>Cadastre uma nova fonte aqui</a>">
+			<table id="datatables" class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>Ações</th>
-						<th>Id</th>
 						<th>Fonte</th>
+						<th>Receita</th>
 						<th>Data</th>
+						<th>Cardápios</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($fontes as $fonte)
+					@foreach($receitas as $receita)
 						<tr>
-							<td>
-								<div class="table-actions">
-									<a href="{{ route('admin.fontes.edit',$fonte->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-									<a href="{{ route('admin.fontes.destroy', $fonte->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
-								</div>
-							</td>
-							<td>{{ $fonte->id }}</td>
-							<td>{{ $fonte->nome }}</td>
-							<td>{{ isset($fonte->created_at) && !empty($fonte->created_at) ? date('d/m/Y H:i:s', strtotime($fonte->created_at)) : NULL }}</td>
+							<td>{{ $receita->titulo }}</td>
+							<td>{{ isset($receita->fontes->nome) ? $receita->fontes->nome : NULL }}</td>
+							<td>{{ isset($receita->created_at) && !empty($receita->created_at) ? date('d/m/Y', strtotime($receita->created_at)) : NULL }}</td>
+							<td></td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>Id</th>
-						<th>Grupo</th>
+						<th>Fonte</th>
+						<th>Receita</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</tfoot>
 			</table>

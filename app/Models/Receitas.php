@@ -25,10 +25,13 @@ class Receitas extends Model {
 
     public function ingredientes()
     {
-        return $this->belongsToMany('App\Models\Ingredientes','receitas_ingredientes','receita_id','ingrediente_id')
-            ->withPivot("quantidade","id");
+        return $this->belongsToMany('App\Models\Ingredientes', 'receitas_ingredientes', 'receita_id', 'ingrediente_id')
+            ->withPivot('quantidade', 'id');
     }
 
-
+    public function fontes()
+    {
+        return $this->belongsTo('App\Models\Fontes');
+    }
 
 }

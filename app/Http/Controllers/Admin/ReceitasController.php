@@ -80,6 +80,7 @@ class ReceitasController extends Controller {
     public function store($id = null){
 
         $dados = Input::all();
+
         if($id){
             $rules = array(
                 'titulo'        =>'required|unique:receitas,titulo,'.$id,
@@ -121,7 +122,7 @@ class ReceitasController extends Controller {
             $receitas->dificuldade                  = $dados['dificuldade'];
             $receitas->calorias                     = $dados['calorias'];
             $receitas->custo                        = $dados['custo'];
-            $receitas->fonte                        = $dados['fonte'];
+            $receitas->fontes_id                    = $dados['fonte_id'][0];
             $receitas->parceiro                     = $dados['parceiro'];
 
             $receitas->ranking_dibandeja            = $dados['ranking_dibandeja'];
@@ -150,7 +151,7 @@ class ReceitasController extends Controller {
             }
 
             $receitas->sazonalidade_inicial = $sazonalidade_inicial;
-            $receitas->sazonalidade_final   = $sazonalidade_final;  
+            $receitas->sazonalidade_final   = $sazonalidade_final;
 
 
             $image = Input::file('image');
