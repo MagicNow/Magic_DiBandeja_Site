@@ -6,18 +6,18 @@
 
 
 @section('main-content')
-    @if(count($errors) > 0)
+    @if(isset($error) && count($errors) > 0)
       <div class="alert alert-danger">
            @foreach ($errors->all() as $error)
                 <p>{{ $error }}</p>
             @endforeach
       </div>
       @endif
-      @if (session('sucess'))
+      {{-- @if (session('sucess'))
           <div class="alert alert-success">
               {{ session('sucess') }}
           </div>
-      @endif
+      @endif --}}
       {!! Form::open(array('route' => array('admin.receitas.store',isset($receita->id) ? $receita->id : ''),'method' => 'POST','files'=>false)) !!}
 
 		<div class="form-group">
