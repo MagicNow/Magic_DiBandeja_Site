@@ -126,21 +126,21 @@
                     </div>
                 @endforeach
             @else
-                <div class="row ingredientes-linha row">
-                    <div class="col-sm-6">
+                <div class="ingredientes-linha row">
+                    <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-11">
-                                <label for="ingredientes-custo" class="row">
-                                    <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-2 col-xs-12">
                                         <input type="text" name="ingredientes_quantidade[]" class="form-control col-sm-12" placeholder='Qtd' autocomplete='off'>
                                     </div>
-                                    <div class="col-sm-3">
-                                        {!! Form::select('ingredientes_medida[]', [null=>'Please Select']+$unidades, array('class' => 'form-control')) !!}
+                                    <div class="col-sm-2 col-xs-12">
+                                        {!! Form::select('ingredientes_medida[]', $unidades, '',array('class' => 'form-control')) !!}
                                     </div>
-                                    <div class="col-sm-6 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes">
+                                    <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes" >
                                         <input type="text" class="form-control" data-mt-filter-control/>
                                     </div>
-                                </label>
+                                </div>
                             </div>
                             <button type="button" class="ingredientes-acrescentar">
                                 <span class="glyphicon glyphicon-plus-sign"></span>
