@@ -41,7 +41,10 @@
 								</div>
 							</td>
 							<td>{!! $ingrediente->id!!}</td>
-							<td>{!! $ingrediente->nome!!}</td>
+							<td><a href="{!! route('admin.ingredientes.show', [$ingrediente->id]) !!}">
+                                  {{ $ingrediente->nome }}
+                                </a>
+							</td>
 							<td>{!! $ingrediente->nome_cientifico!!}</td>
 							<td>{!! $ingrediente->propriedades_nutricionais!!}</td>
 							<td>{!! $ingrediente->qualificacoes!!}</td>

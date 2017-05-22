@@ -95,8 +95,21 @@ class IngredientesController extends Controller {
         $fornecedores_ingredientes = $ingrediente->fornecedores;
 
         return view('admin.ingredientes.create',compact('ingrediente_afinidade', 'ingrediente', 'caracteristicas_ingredientes', 'grupos_ingredientes', 'ingredientes_relacionados', 'fornecedores_ingredientes'));
+    }
+
+    public function show($id = null){
+        if (!Auth::check()) { return view('auth.login'); return false; }
+
+        $id = intval($id);
+        $ingrediente = Ingredientes::where('id', $id)
+                            ->with(['revisoes' => function ($query) {
+                                $query->whereNull('status');
+                            }, 'revisoes.cliente_site'])->first();
+
+        return view('admin.ingredientes.show',compact('ingrediente'));
 
     }
+
     public function destroy($id = null){
         Ingredientes_grupos::where('ingrediente_id',$id)->delete();
         Ingredientes_caracteristicas::where('ingrediente_id',$id)->delete();
@@ -134,14 +147,32 @@ class IngredientesController extends Controller {
                 $ingrediente = new Ingredientes;
             }
 
+            if (isset($dados['sazonalidade_inicial']) && !empty($dados['sazonalidade_inicial'])) {
+                $sazonalidade_inicial = explode('/', $dados['sazonalidade_inicial']);
+                if (count($sazonalidade_inicial) === 3) {
+                    $sazonalidade_inicial = $sazonalidade_inicial[2] . '-' . $sazonalidade_inicial[1]. '-' . $sazonalidade_inicial[0];
+                }
+            } else {
+                $sazonalidade_inicial = NULL;
+            }
+
+            if (isset($dados['sazonalidade_final']) && !empty($dados['sazonalidade_final'])) {
+                $sazonalidade_final = explode('/', $dados['sazonalidade_final']);
+                if (count($sazonalidade_final) === 3) {
+                    $sazonalidade_final = $sazonalidade_final[2] . '-' . $sazonalidade_final[1]. '-' . $sazonalidade_final[0];
+                }
+            } else {
+                $sazonalidade_final = NULL;
+            }
+
             $ingrediente->nome                      = $dados['nome'];
             $ingrediente->nome_cientifico           = $dados['nome_cientifico'];
             $ingrediente->propriedades_nutricionais = $dados['propriedades_nutricionais'];
             $ingrediente->qualificacoes             = $dados['qualificacoes'];
             $ingrediente->beneficios                = $dados['beneficios'];
             $ingrediente->restricoes                = $dados['restricoes'];
-            $ingrediente->sazonalidade_inicial      = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
-            $ingrediente->sazonalidade_final        = date('Y/m/d', strtotime($dados['sazonalidade_final']));
+            $ingrediente->sazonalidade_inicial      = $sazonalidade_inicial;
+            $ingrediente->sazonalidade_final        = $sazonalidade_final;
             $ingrediente->historico                 = $dados['historico'];
 
             $image = Input::file('image');
@@ -199,7 +230,7 @@ class IngredientesController extends Controller {
                     }
                 }
 
-                return Redirect::route('admin.ingredientes')->with('sucess', $msg);
+                return Redirect::route('admin.ingredientes.show', ['id' => $ingrediente->id])->with('sucess', $msg);
             }
         }else{
             return Redirect::route('admin.ingredientes.create')

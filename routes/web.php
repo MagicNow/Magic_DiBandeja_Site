@@ -40,18 +40,13 @@ Route::group(['prefix' => 'admin'], function() {
 	Auth::routes();
 	Route::get('logout', 'Auth\LoginController@logout');
 
-	// Route::get('/home', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);
-	// Route::get('login', ['as'=> 'admin.login','uses' => 'Admin\AdminController@index']);
-	// Route::post('login', ['uses' => 'Admin\AdminController@login']);
-	// Route::get('logout', ['as'=> 'admin.logout','uses' => 'Admin\AdminController@logout']);
-
-
 	Route::get('/ingredientes', ['as'=> 'admin.ingredientes','uses' => 'Admin\IngredientesController@index']);
+	Route::get('ingrediente/{id}', ['as' =>'admin.ingredientes.show','uses' => 'Admin\IngredientesController@show']);
 	Route::post('ingredientes/store/{id?}', ['as' =>'admin.ingredientes.store','uses' => 'Admin\IngredientesController@store']);
-	Route::get('ingredientes/create', ['as' =>'admin.ingredientes.create','uses' => 'Admin\IngredientesController@create']);
 	Route::get('ingredientes/edit/{id}', ['as' =>'admin.ingredientes.edit','uses' => 'Admin\IngredientesController@edit']);
 	Route::get('ingredientes/destroy/{id?}', ['as' =>'admin.ingredientes.destroy','uses' => 'Admin\IngredientesController@destroy']);
 	Route::post('ingredientes/list', ['as' =>'admin.ingredientes.list','uses' => 'Admin\IngredientesController@listItems']);
+	Route::get('ingredientes/create', ['as' =>'admin.ingredientes.create','uses' => 'Admin\IngredientesController@create']);
 
 
 	Route::get('/receitas', ['as'=> 'admin.receitas','uses' => 'Admin\ReceitasController@index']);
@@ -89,6 +84,12 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('distribuidores/list', ['as' =>'admin.distribuidores.list','uses' => 'Admin\DistribuidoresController@listItems']);
 	Route::get('distribuidores/edit/{id}', ['as' =>'admin.distribuidores.edit','uses' => 'Admin\DistribuidoresController@edit']);
 	Route::get('distribuidores/destroy/{id?}', ['as' =>'admin.distribuidores.destroy','uses' => 'Admin\DistribuidoresController@destroy']);
+
+	Route::get('fontes', ['as'=> 'admin.fontes','uses' => 'Admin\FontesController@index']);
+	Route::post('fontes/store/{id?}', ['as' =>'admin.fontes.store','uses' => 'Admin\FontesController@store']);
+	Route::get('fontes/create', ['as' =>'admin.fontes.create','uses' => 'Admin\FontesController@create']);
+	Route::get('fontes/edit/{id}', ['as' =>'admin.fontes.edit','uses' => 'Admin\FontesController@edit']);
+	Route::get('fontes/destroy/{id?}', ['as' =>'admin.fontes.destroy','uses' => 'Admin\FontesController@destroy']);
 
 	Route::get('/clientes', ['as'=> 'admin.clientes','uses' => 'Admin\ClientesController@index']);
 	Route::post('clientes/store/{id?}', ['as' =>'admin.clientes.store','uses' => 'Admin\ClientesController@store']);
