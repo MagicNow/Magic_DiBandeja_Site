@@ -85,6 +85,12 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('distribuidores/edit/{id}', ['as' =>'admin.distribuidores.edit','uses' => 'Admin\DistribuidoresController@edit']);
 	Route::get('distribuidores/destroy/{id?}', ['as' =>'admin.distribuidores.destroy','uses' => 'Admin\DistribuidoresController@destroy']);
 
+	Route::get('fontes', ['as'=> 'admin.fontes','uses' => 'Admin\FontesController@index']);
+	Route::post('fontes/store/{id?}', ['as' =>'admin.fontes.store','uses' => 'Admin\FontesController@store']);
+	Route::get('fontes/create', ['as' =>'admin.fontes.create','uses' => 'Admin\FontesController@create']);
+	Route::get('fontes/edit/{id}', ['as' =>'admin.fontes.edit','uses' => 'Admin\FontesController@edit']);
+	Route::get('fontes/destroy/{id?}', ['as' =>'admin.fontes.destroy','uses' => 'Admin\FontesController@destroy']);
+
 	Route::get('/clientes', ['as'=> 'admin.clientes','uses' => 'Admin\ClientesController@index']);
 	Route::post('clientes/store/{id?}', ['as' =>'admin.clientes.store','uses' => 'Admin\ClientesController@store']);
 	Route::get('clientes/create', ['as' =>'admin.clientes.create','uses' => 'Admin\ClientesController@create']);
