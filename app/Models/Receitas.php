@@ -24,10 +24,11 @@ class Receitas extends Model {
 
 
     public function ingredientes()
-    { 
-        return $this->belongsToMany('App\Models\Ingredientes','receitas_ingredientes','receita_id','ingrediente_id');
+    {
+        return $this->belongsToMany('App\Models\Ingredientes','receitas_ingredientes','receita_id','ingrediente_id')
+            ->withPivot("quantidade","id");
     }
 
-  
+
 
 }

@@ -4,28 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Receitas_ingredientes extends Model {
+class Unidades extends Model {
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
+    protected $fillable = [
+        // 'titulo',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $table = 'receitas_ingredientes';
-    public $timestamps = false;
-
-    public function unidades()
-    {
-        return $this->hasOne('App\Models\Unidades', 'id', 'unidade_id');
-    }
-
-
+    protected $table = 'unidades';
 
 }

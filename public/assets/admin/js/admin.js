@@ -143,7 +143,20 @@ $(function() {
 			$('.distribuidores-nota-container[data-distributor-id="' + tagId + '"]').remove();
 		});
 
-	var fornNota = $('.fornecedores-nota, .ranking-nota').next('input').val();
+	var fornNota = $('.fornecedores-nota').next('input').val();
+	var $rankNota = $('.ranking-nota');
+
+	$rankNota.each(function(){
+		var nota = $(this).next('input').val();
+		$(this).rateYo({
+			halfStar: true,
+			rating: nota
+		}).on("rateyo.set", function (e, data) {
+			var $self = $(this);
+			$self.next('input').val(data.rating);
+		});
+	})
+z
 	$('.fornecedores-nota').rateYo({
 		halfStar: true,
 		rating: fornNota
@@ -151,6 +164,8 @@ $(function() {
 		var $self = $(this);
 		$self.next('input').val(data.rating);
 	});
+
+
 
 	$registerModal.on('loaded.bs.modal', function (e) {
 		var $targetInput;
@@ -248,6 +263,48 @@ $(function() {
 			.append(html)
 			.find('.fornecedores-remover')
 			.one('click', removeSelect);
+
+		changeSelect();
+	});
+
+	$('.ingredientes-remover').on('click', removeSelectIngredientes);
+
+	$('.ingredientes-acrescentar').on('click', function () {
+		var $line,
+			$clone,
+			$button,
+			html;
+
+		$self = $(this);
+		$line = $self.parents('.ingredientes-linha');
+		$clone = $line.clone();
+
+		$clone.find('input, select').val('');
+		// $clone.find('.select2-container').remove();
+		$clone.find('select option').remove();
+		$clone.find('.mt-tag-element').remove();
+		$clone.find('.mt-tag-container').remove();
+		$clone.find('.component-mt-select').removeClass('dispatched');
+		$clone.find('.component-mt-select').removeAttr('data-mt-default-values');
+		$clone.find('input[type="hidden"]').remove();
+		$clone.find('.form-control').removeAttr('style');
+		$clone.find('input').removeAttr('value');
+
+		$button = $clone.find('.ingredientes-acrescentar');
+
+		$button.removeClass('ingredientes-acrescentar')
+				.addClass('ingredientes-remover');
+
+		$button.children()
+				.removeClass('glyphicon-plus-sign')
+				.addClass('glyphicon-minus-sign');
+
+		html = '<div class="row ingredientes-linha">' + $clone.html() + '</div>';
+
+		$('.form-providers')
+			.append(html)
+			.find('.ingredientes-remover')
+			.one('click', removeSelectIngredientes);
 
 		changeSelect();
 	});
@@ -407,4 +464,9 @@ function changeDistributorSelect (tagId, tagName) {
 function removeSelect () {
 	$self = $(this);
 	$self.parents('.fornecedores-linha').remove();
+}
+
+function removeSelectIngredientes () {
+	$self = $(this);
+	$self.parents('.ingredientes-linha').remove();
 }

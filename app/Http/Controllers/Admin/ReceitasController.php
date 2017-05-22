@@ -9,6 +9,7 @@ use Session;
 use Request;
 use App\Models\Ingredientes;
 use App\Models\Receitas;
+use App\Models\Unidades;
 use App\Models\Receitas_ingredientes;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -32,8 +33,9 @@ class ReceitasController extends Controller {
 
     public function create(){
 
-         $ingredientes = Ingredientes::getList();
-        return view('admin.receitas.create',compact('ingredientes'));
+        $unidades = Unidades::pluck('unidade','id');
+
+        return view('admin.receitas.create',compact('unidades'));
 
     }
 
@@ -41,11 +43,14 @@ class ReceitasController extends Controller {
 
         $receita = Receitas::find($id);
         $ingredientes = Ingredientes::getList();
-        $receitas_ingredientes = array();
+        $unidades = Unidades::pluck('unidade','id');
+
         foreach ($receita->ingredientes as $key => $value) {
-            array_push($receitas_ingredientes,$value->id);
+            $rc = Receitas_ingredientes::find($value->pivot->id);
+            $unidade = $rc->unidades()->first();
+            $receita->ingredientes[$key]->pivot->medida = $unidade;
         }
-        return view('admin.receitas.create',compact('receita','ingredientes','receitas_ingredientes'));
+        return view('admin.receitas.create',compact('receita','ingredientes','unidades'));
 
     }
 
@@ -53,11 +58,14 @@ class ReceitasController extends Controller {
 
         $receita = Receitas::find($id);
         $ingredientes = Ingredientes::getList();
-        $receitas_ingredientes = array();
+        $unidades = Unidades::pluck('unidade','id');
+
         foreach ($receita->ingredientes as $key => $value) {
-            array_push($receitas_ingredientes,$value->id);
+            $rc = Receitas_ingredientes::find($value->pivot->id);
+            $unidade = $rc->unidades()->first();
+            $receita->ingredientes[$key]->pivot->medida = $unidade;
         }
-        return view('admin.receitas.show',compact('receita','ingredientes','receitas_ingredientes'));
+        return view('admin.receitas.show',compact('receita','ingredientes','unidades'));
 
     }
 
@@ -115,12 +123,15 @@ class ReceitasController extends Controller {
             $receitas->custo                        = $dados['custo'];
             $receitas->fonte                        = $dados['fonte'];
             $receitas->parceiro                     = $dados['parceiro'];
+
+            $receitas->ranking_dibandeja            = $dados['ranking_dibandeja'];
+            $receitas->ranking_clientes             = $dados['ranking_clientes'];
+            $receitas->ranking_parceiros            = $dados['ranking_parceiros'];
+
             // $receitas->dificuldade          = $dados['dificuldade'];
             $receitas->sazonalidade_inicial         = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
             $receitas->sazonalidade_final           = date('Y/m/d', strtotime($dados['sazonalidade_final']));
 
-
-            // dd($dados);
 
             $image = Input::file('image');
             if(isset($image)){
@@ -130,18 +141,22 @@ class ReceitasController extends Controller {
                 $receitas->image = $fileName;
             }
 
+            $quantidade  = isset($dados['ingredientes_quantidade']) ? $dados['ingredientes_quantidade'] : NULL;
+            $medida = isset($dados['ingredientes_medida']) ? $dados['ingredientes_medida'] : NULL;
+
             if ($receitas->save()) {
                 Receitas_ingredientes::where('receita_id',$receitas->id)->delete();
-                foreach ($dados['ingredientes'] as $ingre) {
-
+                foreach ($dados['ingredientes'] as $key => $ingre) {
 
                     $ing = new Receitas_ingredientes;
+                    $ing->quantidade               = $quantidade[$key];
+                    $ing->unidade_id               = $medida[$key];
                     $ing->receita_id               = $receitas->id;
                     $ing->ingrediente_id           = $ingre;
                     $ing->save();
 
-                return Redirect::route('admin.receitas')->with('sucess', $msg);
             }
+            return Redirect::route('admin.receitas.show', ['id' => $receitas->id])->with('sucess', $msg);
         }
 
         }else{

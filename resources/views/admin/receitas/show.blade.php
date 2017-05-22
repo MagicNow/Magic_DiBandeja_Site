@@ -22,7 +22,7 @@
                             <td>Med</td>
                             <td>Qtd</td>
                             <td>Ingrediente</td>
-                            <td>
+                            {{-- <td>
                                 <div class="col-sm-12">
                                     <div class="col-sm-8">
                                         Alternativa
@@ -34,17 +34,18 @@
                                         Med
                                     </div>
                                 </div>
-                            </td>
+                            </td> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($receita->ingredientes as $key => $ing)
                             <tr>
                                 <td>
-                                    {{-- Med --}}
+                                    {{ $ing->pivot->quantidade }}
                                 </td>
                                 <td>
-                                    {{-- Qtd --}}
+                                    {{$ing->pivot->medida->unidade}}
+                                    {{-- {{ $ing->pivot->quantidade }} --}}
                                 </td>
                                 <td>
                                     @if($key >= count($receita->ingredientes) -1)
@@ -82,12 +83,12 @@
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-sm-12">
                 <label for="">Comentários</label>
                 <p></p>
             </div>
-        </div>
+        </div> --}}
 
         <div class="form-group">
             <a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary">Editar</a>
