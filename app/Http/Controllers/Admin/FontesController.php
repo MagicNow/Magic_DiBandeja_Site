@@ -66,7 +66,8 @@ class FontesController extends Controller {
 				$fontes = new Fontes;
 			}
 
-			$fontes->nome = $dados['nome'];          
+			$fontes->nome = $dados['nome'];
+			$fontes->descricao = $dados['descricao'];
 			$fontes->save();
 
 			return Redirect::route('admin.fontes')->with('sucess', $msg);
