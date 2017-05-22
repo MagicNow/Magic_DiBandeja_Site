@@ -95,8 +95,7 @@
             <label for="fornecedores">Ingredientes</label>
             @if (isset($receita->ingredientes) && count($receita->ingredientes) > 0)
                 @foreach ($receita->ingredientes as $key => $ingrediente)
-
-                    <div class="row ingredientes-linha row">
+                    <div class="ingredientes-linha row">
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-11">
@@ -136,7 +135,7 @@
                                         <input type="text" name="ingredientes_quantidade[]" class="form-control col-sm-12" placeholder='Qtd' autocomplete='off'>
                                     </div>
                                     <div class="col-sm-3">
-                                        {!! Form::select('ingredientes_medida[]', $unidades, isset($ingrediente->pivot->medida->id) ? $ingrediente->pivot->medida->id : '',array('class' => 'form-control')) !!}
+                                        {!! Form::select('ingredientes_medida[]', [null=>'Please Select']+$unidades, array('class' => 'form-control')) !!}
                                     </div>
                                     <div class="col-sm-6 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes">
                                         <input type="text" class="form-control" data-mt-filter-control/>

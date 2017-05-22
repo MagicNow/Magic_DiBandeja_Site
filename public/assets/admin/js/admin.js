@@ -156,7 +156,7 @@ $(function() {
 			$self.next('input').val(data.rating);
 		});
 	})
-z
+
 	$('.fornecedores-nota').rateYo({
 		halfStar: true,
 		rating: fornNota
@@ -281,7 +281,7 @@ z
 
 		$clone.find('input, select').val('');
 		// $clone.find('.select2-container').remove();
-		$clone.find('select option').remove();
+		$clone.find('select option').removeAttr('selected');
 		$clone.find('.mt-tag-element').remove();
 		$clone.find('.mt-tag-container').remove();
 		$clone.find('.component-mt-select').removeClass('dispatched');

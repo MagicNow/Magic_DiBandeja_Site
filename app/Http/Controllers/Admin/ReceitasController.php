@@ -33,7 +33,7 @@ class ReceitasController extends Controller {
 
     public function create(){
 
-        $unidades = Unidades::pluck('unidade','id');
+        $unidades = Unidades::pluck('unidade','id')->prepend('Selecione','');
 
         return view('admin.receitas.create',compact('unidades'));
 
@@ -43,7 +43,7 @@ class ReceitasController extends Controller {
 
         $receita = Receitas::find($id);
         $ingredientes = Ingredientes::getList();
-        $unidades = Unidades::pluck('unidade','id');
+        $unidades = Unidades::pluck('unidade','id')->prepend('Selecione','');
 
         foreach ($receita->ingredientes as $key => $value) {
             $rc = Receitas_ingredientes::find($value->pivot->id);
@@ -58,7 +58,7 @@ class ReceitasController extends Controller {
 
         $receita = Receitas::find($id);
         $ingredientes = Ingredientes::getList();
-        $unidades = Unidades::pluck('unidade','id');
+        $unidades = Unidades::pluck('unidade','id')->prepend('Selecione','');
 
         foreach ($receita->ingredientes as $key => $value) {
             $rc = Receitas_ingredientes::find($value->pivot->id);
@@ -129,8 +129,28 @@ class ReceitasController extends Controller {
             $receitas->ranking_parceiros            = $dados['ranking_parceiros'];
 
             // $receitas->dificuldade          = $dados['dificuldade'];
-            $receitas->sazonalidade_inicial         = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
-            $receitas->sazonalidade_final           = date('Y/m/d', strtotime($dados['sazonalidade_final']));
+            // $receitas->sazonalidade_inicial         = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
+            // $receitas->sazonalidade_final           = date('Y/m/d', strtotime($dados['sazonalidade_final']));
+            if (isset($dados['sazonalidade_inicial']) && !empty($dados['sazonalidade_inicial'])) {
+                $sazonalidade_inicial = explode('/', $dados['sazonalidade_inicial']);
+                if (count($sazonalidade_inicial) === 3) {
+                    $sazonalidade_inicial = $sazonalidade_inicial[2] . '-' . $sazonalidade_inicial[1]. '-' . $sazonalidade_inicial[0];
+                }
+            } else {
+                $sazonalidade_inicial = NULL;
+            }
+
+            if (isset($dados['sazonalidade_final']) && !empty($dados['sazonalidade_final'])) {
+                $sazonalidade_final = explode('/', $dados['sazonalidade_final']);
+                if (count($sazonalidade_final) === 3) {
+                    $sazonalidade_final = $sazonalidade_final[2] . '-' . $sazonalidade_final[1]. '-' . $sazonalidade_final[0];
+                }
+            } else {
+                $sazonalidade_final = NULL;
+            }
+
+            $receitas->sazonalidade_inicial = $sazonalidade_inicial;
+            $receitas->sazonalidade_final   = $sazonalidade_final;  
 
 
             $image = Input::file('image');
