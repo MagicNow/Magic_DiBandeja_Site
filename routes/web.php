@@ -40,18 +40,13 @@ Route::group(['prefix' => 'admin'], function() {
 	Auth::routes();
 	Route::get('logout', 'Auth\LoginController@logout');
 
-	// Route::get('/home', ['as'=> 'admin.index','uses' => 'Admin\AdminController@index']);
-	// Route::get('login', ['as'=> 'admin.login','uses' => 'Admin\AdminController@index']);
-	// Route::post('login', ['uses' => 'Admin\AdminController@login']);
-	// Route::get('logout', ['as'=> 'admin.logout','uses' => 'Admin\AdminController@logout']);
-
-
 	Route::get('/ingredientes', ['as'=> 'admin.ingredientes','uses' => 'Admin\IngredientesController@index']);
+	Route::get('ingrediente/{id}', ['as' =>'admin.ingredientes.show','uses' => 'Admin\IngredientesController@show']);
 	Route::post('ingredientes/store/{id?}', ['as' =>'admin.ingredientes.store','uses' => 'Admin\IngredientesController@store']);
-	Route::get('ingredientes/create', ['as' =>'admin.ingredientes.create','uses' => 'Admin\IngredientesController@create']);
 	Route::get('ingredientes/edit/{id}', ['as' =>'admin.ingredientes.edit','uses' => 'Admin\IngredientesController@edit']);
 	Route::get('ingredientes/destroy/{id?}', ['as' =>'admin.ingredientes.destroy','uses' => 'Admin\IngredientesController@destroy']);
 	Route::post('ingredientes/list', ['as' =>'admin.ingredientes.list','uses' => 'Admin\IngredientesController@listItems']);
+	Route::get('ingredientes/create', ['as' =>'admin.ingredientes.create','uses' => 'Admin\IngredientesController@create']);
 
 
 	Route::get('/receitas', ['as'=> 'admin.receitas','uses' => 'Admin\ReceitasController@index']);
