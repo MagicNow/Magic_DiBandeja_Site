@@ -143,29 +143,7 @@ $(function() {
 			$('.distribuidores-nota-container[data-distributor-id="' + tagId + '"]').remove();
 		});
 
-	var fornNota = $('.fornecedores-nota').next('input').val();
-	var $rankNota = $('.ranking-nota');
-
-	$rankNota.each(function(){
-		var nota = $(this).next('input').val();
-		$(this).rateYo({
-			halfStar: true,
-			rating: nota
-		}).on("rateyo.set", function (e, data) {
-			var $self = $(this);
-			$self.next('input').val(data.rating);
-		});
-	})
-
-	$('.fornecedores-nota').rateYo({
-		halfStar: true,
-		rating: fornNota
-	}).on("rateyo.set", function (e, data) {
-		var $self = $(this);
-		$self.next('input').val(data.rating);
-	});
-
-
+	setRate();
 
 	$registerModal.on('loaded.bs.modal', function (e) {
 		var $targetInput;
@@ -215,6 +193,7 @@ $(function() {
 			});
 
 		changeSelect();
+		setRate();
 	}).on('show.bs.modal', function (e) {
 		$targetModalButton = $(e.relatedTarget);
 	}).on('hidden.bs.modal', function (e) {
@@ -469,4 +448,28 @@ function removeSelect () {
 function removeSelectIngredientes () {
 	$self = $(this);
 	$self.parents('.ingredientes-linha').remove();
+}
+
+function setRate() {
+	var fornNota = $('.fornecedores-nota').next('input').val();
+	var $rankNota = $('.ranking-nota');
+
+	$rankNota.each(function(){
+		var nota = $(this).next('input').val();
+		$(this).rateYo({
+			halfStar: true,
+			rating: nota
+		}).on("rateyo.set", function (e, data) {
+			var $self = $(this);
+			$self.next('input').val(data.rating);
+		});
+	})
+
+	$('.fornecedores-nota').rateYo({
+		halfStar: true,
+		rating: fornNota
+	}).on("rateyo.set", function (e, data) {
+		var $self = $(this);
+		$self.next('input').val(data.rating);
+	});
 }
