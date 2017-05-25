@@ -47,10 +47,10 @@ class CardapiosController extends Controller {
 	}
 
 	private function setSearchStatus($searchStatus) {
-		if ($searchStatus === 'solicitados') {
-			$this->searchStatus = 0;
-		} else {
+		if ($searchStatus === 'elaborados') {
 			$this->searchStatus = 1;
+		} else {
+			$this->searchStatus = 0;
 		}
 	}
 
@@ -59,24 +59,26 @@ class CardapiosController extends Controller {
 	}
 
 	private function searchMenuList () {
-		$menu = Cardapios::with('receitas')->whereHas('cliente', function ($query) {
+		if (!empty($this->getSearch())) {
+			$menu = Cardapios::whereHas('cliente', function ($query) {
 					$query->where('nome', 'like', '%' . $this->getSearch() . '%');
-				});
-		$menu->where('status', $this->getSearchStatus())->get();
-		return $menu;
+				})->where('status', $this->getSearchStatus());
+		} else {
+			$menu = Cardapios::where('status', $this->getSearchStatus());
+		}
+
+		$menu = $menu->get();
+
+		return ['list' => $menu, 'total' => count($menu)];
 	}
 
 	private function populateRecipesList ($receitas) {
-		if (count($receitas)) {
-			foreach ($receitas as $key => $receita) {
-				if (!isset($menu[$receita->titulo])) $menu[$receita->titulo] = [];
-				$menu[$receita->titulo][] = $receita;
-			}
-
-			return $menu;
+		foreach ($receitas as $key => $receita) {
+			if (!isset($menu[$receita->titulo])) $menu[$receita->titulo] = [];
+			$menu[$receita->titulo][] = $receita;
 		}
 
-		return;
+		return ['list' => $menu, 'total' => count($receitas)];
 	}
 
 	private function searchRecipesList () {
@@ -90,7 +92,7 @@ class CardapiosController extends Controller {
 				->orderBy('receitas.titulo', 'DESC')
 				->get();
 
-		return $this->populateRecipesList($receitas);
+		return count($receitas) > 0 ? $this->populateRecipesList($receitas) : NULL;
 	}
 
 	private function searchAllList () {
@@ -107,7 +109,7 @@ class CardapiosController extends Controller {
 				$menus = $this->searchRecipesList();
 				break;
 			case 'ingredientes':
-
+				$menus = $this->searchIngredientsList();
 				break;
 			default:
 				$menus = $this->searchAllList();

@@ -29,9 +29,9 @@
 			<div class="row mt-3">
 				<div class="col-md-4"></div>
 				<div class="btn-group col-md-4" role="group">
-					<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => 'cardapios']) }}" class="col-md-4 menu-buttons-menu btn btn-secondary {{ app('request')->input('type') === 'cardapios' ? 'active' : NULL }}">Cardápios {{ app('request')->input('type') === 'cardapios' ? '(' . count($menus) . ')' : NULL }}</a>
+					<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => 'cardapios']) }}" class="col-md-4 menu-buttons-menu btn btn-secondary {{ app('request')->input('type') === 'cardapios' ? 'active' : NULL }}">Cardápios {{ app('request')->input('type') === 'cardapios' ? '(' . $menus['total'] . ')' : NULL }}</a>
 					<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => 'ingredientes']) }}" class="col-md-4 menu-buttons-ingredients btn btn-secondary {{ app('request')->input('type') === 'ingredientes' ? 'active' : NULL }}">Ingredientes</a>
-					<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => 'receitas']) }}" class="col-md-4 menu-buttons-recipe btn btn-secondary {{ app('request')->input('type') === 'receitas' ? 'active' : NULL }}">Receitas</a>
+					<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => 'receitas']) }}" class="col-md-4 menu-buttons-recipe btn btn-secondary {{ app('request')->input('type') === 'receitas' ? 'active' : NULL }}">Receitas {{ app('request')->input('type') === 'receitas' ? '(' . $menus['total'] . ')' : NULL }}</a>
 				</div>
 			</div>
 			<br>

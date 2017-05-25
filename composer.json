@@ -10,7 +10,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "riverskies/laravel-mobile-detect": "^1.0",
         "barryvdh/laravel-debugbar": "^2.3",
-        "caxy/php-htmldiff": "^0.1.4"
+        "caxy/php-htmldiff": "^0.1.4",
+        "nesbot/carbon": "^1.22"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
