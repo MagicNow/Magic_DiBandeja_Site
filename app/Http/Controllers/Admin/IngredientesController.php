@@ -21,11 +21,11 @@ use Validator;
 use Redirect;
 
 class IngredientesController extends Controller {
-
+    public function __construct () {
+        $this->middleware('auth');
+    }
 
     public function index() {
-        if (!Auth::check()) { return view('auth.login'); return false; }
-
         $ingredientes = Ingredientes::orderby('id', 'desc')->get();
         return view('admin.ingredientes.list', compact('ingredientes'));
     }

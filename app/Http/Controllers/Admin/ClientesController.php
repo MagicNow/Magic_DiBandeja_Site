@@ -13,15 +13,13 @@ use Validator;
 use Redirect;
 
 class ClientesController extends Controller {
-
+    public function __construct () {
+        $this->middleware('auth');
+    }
 
     public function index() {
-        if (Auth::check()) {
-           $clientes = Clientes::orderby('id', 'desc')->get();
-           return view('admin.clientes.list',compact('clientes'));
-        } else {
-            return view('auth.login');
-        }
+        $clientes = Clientes::orderby('id', 'desc')->get();
+        return view('admin.clientes.list',compact('clientes'));
     }
 
     public function create(){

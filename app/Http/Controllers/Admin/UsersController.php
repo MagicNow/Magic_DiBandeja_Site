@@ -8,11 +8,11 @@ use Session;
 use Request;
 
 class UsersController extends Controller {
+	public function __construct () {
+		$this->middleware('auth');
+	}
+
 	public function users() {
-		if (Auth::check()) { 
-		   return view('auth.login');
-		} else {
-			return view('auth.login');
-		}
+		return view('auth.login');
 	}
 }

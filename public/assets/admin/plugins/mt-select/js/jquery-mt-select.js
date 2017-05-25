@@ -50,7 +50,7 @@ var jQueryMTSelect = {
     searchTriggerEvent          : 'keyup focus',
     searchTriggerMinimumLength  : 3,
     searchTriggerCSSSettings    : {
-      'width' : 'auto'
+      'width' : '100%'
     }
   },
 

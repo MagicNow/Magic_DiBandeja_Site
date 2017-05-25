@@ -14,14 +14,14 @@ use Validator;
 use Redirect;
 
 class GruposController extends Controller {
-	public function index() {
-		if (Auth::check()) { 
-		   $grupos = Grupos::orderby('id', 'desc')->get();
+	public function __construct () {
+		$this->middleware('auth');
+	}
 
-		   return view('admin.grupos.list', compact('grupos'));
-		} else {
-			return view('auth.login');
-		}
+	public function index() {
+		$grupos = Grupos::orderby('id', 'desc')->get();
+
+		return view('admin.grupos.list', compact('grupos'));
 	}
 
 	public function listItems() {

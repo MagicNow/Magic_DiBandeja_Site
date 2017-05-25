@@ -14,14 +14,14 @@ use Validator;
 use Redirect;
 
 class DistribuidoresController extends Controller {
-	public function index() {
-		if (Auth::check()) { 
-		   $distribuidores = Distribuidores::orderby('id', 'desc')->get();
+	public function __construct () {
+		$this->middleware('auth');
+	}
 
-		   return view('admin.distribuidores.list', compact('distribuidores'));
-		} else {
-			return view('auth.login');
-		}
+	public function index() {
+		$distribuidores = Distribuidores::orderby('id', 'desc')->get();
+
+		return view('admin.distribuidores.list', compact('distribuidores'));
 	}
 
 	public function listItems() {

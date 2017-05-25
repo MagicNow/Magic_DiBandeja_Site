@@ -14,15 +14,14 @@ use Validator;
 use Redirect;
 
 class FontesController extends Controller {
+	public function __construct () {
+		$this->middleware('auth');
+	}
 
  	public function index() {
- 		if (Auth::check()) {
-			$receitas = Receitas::orderby('id', 'nome')->with('fontes')->get();
+		$receitas = Receitas::orderby('id', 'nome')->with('fontes')->get();
 
-			return view('admin.fontes.list', compact('receitas'));
- 		} else {
- 			return view('auth.login');
- 		}
+		return view('admin.fontes.list', compact('receitas'));
  	}
 
 

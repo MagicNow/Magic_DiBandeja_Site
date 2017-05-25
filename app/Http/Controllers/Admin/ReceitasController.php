@@ -10,24 +10,46 @@ use Request;
 use App\Models\Ingredientes;
 use App\Models\Receitas;
 use App\Models\Unidades;
+use App\Models\Categorias;
+use App\Models\Receitas_categorias;
 use App\Models\Receitas_ingredientes;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
 
 class ReceitasController extends Controller {
-
+    public function __construct () {
+        $this->middleware('auth');
+    }
 
     public function index() {
-        if (Auth::check()) {
+        $receitas = Receitas::orderby('id', 'desc')->get();
 
+        return view('admin.receitas.list',compact('receitas'));
+    }
 
-           $receitas = Receitas::orderby('id', 'desc')->get();
+    public function listCategories() {
+        $dados = Input::all();
+        $image = asset('upload/categorias');
 
+        if (isset($dados['mt_filter'])) {
+            $categorias = Categorias::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+                                    ->selectRaw('nome AS name, id, "" AS description, CONCAT("' . $image . '/", image) AS picture_path')
+                                    ->get();
 
-           return view('admin.receitas.list',compact('receitas'));
+            foreach ($categorias as $key => $categoria) {
+                if (empty($categoria->picture_path)) {
+                    $categoria->picture_path = asset('assets/images/blank.png');
+                }
+            }
+
+            if (count($categorias) === 0) {
+                return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.categorias.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre uma nova categoria</a>']);
+            } else {
+                return response()->json(['results' => $categorias, 'status' => 'ok']);
+            }
         } else {
-            return view('auth.login');
+            return response()->json(['results' => [], 'status' => 'empty']);
         }
     }
 
@@ -50,7 +72,14 @@ class ReceitasController extends Controller {
             $unidade = $rc->unidades()->first();
             $receita->ingredientes[$key]->pivot->medida = $unidade;
         }
-        return view('admin.receitas.create',compact('receita','ingredientes','unidades'));
+
+        $categorias = array();
+        foreach ($receita->categorias as $key => $value) {
+            $categorias[$value->id] = $value->nome;
+        }
+        $categorias = json_encode($categorias, JSON_UNESCAPED_UNICODE);
+
+        return view('admin.receitas.create',compact('receita', 'ingredientes', 'unidades', 'categorias'));
 
     }
 
@@ -84,16 +113,20 @@ class ReceitasController extends Controller {
         if($id){
             $rules = array(
                 'titulo'        =>'required|unique:receitas,titulo,'.$id,
-                'preparo'       =>'required',
-                'ingredientes'  =>'required'
+                // 'preparo'       =>'required',
+                'calorias'      =>'required|integer',
+                'ingredientes'  =>'required',
+                'custo'         =>'required|regex:/^\d*(\.\d{1,2})?$/'
 
             );
             $msg = "Registro alterado com sucesso!";
         }else{
            $rules = array(
                 'titulo'      =>'required|unique:receitas,titulo',
-                'preparo'       =>'required',
-                'ingredientes'  =>'required'
+                // 'preparo'       =>'required',
+                'calorias'      =>'required|integer',
+                'ingredientes'  =>'required',
+                'custo'         =>'required|regex:/^\d*(\.\d{1,2})?$/'
              );
            $msg = "Cadastro efetuado com sucesso!";
         }
@@ -110,7 +143,6 @@ class ReceitasController extends Controller {
             }
 
             $receitas->titulo                       = $dados['titulo'];
-            $receitas->categoria                    = $dados['categoria'];
             $receitas->propriedades_nutricionais    = $dados['propriedades_nutricionais'];
             $receitas->qualificacao                 = $dados['qualificacao'];
             $receitas->beneficios                   = $dados['beneficios'];
@@ -166,6 +198,16 @@ class ReceitasController extends Controller {
             $medida = isset($dados['ingredientes_medida']) ? $dados['ingredientes_medida'] : NULL;
 
             if ($receitas->save()) {
+                Receitas_categorias::where('receitas_id', $receitas->id)->delete();
+                if(isset($dados['categorias'])){
+                    foreach ($dados['categorias'] as $categ) {
+                        $ing = new Receitas_categorias;
+                        $ing->receitas_id   = (int)$receitas->id;
+                        $ing->categorias_id = (int)$categ;
+                        $ing->save();
+                    }
+                }
+
                 Receitas_ingredientes::where('receita_id',$receitas->id)->delete();
                 foreach ($dados['ingredientes'] as $key => $ingre) {
 
@@ -182,8 +224,8 @@ class ReceitasController extends Controller {
 
         }else{
 
-            return Redirect::route('admin.receitas.create')
-            // return back()
+            // return Redirect::route('admin.receitas.create')
+            return back()
                 ->withErrors($validator)
                 ->withInput();
 

@@ -14,21 +14,27 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.receitas.create") }}'>Cadastre uma nova receita aqui</a>">
 				<thead>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Título</th>
 						<th>Subtítulo</th>
 						<th>Ingredientes</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($receitas as $receita)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{!! $receita->id!!}</td>
 							<td>
                                 <a href="{!! route('admin.receitas.show', [$receita->id]) !!}">
@@ -46,21 +52,17 @@
 							@endforeach
 							</td>
 							<td>{!! isset($receita->created_at) && !empty($receita->created_at) ? date('d/m/Y H:i:s', strtotime($receita->created_at)) : '' !!}</td>
-							<td>
-								<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Título</th>
 						<th>Subtítulo</th>
 						<th>Ingredientes</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</tfoot>
 			</table>

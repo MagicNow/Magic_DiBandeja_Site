@@ -29,6 +29,11 @@ class Receitas extends Model {
             ->withPivot('quantidade', 'id');
     }
 
+    public function categorias()
+    {
+        return $this->belongsToMany('App\Models\Categorias', 'receitas_categorias');
+    }
+
     public function fontes()
     {
         return $this->belongsTo('App\Models\Fontes');

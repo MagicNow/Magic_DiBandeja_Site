@@ -14,16 +14,14 @@ use Validator;
 use Redirect;
 
 class CaracteristicasController extends Controller {
-
+	public function __construct () {
+		$this->middleware('auth');
+	}
 
 	public function index() {
-		if (Auth::check()) {
-		   $caracteristicas = Caracteristicas::orderby('id', 'desc')->get();
+		$caracteristicas = Caracteristicas::orderby('id', 'desc')->get();
 
-		   return view('admin.caracteristicas.list',compact('caracteristicas'));
-		} else {
-			return view('auth.login');
-		}
+		return view('admin.caracteristicas.list',compact('caracteristicas'));
 	}
 
 	public function create(){       

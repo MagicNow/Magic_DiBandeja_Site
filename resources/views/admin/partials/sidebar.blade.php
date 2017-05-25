@@ -6,6 +6,7 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">Menu</li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.cardapios' ? 'active' : '' }}"><a href="{{ route('admin.cardapios') }}"><i class='fa fa-book'></i> <span>Cardápios</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.ingredientes' ? 'active' : '' }}"><a href="{{ route('admin.ingredientes') }}"><i class='fa fa-tint'></i> <span>Ingredientes</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.receitas' ? 'active' : '' }}"><a href="{{ route('admin.receitas') }}"><i class='fa fa-tag'></i> <span>Receitas</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.caracteristicas' ? 'active' : '' }}"><a href="{{ route('admin.caracteristicas') }}"><i class='fa fa-flask'></i> <span>Caracteristicas</span></a></li>

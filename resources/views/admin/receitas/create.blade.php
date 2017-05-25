@@ -13,11 +13,11 @@
             @endforeach
       </div>
       @endif
-      {{-- @if (session('sucess'))
+      @if (session('sucess'))
           <div class="alert alert-success">
               {{ session('sucess') }}
           </div>
-      @endif --}}
+      @endif
       {!! Form::open(array('route' => array('admin.receitas.store',isset($receita->id) ? $receita->id : ''),'method' => 'POST','files'=>false)) !!}
 
 		<div class="form-group">
@@ -25,14 +25,20 @@
 			{!! Form::text('titulo',isset($receita->titulo) ? $receita->titulo : '',array('class' => 'form-control','placeholder'=>'Título*','id'=>'titulo','autocomplete'=>'off') )!!}
 		</div>
 
-        <div class="form-group">
-            <label for="">Categoria</label>
-            {!! Form::text('categoria',isset($receita->categoria) ? $receita->categoria : '',array('class' => 'form-control','placeholder'=>'Propriedades nutricionais','id'=>'categoria','autocomplete'=>'off') )!!}
-        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-xs-12">
+                <label for="">Categoria</label>
+                <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/categorias/list?type=modal" data-mt-max-tags="99" data-mt-tag-input-name="categorias" data-mt-default-values="{{ isset($categorias) ? $categorias : '{}' }}">
+                    <div class="col-md-12 row">
+                        <input type="text" class="form-control form-receita-categorias" data-mt-filter-control/>
+                    </div>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="">Propriedades nutricionais</label>
-            {!! Form::text('propriedades_nutricionais',isset($receita->propriedades_nutricionais) ? $receita->propriedades_nutricionais : '',array('class' => 'form-control','placeholder'=>'Propriedades nutricionais','id'=>'propriedades_nutricionais','autocomplete'=>'off') )!!}
+            <div class="form-group col-md-4 col-xs-12">
+                <label for="">Propriedades nutricionais</label>
+                {!! Form::text('propriedades_nutricionais',isset($receita->propriedades_nutricionais) ? $receita->propriedades_nutricionais : '',array('class' => 'form-control','placeholder'=>'Propriedades nutricionais','id'=>'propriedades_nutricionais','autocomplete'=>'off') )!!}
+            </div>
         </div>
 
         <div class="form-group">
@@ -64,9 +70,16 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="">Número de Porções</label>
-            {!! Form::text('porcoes',isset($receita->porcoes) ? $receita->porcoes : '',array('class' => 'form-control','placeholder'=>'Número de Porções','id'=>'porcoes','autocomplete'=>'off') )!!}
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="">Número de Porções</label>
+                {!! Form::text('porcoes',isset($receita->porcoes) ? $receita->porcoes : '',array('class' => 'form-control','placeholder'=>'Número de Porções','id'=>'porcoes','autocomplete'=>'off') )!!}
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="">Calorias</label>
+                {!! Form::text('calorias',isset($receita->calorias) ? $receita->calorias : '',array('class' => 'form-control','placeholder'=>'Calorias*','id'=>'calorias','autocomplete'=>'off') )!!}
+            </div>
         </div>
 
         <div class="form-group">
@@ -74,20 +87,15 @@
             {!! Form::textarea('conservacao',isset($receita->conservacao) ? $receita->conservacao : '',array('class' => 'form-control','placeholder'=>'Conservação','rows'=>'4') )!!}
         </div>
 
-        <div class="form-group">
-            <label for="">Calorias</label>
-            {!! Form::text('calorias',isset($receita->calorias) ? $receita->calorias : '',array('class' => 'form-control','placeholder'=>'Calorias','id'=>'calorias','autocomplete'=>'off') )!!}
-        </div>
-
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="">Sazonalidade inicial</label>
-                {!! Form::text('sazonalidade_inicial', isset($receita->sazonalidade_inicial) ? date('d/m/Y',strtotime($receita->sazonalidade_inicial)) : '',array('class' => 'form-control','placeholder'=>'Sazonalidade inicial*','id'=>'sazonalidade_inicial', 'autocomplete'=>'off') )!!}
+                {!! Form::text('sazonalidade_inicial', isset($receita->sazonalidade_inicial) ? date('d/m/Y',strtotime($receita->sazonalidade_inicial)) : '',array('class' => 'form-control','placeholder'=>'Sazonalidade inicial','id'=>'sazonalidade_inicial', 'autocomplete'=>'off') )!!}
             </div>
 
             <div class="form-group col-md-4">
                 <label for="">Sazonalidade final</label>
-                {!! Form::text('sazonalidade_final', isset($receita->sazonalidade_final) ? date('d/m/Y', strtotime($receita->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final*','id'=>'sazonalidade_final', 'autocomplete'=>'off')) !!}
+                {!! Form::text('sazonalidade_final', isset($receita->sazonalidade_final) ? date('d/m/Y', strtotime($receita->sazonalidade_final)) : '', array('class' => 'form-control', 'placeholder'=>'Sazonalidade final','id'=>'sazonalidade_final', 'autocomplete'=>'off')) !!}
             </div>
         </div>
 
@@ -98,29 +106,26 @@
                     <div class="ingredientes-linha row">
                         <div class="col-sm-12">
                             <div class="row">
-                                <div class="col-sm-11">
-                                    <div class="row">
-                                        <div class="col-sm-2 col-xs-12">
-                                            {!! Form::input('text', 'ingredientes_quantidade[]', isset($ingrediente->pivot->quantidade) ? $ingrediente->pivot->quantidade : '', array('class' => 'form-control', 'placeholder'=>'Qtd', 'autocomplete'=>'off') )!!}
-                                        </div>
-                                        <div class="col-sm-2 col-xs-12">
-                                            {!! Form::select('ingredientes_medida[]', $unidades, isset($ingrediente->pivot->medida->id) ? $ingrediente->pivot->medida->id : '',array('class' => 'form-control')) !!}
-                                        </div>
-                                        <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes" data-mt-default-values='{"{{ $ingrediente->id }}":"{{ $ingrediente->nome }}"}'>
-                                            <input type="text" class="form-control" data-mt-filter-control/>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-4 col-xs-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes" data-mt-default-values='{"{{ $ingrediente->id }}":"{{ $ingrediente->nome }}"}'>
+                                    <input type="text" class="form-control" data-mt-filter-control/>
                                 </div>
-                                @if ($key === 0)
-                                    <button type="button" class="ingredientes-acrescentar">
-                                        <span class="glyphicon glyphicon-plus-sign"></span>
-                                    </button>
-                                @else
-                                    <button type="button" class="ingredientes-remover">
-                                        <span class="glyphicon glyphicon-minus-sign"></span>
-                                    </button>
-                                @endif
-
+                                <div class="col-sm-2 col-xs-12">
+                                    {!! Form::input('text', 'ingredientes_quantidade[]', isset($ingrediente->pivot->quantidade) ? $ingrediente->pivot->quantidade : '', array('class' => 'form-control', 'placeholder'=>'Qtd', 'autocomplete'=>'off') )!!}
+                                </div>
+                                <div class="col-sm-2 col-xs-12">
+                                    {!! Form::select('ingredientes_medida[]', $unidades, isset($ingrediente->pivot->medida->id) ? $ingrediente->pivot->medida->id : '',array('class' => 'form-control')) !!}
+                                </div>
+                                <div class="col-sm-2 col-xs-12">
+                                    @if ($key === 0)
+                                        <button type="button" class="ingredientes-acrescentar">
+                                            <span class="glyphicon glyphicon-plus-sign"></span>
+                                        </button>
+                                    @else
+                                        <button type="button" class="ingredientes-remover">
+                                            <span class="glyphicon glyphicon-minus-sign"></span>
+                                        </button>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -129,22 +134,20 @@
                 <div class="ingredientes-linha row">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-11">
-                                <div class="row">
-                                    <div class="col-sm-2 col-xs-12">
-                                        <input type="text" name="ingredientes_quantidade[]" class="form-control col-sm-12" placeholder='Qtd' autocomplete='off'>
-                                    </div>
-                                    <div class="col-sm-2 col-xs-12">
-                                        {!! Form::select('ingredientes_medida[]', $unidades, '',array('class' => 'form-control')) !!}
-                                    </div>
-                                    <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes" >
-                                        <input type="text" class="form-control" data-mt-filter-control/>
-                                    </div>
-                                </div>
+                            <div class="col-sm-4 col-xs-12 component-mt-select" data-mt-request-url="/admin/ingredientes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="ingredientes" >
+                                <input type="text" class="form-control" data-mt-filter-control/>
                             </div>
-                            <button type="button" class="ingredientes-acrescentar">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                            </button>
+                            <div class="col-sm-2 col-xs-12">
+                                <input type="text" name="ingredientes_quantidade[]" class="form-control col-sm-12" placeholder='Qtd' autocomplete='off'>
+                            </div>
+                            <div class="col-sm-2 col-xs-12">
+                                {!! Form::select('ingredientes_medida[]', $unidades, '', array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="col-sm-1 col-xs-12">
+                                <button type="button" class="ingredientes-acrescentar">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,22 +167,22 @@
 
         <div class="form-group" >
             <div class="row">
-                <div class="col-sm-6 col-sx-12">
+                <div class="col-sm-4 col-sx-12">
                     <label for="">Fonte</label>
-                    <div class="row">
-                        @if (isset($receita->fontes_id))
-                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
-                                <input type="text" class="form-control" data-mt-filter-control/>
-                            </div>
-                        @else
-                            <div class="col-sm-6 col-xs-12 component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id">
-                                <input type="text" class="form-control" data-mt-filter-control/>
-                            </div>
-                        @endif
-                    </div>
+                    
+                    @if (isset($receita->fontes_id))
+                        <div class="component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
+                            <input type="text" class="form-control" data-mt-filter-control/>
+                        </div>
+                    @else
+                        <div class="component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id">
+                            <input type="text" class="form-control" data-mt-filter-control/>
+                        </div>
+                    @endif
+
                     {{-- {!! Form::text('fonte',isset($receita->fonte) ? $receita->fonte : '',array('class' => 'form-control','placeholder'=>'Fonte','id'=>'fonte','autocomplete'=>'off') )!!} --}}
                 </div>
-                <div class="col-sm-6 col-sx-12">
+                <div class="col-sm-4 col-sx-12">
                     <label for="">Parceiro</label>
                     {!! Form::text('parceiro',isset($receita->parceiro) ? $receita->parceiro : '',array('class' => 'form-control','placeholder'=>'Parceiro','id'=>'parceiro','autocomplete'=>'off') )!!}
                 </div>
@@ -209,7 +212,7 @@
         <div class="form-group" >
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
-                    <label for="">Custo aproximado</label>
+                    <label for="">Custo aproximado *</label>
                     {!! Form::text('custo',isset($receita->custo) ? $receita->custo : '',array('class' => 'form-control','placeholder'=>'R$...','id'=>'custo','autocomplete'=>'off') )!!}
                     <small>* Valores aproximados. Margem de erro R$x,00</small>
                 </div>

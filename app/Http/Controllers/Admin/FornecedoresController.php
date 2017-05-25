@@ -14,14 +14,14 @@ use Validator;
 use Redirect;
 
 class FornecedoresController extends Controller {
-	public function index() {
-		if (Auth::check()) {
-			$fornecedores = Fornecedores::orderby('id', 'desc')->get();
+	public function __construct () {
+		$this->middleware('auth');
+	}
 
-			return view('admin.fornecedores.list',compact('fornecedores'));
-		} else {
-			return view('auth.login');
-		}
+	public function index() {
+		$fornecedores = Fornecedores::orderby('id', 'desc')->get();
+
+		return view('admin.fornecedores.list',compact('fornecedores'));
 	}
 
 	public function listItems() {

@@ -50,12 +50,15 @@ Route::group(['prefix' => 'admin'], function() {
 
 
 	Route::get('/receitas', ['as'=> 'admin.receitas','uses' => 'Admin\ReceitasController@index']);
+	Route::post('receitas/categorias/list', ['as' =>'admin.receitas.categories','uses' => 'Admin\ReceitasController@listCategories']);
 	Route::post('receitas/store/{id?}', ['as' =>'admin.receitas.store','uses' => 'Admin\ReceitasController@store']);
 	Route::get('receitas/create', ['as' =>'admin.receitas.create','uses' => 'Admin\ReceitasController@create']);
 	Route::get('receitas/edit/{id}', ['as' =>'admin.receitas.edit','uses' => 'Admin\ReceitasController@edit']);
 	Route::get('receitas/destroy/{id?}', ['as' =>'admin.receitas.destroy','uses' => 'Admin\ReceitasController@destroy']);
 	Route::get('receita/{id}', ['as' =>'admin.receitas.show','uses' => 'Admin\ReceitasController@show']);
 
+	Route::get('/cardapios', ['as'=> 'admin.cardapios','uses' => 'Admin\CardapiosController@index']);
+	Route::get('/cardapios/busca', ['as'=> 'admin.cardapios.busca','uses' => 'Admin\CardapiosController@search']);
 
 	Route::get('/caracteristicas', ['as'=> 'admin.caracteristicas','uses' => 'Admin\CaracteristicasController@index']);
 	Route::post('caracteristicas/store/{id?}', ['as' =>'admin.caracteristicas.store','uses' => 'Admin\CaracteristicasController@store']);
