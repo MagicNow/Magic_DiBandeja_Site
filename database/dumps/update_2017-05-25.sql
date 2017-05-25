@@ -1,0 +1,2 @@
+ALTER TABLE `cardapios`  ADD `periodo` INT NULL DEFAULT NULL  AFTER `clientes_id`,  ADD `cardapios` INT NULL DEFAULT NULL  AFTER `periodo`,  ADD `frequencia` INT NULL DEFAULT NULL  AFTER `cardapios`;
+ALTER TABLE `cardapios` ADD `status` TINYINT NULL DEFAULT '0' AFTER `frequencia`;
