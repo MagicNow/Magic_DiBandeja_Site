@@ -101,4 +101,11 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('clientes/list', ['as' =>'admin.clientes.list','uses' => 'Admin\ClientesController@listItems']);
 	Route::get('clientes/edit/{id}', ['as' =>'admin.clientes.edit','uses' => 'Admin\ClientesController@edit']);
 	Route::get('clientes/destroy/{id?}', ['as' =>'admin.clientes.destroy','uses' => 'Admin\ClientesController@destroy']);
+
+	Route::get('/parceiros', ['as'=> 'admin.parceiros','uses' => 'Admin\ParceirosController@index']);
+	Route::post('parceiros/store/{id?}', ['as' =>'admin.parceiros.store','uses' => 'Admin\ParceirosController@store']);
+	Route::get('parceiros/create', ['as' =>'admin.parceiros.create','uses' => 'Admin\ParceirosController@create']);
+	Route::post('parceiros/list', ['as' =>'admin.parceiros.list','uses' => 'Admin\ParceirosController@listItems']);
+	Route::get('parceiros/edit/{id}', ['as' =>'admin.parceiros.edit','uses' => 'Admin\ParceirosController@edit']);
+	Route::get('parceiros/destroy/{id?}', ['as' =>'admin.parceiros.destroy','uses' => 'Admin\ParceirosController@destroy']);
 });

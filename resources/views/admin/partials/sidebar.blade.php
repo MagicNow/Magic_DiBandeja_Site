@@ -15,6 +15,7 @@
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.grupos' ? 'active' : '' }}"><a href="{{ route('admin.grupos') }}"><i class='fa fa-list'></i> <span>Grupos</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.clientes' ? 'active' : '' }}"><a href="{{ route('admin.clientes') }}"><i class='fa fa-users'></i> <span>Clientes</span></a></li>
             <li class="{{ Route::getCurrentRoute()->getName() === 'admin.fontes' ? 'active' : '' }}"><a href="{{ route('admin.fontes') }}"><i class='fa fa-users'></i> <span>Fontes</span></a></li>
+            <li class="{{ Route::getCurrentRoute()->getName() === 'admin.parceiros' ? 'active' : '' }}"><a href="{{ route('admin.parceiros') }}"><i class='fa fa-circle-o'></i> <span>Parceiros</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
