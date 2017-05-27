@@ -89,10 +89,35 @@ class CardapiosController extends Controller {
 				->join('receita_cardapios', 'receita_cardapios.cardapio_id', '=', 'cardapios.id')
 				->join('receitas', 'receitas.id', '=', 'receita_cardapios.receita_id')
 				->where('receitas.titulo', 'like', '%' . $this->getSearch() . '%')
-				->orderBy('receitas.titulo', 'DESC')
+				->orderBy('receitas.titulo', 'ASC')
 				->get();
 
 		return count($receitas) > 0 ? $this->populateRecipesList($receitas) : NULL;
+	}
+
+	private function populateIngredientsList ($ingredientes) {
+		foreach ($ingredientes as $key => $ingrediente) {
+			if (!isset($menu[$ingrediente->ingrediente_nome])) $menu[$ingrediente->ingrediente_nome] = [];
+			$menu[$ingrediente->ingrediente_nome][] = $ingrediente;
+		}
+
+		return ['list' => $menu, 'total' => count($ingredientes)];
+	}
+
+	private function searchIngredientsList () {
+		$menu = [];
+		$receitas = DB::table('cardapios')
+				->select([DB::raw('ingredientes.nome AS ingrediente_nome'), 'clientes.nome', 'cardapios.periodo', 'cardapios.created_at', 'cardapios.frequencia', 'cardapios.cardapios', 'receitas.ranking_dibandeja', 'receitas.ranking_clientes'])
+				->join('clientes', 'clientes.id', '=', 'cardapios.clientes_id')
+				->join('receita_cardapios', 'receita_cardapios.cardapio_id', '=', 'cardapios.id')
+				->join('receitas', 'receitas.id', '=', 'receita_cardapios.receita_id')
+				->join('receitas_ingredientes', 'receitas.id', '=', 'receitas_ingredientes.receita_id')
+				->join('ingredientes', 'ingredientes.id', '=', 'receitas_ingredientes.ingrediente_id')
+				->where('ingredientes.nome', 'like', '%' . $this->getSearch() . '%')
+				->orderBy('ingredientes.nome', 'ASC')
+				->get();
+
+		return count($receitas) > 0 ? $this->populateIngredientsList($receitas) : NULL;
 	}
 
 	private function searchAllList () {
