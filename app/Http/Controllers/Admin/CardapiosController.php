@@ -17,6 +17,8 @@ class CardapiosController extends Controller {
 	private $search;
 	private $searchType;
 	private $searchStatus;
+	private $totalItemsFiltered;
+	private $totalItems;
 
 	public function __construct (Request $request) {
 		$this->middleware('auth');
@@ -58,18 +60,56 @@ class CardapiosController extends Controller {
 		return $this->searchStatus;
 	}
 
+	private function setTotalItemsFilteredByStatus($total) {
+		$this->totalItemsFiltered = $total;
+	}
+
+	private function getTotalItemsFilteredByStatus() {
+		return $this->totalItemsFiltered;
+	}
+
+	private function setTotalItems($total) {
+		$this->totalItems = $total;
+	}
+
+	private function getTotalItems() {
+		return $this->totalItems;
+	}
+
+	private function getTotalItemsElaborate () {
+		if ($this->getSearchStatus() === 0) { // solicitados
+			return $this->getTotalItems() - $this->getTotalItemsFilteredByStatus();
+		} else {
+			return $this->getTotalItemsFilteredByStatus();
+		}
+	}
+
+	private function getTotalItemsRequested () {
+		if ($this->getSearchStatus() === 1) { // elaborados
+			return $this->getTotalItems() - $this->getTotalItemsFilteredByStatus();
+		} else {
+			return $this->getTotalItemsFilteredByStatus();
+		}
+	}
+
 	private function searchMenuList () {
+		$totalCardapios = Cardapios::count();
+
 		if (!empty($this->getSearch())) {
-			$menu = Cardapios::whereHas('cliente', function ($query) {
+			$menu 	= Cardapios::whereHas('cliente', function ($query) {
 					$query->where('nome', 'like', '%' . $this->getSearch() . '%');
-				})->where('status', $this->getSearchStatus());
+				});
+
+			$this->setTotalItems($menu->count());
+			$menu = $menu->where('status', $this->getSearchStatus());
 		} else {
 			$menu = Cardapios::where('status', $this->getSearchStatus());
+			$this->setTotalItems(Cardapios::count());
 		}
 
-		$menu = $menu->get();
+		$this->setTotalItemsFilteredByStatus($menu->count());
 
-		return ['list' => $menu, 'total' => count($menu)];
+		return ['list' => $menu->get(), 'total' => $this->getTotalItems(), 'totalMenusElaborate' => $this->getTotalItemsElaborate(), 'totalMenusRequested' => $this->getTotalItemsRequested()];
 	}
 
 	private function populateRecipesList ($receitas) {

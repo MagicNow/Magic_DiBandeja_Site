@@ -1,8 +1,8 @@
 <div class="row mt-3">
 	<div class="col-md-4"></div>
 	<div class="btn-group col-md-4" role="group">
-		<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => app('request')->input('type'), 'status' => 'solicitados']) }}" class="col-md-6 btn btn-info {{ app('request')->input('status') === 'solicitados' || empty(app('request')->input('status')) ? 'active' : NULL }}">Solicitados</a>
-		<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => app('request')->input('type'), 'status' => 'elaborados']) }}" class="col-md-6 btn btn-info {{ app('request')->input('status') === 'elaborados' ? 'active' : NULL }}">Elaborados</a>
+		<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => app('request')->input('type'), 'status' => 'solicitados']) }}" class="col-md-6 btn btn-info {{ app('request')->input('status') === 'solicitados' || empty(app('request')->input('status')) ? 'active' : NULL }}">Solicitados {{ isset($menus['totalMenusRequested']) ? '(' . $menus['totalMenusRequested'] . ')' : NULL }}</a>
+		<a href="{{ route('admin.cardapios.busca', ['search' => app('request')->input('search'), 'type' => app('request')->input('type'), 'status' => 'elaborados']) }}" class="col-md-6 btn btn-info {{ app('request')->input('status') === 'elaborados' ? 'active' : NULL }}">Elaborados {{ isset($menus['totalMenusElaborate']) ? '(' . $menus['totalMenusElaborate'] . ')' : NULL }}</a>
 	</div>
 </div>
 <br>
