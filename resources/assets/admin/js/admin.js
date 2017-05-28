@@ -207,7 +207,7 @@ $(function() {
 
 	$registerModalMenu.on('loaded.bs.modal', function (e) {
 		$('.menu-create-table-container')
-						.height($('.menu-create-form').height())
+						.height($('.menu-create-form').height() - $('.menu-create-footer').height())
 						.perfectScrollbar();
 
 		$('.menu-create-slider').pagepiling({
@@ -223,6 +223,8 @@ $(function() {
 
 			$.fn.pagepiling.moveTo($(this).data('page'));
 		});
+
+		$('.menu-create-form').height($('#register-menu .modal-content').height() - $('.menu-create-header').height());
 
 		changeSelect();
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Models\Cardapios;
 use App\Models\Refeicoes;
+use App\Models\Dias_semana;
 use Redirect;
 
 class CardapiosController extends Controller {
@@ -188,14 +189,13 @@ class CardapiosController extends Controller {
 	public function create (Request $request) {
 		if (!$request->input('id')) return;
 
-		$menu = Cardapios::find($request->input('id'));
-		$refeicoes = Refeicoes::all();
-		$receitas = [];
+		$menu 	= Cardapios::find($request->input('id'));
+		$refeicoes 	= Refeicoes::all();
+		$diasSemana = Dias_semana::pluck('nome', 'id')->prepend('Dia da semana', '');
+		$receitas 	= [];
 
 		foreach ($menu->receitas as $key => $receita) {
 			if (isset($receita->pivot->dia) && $receita->pivot->refeicao_id) {
-				// $receita = $receita->receita_receicao = '{' . '"' . . " . '}'
-
 			    $refeicao 	= array();
 				$refeicao[$receita->pivot->refeicao_id] = $receita->titulo;
 			    $refeicao 	= json_encode($refeicao, JSON_UNESCAPED_UNICODE);
@@ -208,7 +208,7 @@ class CardapiosController extends Controller {
 			}
 		}
 
-		return view('admin.cardapios.create', compact('menu', 'refeicoes', 'receitas'));
+		return view('admin.cardapios.create', compact('menu', 'refeicoes', 'receitas', 'diasSemana'));
 	}
 
 	public function store () {

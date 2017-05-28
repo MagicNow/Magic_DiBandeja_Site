@@ -28,7 +28,22 @@
 			@for ($i = 1; $i <= $menu->periodo; $i++)
 				<div class="section" id="section{{ $i }}">
 					<div class="menu-create-table-container">
-						<strong>Dia {{ $i }}</strong>
+						<div class="form-inline menu-create-table-header">
+							<div class="form-group">
+								<strong>Dia {{ $i }}</strong>
+							</div>
+							<div class="form-group">
+								{!! Form::select('receita[' . $i . ']["dia_semana"]', $diasSemana, NULL, array('class' => 'form-control')) !!}
+							</div>
+							<div class="form-group">
+								<label class="control-label">Valor calórico total</label>
+								{!! Form::input('text', 'receita[' . $i . ']["valor_calorico_total"]', NULL, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
+							</div>
+							<div class="form-group">
+								<label class="control-label">Custo total</label>
+								{!! Form::input('text', 'receita[' . $i . ']["custo_total"]', NULL, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
+							</div>
+						</div>
 						@if ($i > 1)
 							<button class="menu-create-buttons menu-create-button-prev" data-page="{{ $i - 1 }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Dia {{ $i - 1 }}</button>
 						@endif
@@ -45,19 +60,19 @@
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Valor calórico</label>
-										<input type="text" name="calorias[{{$i}}]['valor_calorico']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->calorias : '' }}" placeholder="Valor calórico" class="form-control">
+										<input type="text" name="receita[{{$i}}]['valor_calorico']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->calorias : '' }}" placeholder="Valor calórico" class="form-control" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Custo da receita</label>
-										<input type="text" name="custo[{{$i}}]['custo']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->custo : '' }}" placeholder="Custo da Receita" class="form-control">
+										<input type="text" name="receita[{{$i}}]['custo']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->custo : '' }}" placeholder="Custo da Receita" class="form-control" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Propriedades nutricionais</label>
-										<input type="text" name="propriedades[{{$i}}]['propriedades_nutricionais']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->propriedades_nutricionais : '' }}" placeholder="Propriedades Nutricionais" class="form-control">
+										<input type="text" name="receita[{{$i}}]['propriedades_nutricionais']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->propriedades_nutricionais : '' }}" placeholder="Propriedades Nutricionais" class="form-control" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Benefícios</label>
-										<input type="text" name="beneficios[{{$i}}]['beneficios']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->beneficios : '' }}" placeholder="Benefícios" class="form-control">
+										<input type="text" name="receita[{{$i}}]['beneficios']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->beneficios : '' }}" placeholder="Benefícios" class="form-control" readonly="readonly">
 									</td>
 								</tr>
 							@endforeach
@@ -66,6 +81,15 @@
 							<button class="menu-create-buttons menu-create-button-next" data-page="{{ $i + 1 }}">Dia {{ $i + 1 }} <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
 						@endif
 					</div>
+
+					<nav class="navbar navbar-default menu-create-footer">
+						<div class="container-fluid menu-create-footer-buttons">
+							<div class="navbar-header pull-right">
+								<a class="btn btn-info" href="{{ route('admin.cardapios.store') }}">Visualizar</a>
+								<a class="btn btn-success" href="{{ route('admin.cardapios.store') }}">Salvar</a>
+							</div>
+						</div>
+					</nav>
 				</div>
 			@endfor
 		</div>
