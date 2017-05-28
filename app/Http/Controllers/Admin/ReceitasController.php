@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use URL;
 use Auth;
 use Session;
-use Request;
 use App\Models\Ingredientes;
 use App\Models\Receitas;
 use App\Models\Unidades;
@@ -81,7 +80,6 @@ class ReceitasController extends Controller {
     }
 
     public function edit($id = null){
-
         $receita = Receitas::find($id);
         $ingredientes = Ingredientes::getList();
         $unidades = Unidades::pluck('unidade','id')->prepend('Selecione','');

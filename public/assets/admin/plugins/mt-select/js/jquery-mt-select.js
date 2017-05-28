@@ -305,7 +305,7 @@ var jQueryMTSelect = {
       this.containerObject.find(this.triggerInformationMAP.searchTriggerIdentifier).fadeOut('slow');
 
     if (this.triggerOnAdd !== '') {
-      eval(this.triggerOnAdd)(tagId, tagName);
+      eval(this.triggerOnAdd)(tagId, tagName, this.containerObject.find(this.triggerInformationMAP.searchTriggerIdentifier));
     }
   },
 
