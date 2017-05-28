@@ -1,4 +1,5 @@
 var $registerModal,
+	$registerModalMenu,
 	$targetModalButton,
 	$loading,
 	selectAjax,
@@ -8,6 +9,7 @@ var $registerModal,
 
 $(function() {
 	$registerModal = $('#register');
+	$registerModalMenu = $('#register-menu');
 	$loading = $('.load');
 
 	$.ajaxSetup({
@@ -55,7 +57,6 @@ $(function() {
 	});
 
 	$('#confirm-delete').on('show.bs.modal', function(e) {
-		console.log($(e.relatedTarget).attr('href'))
 		var target = $(e.relatedTarget).attr('href');
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).attr('href'));
 	});
@@ -202,6 +203,31 @@ $(function() {
 			.find(".modal-body").html('');
 
 		$targetModalButton = '';
+	});
+
+	$registerModalMenu.on('loaded.bs.modal', function (e) {
+		$('.menu-create-table-container')
+						.height($('.menu-create-form').height())
+						.perfectScrollbar();
+
+		$('.menu-create-slider').pagepiling({
+			direction: 'horizontal',
+			normalScrollElements: '.menu-create-table',
+			keyboardScrolling: true,
+			menu: null,
+			navigation: false,
+		});
+
+		$('.menu-create-buttons').on('click', function (e) {
+			e.preventDefault();
+
+			$.fn.pagepiling.moveTo($(this).data('page'));
+		});
+
+		changeSelect();
+
+	}).on('hidden.bs.modal', function (e) {
+		$(this).data('bs.modal', null);
 	});
 
 	$('.fornecedores-remover').on('click', removeSelect);

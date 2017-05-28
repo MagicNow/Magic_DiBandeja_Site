@@ -20,6 +20,6 @@ class Cardapios extends Model {
 
     public function receitas()
     {
-        return $this->belongsToMany('App\Models\Receitas', 'receita_cardapios', 'cardapio_id', 'receita_id');
+        return $this->belongsToMany('App\Models\Receitas', 'receita_cardapios', 'cardapio_id', 'receita_id')->withPivot("dia", "refeicao_id");
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Models\Cardapios;
+use App\Models\Refeicoes;
 use Redirect;
 
 class CardapiosController extends Controller {
@@ -124,7 +125,7 @@ class CardapiosController extends Controller {
 	private function searchRecipesList () {
 		$menu = [];
 		$receitas = DB::table('cardapios')
-				->select(['receitas.titulo', 'clientes.nome', 'cardapios.periodo', 'cardapios.created_at', 'cardapios.frequencia', 'cardapios.cardapios', 'receitas.ranking_dibandeja', 'receitas.ranking_clientes'])
+				->select(['cardapios.id', 'receitas.titulo', 'clientes.nome', 'cardapios.periodo', 'cardapios.created_at', 'cardapios.frequencia', 'cardapios.cardapios', 'receitas.ranking_dibandeja', 'receitas.ranking_clientes'])
 				->join('clientes', 'clientes.id', '=', 'cardapios.clientes_id')
 				->join('receita_cardapios', 'receita_cardapios.cardapio_id', '=', 'cardapios.id')
 				->join('receitas', 'receitas.id', '=', 'receita_cardapios.receita_id')
@@ -147,7 +148,7 @@ class CardapiosController extends Controller {
 	private function searchIngredientsList () {
 		$menu = [];
 		$receitas = DB::table('cardapios')
-				->select([DB::raw('ingredientes.nome AS ingrediente_nome'), 'clientes.nome', 'cardapios.periodo', 'cardapios.created_at', 'cardapios.frequencia', 'cardapios.cardapios', 'receitas.ranking_dibandeja', 'receitas.ranking_clientes'])
+				->select(['cardapios.id', DB::raw('ingredientes.nome AS ingrediente_nome'), 'clientes.nome', 'cardapios.periodo', 'cardapios.created_at', 'cardapios.frequencia', 'cardapios.cardapios', 'receitas.ranking_dibandeja', 'receitas.ranking_clientes'])
 				->join('clientes', 'clientes.id', '=', 'cardapios.clientes_id')
 				->join('receita_cardapios', 'receita_cardapios.cardapio_id', '=', 'cardapios.id')
 				->join('receitas', 'receitas.id', '=', 'receita_cardapios.receita_id')
@@ -182,5 +183,35 @@ class CardapiosController extends Controller {
 		}
 
 		return view('admin.cardapios.list', compact('menus', 'receita'));
+	}
+
+	public function create (Request $request) {
+		if (!$request->input('id')) return;
+
+		$menu = Cardapios::find($request->input('id'));
+		$refeicoes = Refeicoes::all();
+		$receitas = [];
+
+		foreach ($menu->receitas as $key => $receita) {
+			if (isset($receita->pivot->dia) && $receita->pivot->refeicao_id) {
+				// $receita = $receita->receita_receicao = '{' . '"' . . " . '}'
+
+			    $refeicao 	= array();
+				$refeicao[$receita->pivot->refeicao_id] = $receita->titulo;
+			    $refeicao 	= json_encode($refeicao, JSON_UNESCAPED_UNICODE);
+				$receita->receita_refeicao = $refeicao;
+
+				if (!isset($receitas[$receita->pivot->dia])) {
+					$receitas[$receita->pivot->dia] = [];
+				}
+				$receitas[$receita->pivot->dia][$receita->pivot->refeicao_id] = $receita;
+			}
+		}
+
+		return view('admin.cardapios.create', compact('menu', 'refeicoes', 'receitas'));
+	}
+
+	public function store () {
+
 	}
 }

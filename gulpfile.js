@@ -3,6 +3,8 @@ require('laravel-elixir-browser-sync-simple');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var less = require('gulp-less');
+var path = require('path');
+var rename = require('gulp-rename');
 
 /*
  |--------------------------------------------------------------------------
@@ -45,17 +47,18 @@ elixir(function(mix) {
 });
 
 gulp.task('lessStyles', function() {
-    gulp.src(['../bootstrap/bootstrap.less'])
-        .pipe(less())
-        .pipe(gulp.dest('public/assets/admin/css/bootstrap.css'));
-
-    gulp.src(['../admin/AdminLTE.less'])
+    gulp.src(['./resources/assets/bootstrap/bootstrap.less'])
         .pipe(less())
         .pipe(gulp.dest('public/assets/admin/css'));
 
-    gulp.src(['../admin/skins/skin-blue.less'])
+    return gulp.src('./resources/assets/admin/AdminLTE.less')
         .pipe(less())
-        .pipe(gulp.dest('public/assets/admin/css/skins/skin-blue.css'));
+        .pipe(rename('app.css'))
+        .pipe(gulp.dest('./public/assets/admin/css'));
+
+    gulp.src(['./resources/assets/admin/skins/skin-blue.less'])
+        .pipe(less())
+        .pipe(gulp.dest('./public/assets/admin/css/skins'));
 });
 
 gulp.task('styles', function() {

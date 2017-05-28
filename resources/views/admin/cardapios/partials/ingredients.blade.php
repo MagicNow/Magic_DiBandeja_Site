@@ -17,7 +17,7 @@
 				<tbody>
 					@foreach ($menu as $item)
 						<tr>
-							<th scope="row">{{ $item->nome }}</th>
+							<th scope="row"><a href="{{ route("admin.cardapios.create", ['id' => $item->id ]) }}" class="register-modal" data-toggle="modal" data-target="#register-menu">{{ $item->nome }}</a></th>
 							<td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('d/m/Y') }}</td>
 							<td>{{ $item->periodo }}</td>
 							<td>{{ $item->cardapios }}</td>

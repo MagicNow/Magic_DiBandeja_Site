@@ -28,6 +28,25 @@ class ReceitasController extends Controller {
         return view('admin.receitas.list',compact('receitas'));
     }
 
+    public function listItems() {
+        $dados = Input::all();
+        $image = asset('assets/images/blank.png');
+
+        if (isset($dados['mt_filter'])) {
+            $grupos = Receitas::where('titulo', 'LIKE', '%' . $dados['mt_filter'] . '%')
+                                    ->selectRaw('titulo AS name, id, "" AS description, "' . $image . '" AS picture_path')
+                                    ->get();
+
+            if (count($grupos) === 0) {
+                return response()->json(['results' => [], 'status' => 'empty', 'message' => 'Nenhuma receita encontrada']);
+            } else {
+                return response()->json(['results' => $grupos, 'status' => 'ok']);
+            }
+        } else {
+            return response()->json(['results' => [], 'status' => 'empty']);
+        }
+    }
+
     public function listCategories() {
         $dados = Input::all();
         $image = asset('upload/categorias');

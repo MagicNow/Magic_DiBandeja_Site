@@ -26,6 +26,8 @@
     {!! Html::style('assets/admin/plugins/mt-select/css/style.css') !!}
     {!! Html::style('assets/admin/plugins/rateyo/jquery.rateyo.min.css') !!}
     {!! Html::style('assets/admin/plugins/jQuery-Impromptu/jquery-impromptu.min.css') !!}
+    {!! Html::style('assets/admin/plugins/pagePiling/jquery.pagepiling.min.css') !!}
+    {!! Html::style('assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.css') !!}
     
     <!-- iCheck -->
   

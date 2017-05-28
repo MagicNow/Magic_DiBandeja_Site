@@ -1,7 +1,8 @@
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 2.1.4 -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- jQuery 2.2.4 -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="{{ asset('/assets/admin/plugins/jQuery/jquery-2.2.4.min.js') }}"><\/script>')</script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -13,7 +14,7 @@
 <script src="{{ asset('/assets/admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') }}"></script>
 <script src="{{ asset('/assets/admin/plugins/jQuery-Impromptu/jquery-impromptu.min.js') }}"></script>
-
+<script src="{{ asset('/assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
 
 <script src="{{ asset('/assets/admin/plugins/select2/select2.full.min.js') }}"></script>
 <!-- AdminLTE App -->
@@ -42,6 +43,7 @@
 <script src="{{ asset('/assets/admin/plugins/mt-select/js/jquery-mt-select.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/notifications/jquery.toaster.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/plugins/rateyo/jquery.rateyo.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin/plugins/pagePiling/jquery.pagepiling.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('/assets/admin/js/app.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/assets/admin/js/admin.js') }}" type="text/javascript"></script>
