@@ -26,9 +26,8 @@ class ParceirosController extends Controller {
         return view('admin.parceiros.create');
     }
 
-    public function store($id = null){
-
-        $dados = Input::all();
+    public function store(Request $request, $id = null){
+        $input = $request::all();
 
         if($id){
 			$rules = array(
@@ -43,45 +42,27 @@ class ParceirosController extends Controller {
 		   $msg = "Cadastro efetuado com sucesso!";
 		}
 
-        $validator = Validator::make($dados,$rules);
+        $validator = Validator::make($input, $rules);
 
         if(!$validator->fails()){
-
-            if($id){
+            if ($id) {
                 $parceiros = Parceiros::find($id);
-
-            }else{
+            } else {
                 $parceiros = new Parceiros;
             }
-
-            $parceiros->nome = $dados['nome'];            
-            $parceitos->apelido = $dados['apelido'];
-            $parceitos->profissao = $dados['profissao'];
-            $parceitos->url = $dados['url'];
-            $parceitos->email = $dados['email'];
-            $parceitos->telefone = $dados['telefone'];
-            $parceitos->endereco = $dados['endereco'];
-            $parceitos->bairro = $dados['bairro'];
-            $parceitos->cidade = $dados['cidade'];
-            $parceitos->cep = $dados['cep'];
-            $parceitos->estado = $dados['estado'];
-            $parceitos->pais = $dados['pais'];
-            $parceitos->numero = $dados['numero'];
-            $parceitos->complemento = $dados['complemento'];
 
             $image = Input::file('image');
             if(isset($image)){
                 $fileName = md5(str_random(60)).'.'.strtolower($image->getClientOriginalExtension());
                 Input::file('image')->move(public_path('upload/parceiros'), $fileName);
 
-                $parceiros->image = $fileName;
+                $input['image'] = $fileName;
             }
 
-
-
+            $parceiros->fill($input);
             if ($parceiros->save()) {
 
-                if (isset($dados['type']) && $dados['type'] === 'modal') {
+                if (isset($input['type']) && $input['type'] === 'modal') {
                     $return = array();
                     $return[] = $msg;
                     return response()->json(['success' => true, 'message' => $return]);
