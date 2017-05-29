@@ -169,7 +169,7 @@
             <div class="row">
                 <div class="col-sm-4 col-sx-12">
                     <label for="">Fonte</label>
-                    
+
                     @if (isset($receita->fontes_id))
                         <div class="component-mt-select" data-mt-request-url="/admin/fontes/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="fontes_id" data-mt-default-values='{"{{ $receita->fontes_id }}":"{{ isset($receita->fontes->nome) ? $receita->fontes->nome : '' }}"}'>
                             <input type="text" class="form-control" data-mt-filter-control/>
@@ -184,7 +184,12 @@
                 </div>
                 <div class="col-sm-4 col-sx-12">
                     <label for="">Parceiro</label>
-                    {!! Form::text('parceiro',isset($receita->parceiro) ? $receita->parceiro : '',array('class' => 'form-control','placeholder'=>'Parceiro','id'=>'parceiro','autocomplete'=>'off') )!!}
+                    {{-- {!! Form::text('parceiro',isset($receita->parceiro) ? $receita->parceiro : '',array('class' => 'form-control','placeholder'=>'Parceiro','id'=>'parceiro','autocomplete'=>'off') )!!} --}}
+                    <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/parceiros/list?type=modal" data-mt-max-tags="99" data-mt-tag-input-name="parceiros" data-mt-default-values="{{ isset($parceiros) ? $parceiros : '{}' }}">
+                        <div class="col-md-12 row">
+                            <input type="text" class="form-control form-receita-parceiros" data-mt-filter-control/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

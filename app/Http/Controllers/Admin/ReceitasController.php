@@ -11,8 +11,10 @@ use App\Models\Ingredientes;
 use App\Models\Receitas;
 use App\Models\Unidades;
 use App\Models\Categorias;
+use App\Models\Parceiros;
 use App\Models\Receitas_categorias;
 use App\Models\Receitas_ingredientes;
+use App\Models\Receitas_parceiros;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
@@ -66,6 +68,32 @@ class ReceitasController extends Controller {
                 return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.categorias.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre uma nova categoria</a>']);
             } else {
                 return response()->json(['results' => $categorias, 'status' => 'ok']);
+            }
+        } else {
+            return response()->json(['results' => [], 'status' => 'empty']);
+        }
+    }
+
+    public function listParceiros() {
+        $dados = Input::all();
+
+        $image = asset('upload/parceiros');
+
+        if (isset($dados['mt_filter'])) {
+            $parceiros = Parceiros::where('nome', 'LIKE', '%' . $dados['mt_filter'] . '%')
+                                    ->selectRaw('nome AS name, id, "" AS description, CONCAT("' . $image . '/", image) AS picture_path')
+                                    ->get();
+
+            foreach ($parceiros as $key => $parceiro) {
+                if (empty($parceiro->picture_path)) {
+                    $parceiro->picture_path = asset('assets/images/blank.png');
+                }
+            }
+
+            if (count($parceiros) === 0) {
+                return response()->json(['results' => [], 'status' => 'empty', 'message' => '<a href="' . route("admin.parceiros.create", ["type" => "modal"]) . '" class="register-modal" data-toggle="modal" data-target="#register">Cadastre um novo parceiro</a>']);
+            } else {
+                return response()->json(['results' => $parceiros, 'status' => 'ok']);
             }
         } else {
             return response()->json(['results' => [], 'status' => 'empty']);

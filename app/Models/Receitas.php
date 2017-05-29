@@ -39,4 +39,9 @@ class Receitas extends Model {
         return $this->belongsTo('App\Models\Fontes');
     }
 
+    public function parceiros()
+    {
+        return $this->belongsToMany('App\Models\Parceiros', 'receitas_parceiros', 'receitas_id', 'parceiros_id');
+    }
+
 }

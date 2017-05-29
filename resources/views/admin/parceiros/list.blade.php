@@ -8,7 +8,9 @@
 @section('main-content')
     <div class="box">
 
-		<div class="box-header"> <a href="{{ route('admin.parceiros.create') }}" class="btn btn-primary">Novo Parceiro</a></div><!-- /.box-header -->
+		<div class="box-header">
+            {{-- <a href="{{ route('admin.parceiros.create') }}" class="btn btn-primary">Novo Parceiro</a> --}}
+        </div><!-- /.box-header -->
 		@if (session('sucess'))
 			<div class="alert alert-success">
 			  {{ session('sucess') }}
@@ -19,26 +21,24 @@
 				<thead>
 					<tr>
 						<th>Parceiro</th>
-						<th>Receita</th>
-						<th>Data</th>
-						<th>Cardápios</th>
+						<th>Última Receita</th>
+						<th>Total Receitas</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($parceiros as $parceiro)
 						<tr>
-							<td>{{ $parceiro->titulo }}</td>
-							<td>{{ isset($parceiro->parceiros->nome) ? $parceiro->parceiros->nome : NULL }}</td>
-							<td>{{ isset($parceiro->created_at) && !empty($parceiro->created_at) ? date('d/m/Y', strtotime($parceiro->created_at)) : NULL }}</td>
+							<td>{{ $parceiro->nome }}</td>
 							<td></td>
+                            <td></td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
-						<th>Parceiro</th>
-						<th>Receita</th>
-						<th>Data</th>
+                        <th>Parceiro</th>
+						<th>Última Receita</th>
+						<th>Total Receitas</th>
 					</tr>
 				</tfoot>
 			</table>
