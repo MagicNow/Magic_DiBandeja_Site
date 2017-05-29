@@ -37,11 +37,11 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">Valor calórico total</label>
-								{!! Form::input('text', 'receita[' . $i . ']["valor_calorico_total"]', NULL, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
+								{!! Form::input('text', 'receitas[' . $i . ']["valor_calorico_total"]', isset($receitas[$i]["valor_calorico_total"]) ? $receitas[$i]["valor_calorico_total"] : 0, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
 							</div>
 							<div class="form-group">
 								<label class="control-label">Custo total</label>
-								{!! Form::input('text', 'receita[' . $i . ']["custo_total"]', NULL, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
+								{!! Form::input('text', 'receitas[' . $i . ']["custo_total"]', isset($receitas[$i]["custo_total"]) ? 'R$' . money_format('%i', $receitas[$i]["custo_total"]) : 0, array('class' => 'form-control', 'disabled' => 'disabled')) !!}
 							</div>
 						</div>
 						@if ($i > 1)
@@ -49,30 +49,30 @@
 						@endif
 						<table cellspacing="10" cellpadding="0" border="0" class="menu-create-table">
 							@foreach ($refeicoes as $refeicao)
-								<tr>
+								<tr class="menu-create-table-line">
 									<td class="form-group">
 										<label class="menu-create-label">{{ $refeicao->nome }}</label>
-										<div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/list" data-mt-max-tags="1" data-mt-tag-input-name="receita[{{$i}}]['receita']" data-mt-default-values='{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->receita_refeicao : '{}' }}'>
+										<div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/list" data-mt-max-tags="1" data-mt-tag-input-name="receita[{{$i}}]['receita']" data-mt-default-values='{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->receita_refeicao : '{}' }}' data-mt-trigger-on-add="completeRecipeInfo">
 											<div class="col-md-12 row">
-												<input type="text" class="form-control form-ingredientes-caracteristicas" data-mt-filter-control/>
+												<input type="text" class="form-control form-create-form-recipe" data-mt-filter-control/>
 											</div>
 										</div>
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Valor calórico</label>
-										<input type="text" name="receita[{{$i}}]['valor_calorico']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->calorias : '' }}" placeholder="Valor calórico" class="form-control" readonly="readonly">
+										<input type="text" name="receita[{{$i}}]['valor_calorico']" placeholder="Valor calórico" class="form-control form-create-form-cal" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Custo da receita</label>
-										<input type="text" name="receita[{{$i}}]['custo']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->custo : '' }}" placeholder="Custo da Receita" class="form-control" readonly="readonly">
+										<input type="text" name="receita[{{$i}}]['custo']" placeholder="Custo da Receita" class="form-control form-create-form-cost" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Propriedades nutricionais</label>
-										<input type="text" name="receita[{{$i}}]['propriedades_nutricionais']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->propriedades_nutricionais : '' }}" placeholder="Propriedades Nutricionais" class="form-control" readonly="readonly">
+										<input type="text" name="receita[{{$i}}]['propriedades_nutricionais']" placeholder="Propriedades Nutricionais" class="form-control form-create-form-nutritional" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
 										<label class="menu-create-label">Benefícios</label>
-										<input type="text" name="receita[{{$i}}]['beneficios']" value="{{ isset($receitas[$i][$refeicao->id]->receita_refeicao) ? $receitas[$i][$refeicao->id]->beneficios : '' }}" placeholder="Benefícios" class="form-control" readonly="readonly">
+										<input type="text" name="receita[{{$i}}]['beneficios']" placeholder="Benefícios" class="form-control form-create-form-benefits" readonly="readonly">
 									</td>
 								</tr>
 							@endforeach

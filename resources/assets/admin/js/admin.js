@@ -501,3 +501,22 @@ function setRate() {
 		$self.next('input').val(data.rating);
 	});
 }
+
+function completeRecipeInfo (id, name, elem) {
+	$.ajax({
+		method: 'POST',
+		url: apiUrl + 'receitas/busca',
+		data: {
+			'id': id
+		}
+	}).done(function( data ) {
+		if (data.status === 'ok') {
+			var $line = elem.parents('.menu-create-table-line');
+
+			$line.find('.form-create-form-cal').val(data.results.calorias);
+			$line.find('.form-create-form-cost').val(data.results.custo);
+			$line.find('.form-create-form-nutritional').val(data.results.propriedades_nutricionais);
+			$line.find('.form-create-form-benefits').val(data.results.beneficios);
+		}
+	});
+}

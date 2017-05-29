@@ -186,27 +186,34 @@ class CardapiosController extends Controller {
 		return view('admin.cardapios.list', compact('menus', 'receita'));
 	}
 
+	private function populateMenuByDate ($data) {
+		$receitas = [];
+		foreach ($data as $key => $receita) {
+			if (!isset($receita->pivot->dia) || !isset($receita->pivot->refeicao_id)) continue;
+
+			$refeicao = array();
+			$refeicao[$receita->id] = $receita->titulo;
+			$refeicao = json_encode($refeicao, JSON_UNESCAPED_UNICODE);
+			$receita->receita_refeicao = $refeicao;
+
+			if (!isset($receitas[$receita->pivot->dia])) $receitas[$receita->pivot->dia] = [ 'valor_calorico_total' => 0, 'custo_total' => 0 ];
+
+			$receitas[$receita->pivot->dia][$receita->pivot->refeicao_id] = $receita;
+			if (isset($receita->calorias) && !empty($receita->calorias)) $receitas[$receita->pivot->dia]['valor_calorico_total'] += intval($receita->calorias);
+
+			if (isset($receita->custo) && !empty($receita->custo)) $receitas[$receita->pivot->dia]['custo_total'] += floatval($receita->custo);
+		}
+
+		return $receitas;
+	}
+
 	public function create (Request $request) {
 		if (!$request->input('id')) return;
 
-		$menu 	= Cardapios::find($request->input('id'));
+		$menu 		= Cardapios::find($request->input('id'));
 		$refeicoes 	= Refeicoes::all();
 		$diasSemana = Dias_semana::pluck('nome', 'id')->prepend('Dia da semana', '');
-		$receitas 	= [];
-
-		foreach ($menu->receitas as $key => $receita) {
-			if (isset($receita->pivot->dia) && $receita->pivot->refeicao_id) {
-			    $refeicao 	= array();
-				$refeicao[$receita->pivot->refeicao_id] = $receita->titulo;
-			    $refeicao 	= json_encode($refeicao, JSON_UNESCAPED_UNICODE);
-				$receita->receita_refeicao = $refeicao;
-
-				if (!isset($receitas[$receita->pivot->dia])) {
-					$receitas[$receita->pivot->dia] = [];
-				}
-				$receitas[$receita->pivot->dia][$receita->pivot->refeicao_id] = $receita;
-			}
-		}
+		$receitas 	= $this->populateMenuByDate($menu->receitas);
 
 		return view('admin.cardapios.create', compact('menu', 'refeicoes', 'receitas', 'diasSemana'));
 	}

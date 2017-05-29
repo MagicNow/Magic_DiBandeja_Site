@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use URL;
 use Auth;
 use Session;
-use Illuminate\Http\Request;
 use App\Models\Ingredientes;
 use App\Models\Caracteristicas;
 use App\Models\Grupos;
@@ -15,7 +14,6 @@ use App\Models\Ingredientes_caracteristicas;
 use App\Models\Ingredientes_grupos;
 use App\Models\Fornecedores_ingredientes;
 use App\Models\Ingredientes_relacionados;
-use App\Models\Ingredientes_historico_revisao;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
@@ -236,42 +234,6 @@ class IngredientesController extends Controller {
             return Redirect::route('admin.ingredientes.create')
                 ->withErrors($validator)
                 ->withInput();
-        }
-    }
-
-    public function dicionario (Request $request) {
-        $url = 'https://languagetool.org/api/v2/check';
-        $data = 'text=' . $request->input('text') . '&language=pt-BR&enabledRules=HUNSPELL_RULE&enabledOnly=true';
-
-        $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-        $output = curl_exec ($ch);
-        curl_close ($ch);
-
-        $output = json_decode($output);
-        if (!empty($output->matches)) {
-            $sugestoes = $output->matches[0]->replacements;
-            return response()->json(['palavra' => $sugestoes[0]->value]);
-        }
-    }
-
-    public function revisao (Request $request) {
-        $id = $request->input('id');
-        $status = $request->input('status');
-
-        $revisao = Ingredientes_historico_revisao::find($id);
-        if (!empty($revisao)) {
-            $revisao->status = intval($status);
-            $revisao->save();
-
-            $ingrediente = $revisao->ingrediente()->first();
-            $ingrediente->historico = $revisao->descricao;
-            $ingrediente->save();
         }
     }
 }

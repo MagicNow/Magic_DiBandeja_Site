@@ -7,7 +7,6 @@ use URL;
 use Auth;
 use Session;
 use Request;
-use App\Models\Fornecedores;
 use App\Models\Distribuidores;
 use Illuminate\Support\Facades\Input;
 use Validator;
@@ -135,14 +134,6 @@ class DistribuidoresController extends Controller {
 			die($return);
 		} else {
 			return $return;
-		}
-	}
-
-	public function getNota($fornecedorId = NULL, $id = NULL) {
-		$fornecedor = Fornecedores::find($fornecedorId);
-		$distribuidor = $fornecedor->distribuidores()->find($id);
-		if ($distribuidor) {
-			return response()->json(['nota' => $distribuidor->pivot->nota]);
 		}
 	}
 }
