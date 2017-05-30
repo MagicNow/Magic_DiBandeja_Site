@@ -48,7 +48,7 @@
 							<button class="menu-create-buttons menu-create-button-prev" data-page="{{ $i - 1 }}"><i class="fa fa-chevron-left" aria-hidden="true"></i> Dia {{ $i - 1 }}</button>
 						@endif
 						<table cellspacing="10" cellpadding="0" border="0" class="menu-create-table">
-							@foreach ($refeicoes as $refeicao)
+							@foreach ($refeicoes as $key => $refeicao)
 								<tr class="menu-create-table-line">
 									<td class="form-group">
 										<label class="menu-create-label">{{ $refeicao->nome }}</label>
@@ -59,19 +59,19 @@
 										</div>
 									</td>
 									<td class="form-group" valign="top">
-										<label class="menu-create-label">Valor calórico</label>
+										<label class="menu-create-label">@if ($key === 0) Valor calórico @else &nbsp; @endif</label>
 										<input type="text" name="receita[{{$i}}]['valor_calorico']" placeholder="Valor calórico" class="form-control form-create-form-cal" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
-										<label class="menu-create-label">Custo da receita</label>
+										<label class="menu-create-label">@if ($key === 0) Custo da receita @else &nbsp; @endif</label>
 										<input type="text" name="receita[{{$i}}]['custo']" placeholder="Custo da Receita" class="form-control form-create-form-cost" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
-										<label class="menu-create-label">Propriedades nutricionais</label>
+										<label class="menu-create-label">@if ($key === 0) Propriedades nutricionais @else &nbsp; @endif</label>
 										<input type="text" name="receita[{{$i}}]['propriedades_nutricionais']" placeholder="Propriedades Nutricionais" class="form-control form-create-form-nutritional" readonly="readonly">
 									</td>
 									<td class="form-group" valign="top">
-										<label class="menu-create-label">Benefícios</label>
+										<label class="menu-create-label">@if ($key === 0) Benefícios @else &nbsp; @endif</label>
 										<input type="text" name="receita[{{$i}}]['beneficios']" placeholder="Benefícios" class="form-control form-create-form-benefits" readonly="readonly">
 									</td>
 								</tr>

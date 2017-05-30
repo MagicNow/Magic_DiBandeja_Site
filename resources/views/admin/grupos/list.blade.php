@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Grupos site
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Grupos
 @endsection
 
 
@@ -14,35 +14,37 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.grupos.create") }}'>Cadastre um novo grupo aqui</a>">
 				<thead>
 					<tr>
+						<th width="60">Ações</th>
 						<th>Id</th>
 						<th>Grupo</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($grupos as $grupo)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.grupos.edit', $grupo->id) }}" class="btn btn-primary" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.grupos.destroy', $grupo->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" title="Excluir"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{{ $grupo->id }}</td>
 							<td>{{ $grupo->nome }}</td>
 							<td>{{ isset($grupo->created_at) && !empty($grupo->created_at) ? date('d/m/Y H:i:s', strtotime($grupo->created_at)) : NULL }}</td>
-							<td>
-								<a href="{{ route('admin.grupos.edit',$grupo->id) }}" class="btn btn-primary">Editar</a>
-								<a href="{{ route('admin.grupos.destroy',$grupo->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Grupo</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</tfoot>
 			</table>

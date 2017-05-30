@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Nova receita
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> {{ isset($receita->id) ? 'Editar' : ' Nova' }} receita
 @endsection
 
 

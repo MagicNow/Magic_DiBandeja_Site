@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Fontes
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Fontes
 @endsection
 
 
@@ -39,6 +39,7 @@
 						<th>Fonte</th>
 						<th>Receita</th>
 						<th>Data</th>
+						<th>Cardápios</th>
 					</tr>
 				</tfoot>
 			</table>

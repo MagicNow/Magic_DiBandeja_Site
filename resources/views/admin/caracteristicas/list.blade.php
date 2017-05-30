@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Caracteristicas site
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Caracteristicas
 @endsection
 
 
@@ -14,35 +14,37 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.caracteristicas.create") }}'>Cadastre uma nova característica aqui</a>">
 				<thead>
 					<tr>
+						<th width="60">Ações</th>
 						<th>Id</th>
 						<th>Caracteristica</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($caracteristicas as $carac)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.caracteristicas.edit', $carac->id) }}" class="btn btn-primary" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.caracteristicas.destroy', $carac->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" title="Excluir"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{!! $carac->id!!}</td>
 							<td>{!! $carac->descricao!!}</td>
 							<td>{!! date('d/m/Y H:i:s',strtotime($carac->created_at))!!}</td>
-							<td>
-								<a href="{{ route('admin.caracteristicas.edit',$carac->id) }}" class="btn btn-primary">Editar</a>
-								<a href="{{ route('admin.caracteristicas.destroy',$carac->id) }}" class="btn btn-primary" data-toggle="modal" data-target="#confirm-delete">Excluir</a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
 				<tfoot>
 					<tr>
+						<th>Ações</th>
 						<th>Id</th>
 						<th>Caracteristica</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</tfoot>
 			</table>

@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Receita
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Receita
 @endsection
 
 @section('main-content')

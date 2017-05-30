@@ -1,7 +1,7 @@
 @extends(app('request')->input('type') === 'modal' ? 'admin.modal' : 'admin.app')
 
 @section('contentheader_title')
-    Novo ingrediente
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> {{ isset($ingrediente->id) ? 'Editar' : ' Novo' }} ingrediente
 @endsection
 
 

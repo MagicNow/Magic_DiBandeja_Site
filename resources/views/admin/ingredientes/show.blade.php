@@ -1,7 +1,7 @@
 @extends(app('request')->input('type') === 'modal' ? 'admin.modal' : 'admin.app')
 
 @section('contentheader_title')
-    Novo ingrediente
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Novo ingrediente
 @endsection
 
 
@@ -85,13 +85,11 @@
         </div>
         <div class="form-group">
             <label for="">Histórico</label>
-            <p>{{ $ingrediente->historico }}</p>
+            <p>{!! $ingrediente->historico !!}</p>
         </div>
-
-        <div class="form-group form-providers">
-            <label for="fornecedores">Fornecedores</label>
-
-            @if (isset($ingrediente->fornecedores) && count($ingrediente->fornecedores) > 0)
+        @if (isset($ingrediente->fornecedores) && count($ingrediente->fornecedores) > 0)
+            <div class="form-group form-providers">
+                <label for="fornecedores">Fornecedores</label>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -110,16 +108,17 @@
                         </tbody>
                     </table>
                 </div>
-            @endif
-        </div>
+            </div>
+        @endif
+
         @if(isset($ingrediente->image))
             <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">
         @endif
 
         <div class="row">
             <div class="form-group col-md-12">
-                <a href="{{ route('admin.ingredientes') }}" class="btn btn-primary pull-left">Ir para a lista</button>
-                    <a href="{{ route('admin.ingredientes.edit', ['id' => $fornecedor->id]) }}" class="btn btn-danger pull-right">Voltar à edição</a>
+                <a href="{{ route('admin.ingredientes') }}" class="btn btn-primary pull-left">Ir para a lista</a>
+                <a href="{{ route('admin.ingredientes.edit', ['id' => $ingrediente->id]) }}" class="btn btn-danger pull-right">Voltar à edição</a>
             </div>
         </div>
     {!! Form::close() !!}

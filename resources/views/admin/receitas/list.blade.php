@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Receitas site
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Receitas
 @endsection
 
 
@@ -31,8 +31,8 @@
 						<tr>
 							<td>
 								<div class="table-actions">
-									<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-									<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
+									<a href="{{ route('admin.receitas.edit',$receita->id) }}" class="btn btn-primary" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.receitas.destroy',$receita->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" title="Excluir"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</td>
 							<td>{!! $receita->id!!}</td>

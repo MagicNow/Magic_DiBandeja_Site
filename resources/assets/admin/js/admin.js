@@ -20,7 +20,10 @@ $(function() {
 
 	$("textarea").each(function(){
 		// $('textarea').wysihtml5();
-		$(this).wysihtml5();
+		$(this).wysihtml5({
+			toolbar: "wysihtml5-editor-toolbar",
+			stylesheets: [],
+		});
 	});
 
 	$(".cliente-tipo").on("change", function(){
@@ -49,8 +52,8 @@ $(function() {
 		},
 
 		"lengthChange": false,
-		"searching": false,
-		"ordering": false,
+		"searching": true,
+		"ordering": true,
 		"info": true,
 		"autoWidth": false,
 		"order": [[ 0, "desc" ]]

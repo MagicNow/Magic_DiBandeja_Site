@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('contentheader_title')
-    Clientes
+    <a href="{{ url()->previous() }}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> Clientes
 @endsection
 
 
@@ -14,31 +14,39 @@
 			  {{ session('sucess') }}
 			</div>
       @endif
-		<div class="box-body">
+		<div class="box-body table-responsive">
 			<table id="datatables" class="table table-bordered table-striped" data-nomessage="<a href='{{ route("admin.clientes.create") }}'>Cadastre uma nova receita aqui</a>">
 				<thead>
 					<tr>
+						<th width="60">Ações</th>
 						<th>Id</th>
 						<th>Nome</th>
 						<th>Data</th>
-						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($clientes as $cliente)
 						<tr>
+							<td>
+								<div class="table-actions">
+									<a href="{{ route('admin.clientes.edit',$cliente->id) }}" class="btn btn-primary" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
+									<a href="{{ route('admin.clientes.destroy',$cliente->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" title="Excluir"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</td>
 							<td>{!! $cliente->id!!}</td>
 							<td>
                                   {{ $cliente->nome }}
                             </td>
 							<td>{!! isset($cliente->created_at) && !empty($cliente->created_at) ? date('d/m/Y H:i:s', strtotime($cliente->created_at)) : '' !!}</td>
-							<td>
-								<a href="{{ route('admin.clientes.edit',$cliente->id) }}" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="{{ route('admin.clientes.destroy',$cliente->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete"><i class="glyphicon glyphicon-remove"></i></a>
-							</td>
 						</tr>
 					@endforeach
 				</tbody>
+				<tfoot>
+					<th>Ações</th>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Data</th>
+				</tfoot>
 			</table>
 		</div><!-- /.box-body -->
 	</div><!-- /.box -->
