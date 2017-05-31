@@ -15,4 +15,8 @@ class Parceiros extends Model
         return static::pluck('nome', 'id');
     }
 
+    public function receitas()
+    { 
+        return $this->hasMany('App\Models\Receitas');
+    }
 }

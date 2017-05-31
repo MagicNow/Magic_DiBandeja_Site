@@ -13,7 +13,6 @@ use App\Models\Categorias;
 use App\Models\Parceiros;
 use App\Models\Receitas_categorias;
 use App\Models\Receitas_ingredientes;
-use App\Models\Receitas_parceiros;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use Redirect;
@@ -158,17 +157,14 @@ class ReceitasController extends Controller {
         if($id){
             $rules = array(
                 'titulo'        =>'required|unique:receitas,titulo,'.$id,
-                // 'preparo'       =>'required',
                 'calorias'      =>'required|integer',
                 'ingredientes'  =>'required',
                 'custo'         =>'required|regex:/^\d*(\.\d{1,2})?$/'
-
             );
             $msg = "Registro alterado com sucesso!";
         }else{
            $rules = array(
                 'titulo'      =>'required|unique:receitas,titulo',
-                // 'preparo'       =>'required',
                 'calorias'      =>'required|integer',
                 'ingredientes'  =>'required',
                 'custo'         =>'required|regex:/^\d*(\.\d{1,2})?$/'
@@ -199,16 +195,13 @@ class ReceitasController extends Controller {
             $receitas->dificuldade                  = $dados['dificuldade'];
             $receitas->calorias                     = $dados['calorias'];
             $receitas->custo                        = $dados['custo'];
-            $receitas->fontes_id                    = $dados['fontes_id'][0];
-            $receitas->parceiro                     = $dados['parceiro'];
+            $receitas->fontes_id                    = isset($dados['fontes_id']) && count($dados['fontes_id'] > 0) ? $dados['fontes_id'][0] : NULL;
+            $receitas->parceiros_id                  = isset($dados['parceiros_id']) && count($dados['parceiros_id'] > 0) ? $dados['parceiros_id'][0] : NULL;
 
             $receitas->ranking_dibandeja            = $dados['ranking_dibandeja'];
             $receitas->ranking_clientes             = $dados['ranking_clientes'];
             $receitas->ranking_parceiros            = $dados['ranking_parceiros'];
 
-            // $receitas->dificuldade          = $dados['dificuldade'];
-            // $receitas->sazonalidade_inicial         = date('Y/m/d', strtotime($dados['sazonalidade_inicial']));
-            // $receitas->sazonalidade_final           = date('Y/m/d', strtotime($dados['sazonalidade_final']));
             if (isset($dados['sazonalidade_inicial']) && !empty($dados['sazonalidade_inicial'])) {
                 $sazonalidade_inicial = explode('/', $dados['sazonalidade_inicial']);
                 if (count($sazonalidade_inicial) === 3) {
@@ -262,10 +255,9 @@ class ReceitasController extends Controller {
                     $ing->receita_id               = $receitas->id;
                     $ing->ingrediente_id           = $ingre;
                     $ing->save();
-
+                }
+                return Redirect::route('admin.receitas.show', ['id' => $receitas->id])->with('sucess', $msg);
             }
-            return Redirect::route('admin.receitas.show', ['id' => $receitas->id])->with('sucess', $msg);
-        }
 
         }else{
 

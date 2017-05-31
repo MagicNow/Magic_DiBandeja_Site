@@ -18,7 +18,12 @@ class ParceirosController extends Controller {
     }
 
     public function index() {
-        $parceiros = Parceiros::orderby('id', 'desc')->get();
+        $parceiros = Parceiros::orderby('id', 'desc')
+                            ->with(['receitas' => function ($query) {
+                                $query->orderBy('created_at', 'DESC');
+                            }])
+                            ->get();
+
         return view('admin.parceiros.list',compact('parceiros'));
     }
 

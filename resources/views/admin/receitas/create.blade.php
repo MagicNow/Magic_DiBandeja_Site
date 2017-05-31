@@ -6,7 +6,7 @@
 
 
 @section('main-content')
-    @if(isset($error) && count($errors) > 0)
+    @if(isset($errors) && count($errors) > 0)
       <div class="alert alert-danger">
            @foreach ($errors->all() as $error)
                 <p>{{ $error }}</p>
@@ -73,12 +73,12 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="">Número de Porções</label>
-                {!! Form::text('porcoes',isset($receita->porcoes) ? $receita->porcoes : '',array('class' => 'form-control','placeholder'=>'Número de Porções','id'=>'porcoes','autocomplete'=>'off') )!!}
+                {!! Form::text('porcoes', isset($receita->porcoes) ? $receita->porcoes : '',array('class' => 'form-control','placeholder'=>'Número de Porções','id'=>'porcoes','autocomplete'=>'off') )!!}
             </div>
 
             <div class="form-group col-md-4">
                 <label for="">Calorias</label>
-                {!! Form::text('calorias',isset($receita->calorias) ? $receita->calorias : '',array('class' => 'form-control','placeholder'=>'Calorias*','id'=>'calorias','autocomplete'=>'off') )!!}
+                {!! Form::text('calorias', isset($receita->calorias) ? $receita->calorias : '',array('class' => 'form-control','placeholder'=>'Calorias*','id'=>'calorias','autocomplete'=>'off') )!!}
             </div>
         </div>
 
@@ -110,10 +110,10 @@
                                     <input type="text" class="form-control" data-mt-filter-control/>
                                 </div>
                                 <div class="col-sm-2 col-xs-12">
-                                    {!! Form::input('text', 'ingredientes_quantidade[]', isset($ingrediente->pivot->quantidade) ? $ingrediente->pivot->quantidade : '', array('class' => 'form-control', 'placeholder'=>'Qtd', 'autocomplete'=>'off') )!!}
+                                    <input type="text" name="ingredientes_quantidade[]" value="{{ isset($ingrediente->pivot->quantidade) ? $ingrediente->pivot->quantidade : NULL }}" class="form-control" placeholder="Quantidade" autocomplete="off">
                                 </div>
                                 <div class="col-sm-2 col-xs-12">
-                                    {!! Form::select('ingredientes_medida[]', $unidades, isset($ingrediente->pivot->medida->id) ? $ingrediente->pivot->medida->id : '',array('class' => 'form-control')) !!}
+                                    {!! Form::select('ingredientes_medida[]', $unidades, isset($ingrediente->pivot->medida->id) ? $ingrediente->pivot->medida->id : NULL, array('class' => 'form-control')) !!}
                                 </div>
                                 <div class="col-sm-2 col-xs-12">
                                     @if ($key === 0)
@@ -184,12 +184,20 @@
                 </div>
                 <div class="col-sm-4 col-sx-12">
                     <label for="">Parceiro</label>
-                    {{-- {!! Form::text('parceiro',isset($receita->parceiro) ? $receita->parceiro : '',array('class' => 'form-control','placeholder'=>'Parceiro','id'=>'parceiro','autocomplete'=>'off') )!!} --}}
-                    <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/parceiros/list?type=modal" data-mt-max-tags="99" data-mt-tag-input-name="parceiros" data-mt-default-values="{{ isset($parceiros) ? $parceiros : '{}' }}">
-                        <div class="col-md-12 row">
-                            <input type="text" class="form-control form-receita-parceiros" data-mt-filter-control/>
+
+                    @if (isset($receita->parceiros_id))
+                        <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/parceiros/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="parceiros_id" data-mt-default-values='{"{{ $receita->parceiros_id }}":"{{ isset($receita->parceiros->nome) ? $receita->parceiros->nome : '' }}"}'>
+                            <div class="col-md-12 row">
+                                <input type="text" class="form-control form-receita-parceiros" data-mt-filter-control/>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/receitas/parceiros/list?type=modal" data-mt-max-tags="1" data-mt-tag-input-name="parceiros_id">
+                            <div class="col-md-12 row">
+                                <input type="text" class="form-control form-receita-parceiros" data-mt-filter-control/>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
