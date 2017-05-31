@@ -86,5 +86,13 @@ class ParceirosController extends Controller {
         }
     }
 
+    public function show ($id) {
+        $parceiro = Parceiros::where('id', $id)
+                            ->with(['receitas' => function ($query) {
+                                $query->orderBy('created_at', 'DESC');
+                            }, 'receitas.cardapios'])
+                            ->first();
 
+        return view('admin.parceiros.show', compact('parceiro'));
+    }
 }

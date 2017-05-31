@@ -28,7 +28,7 @@
 				<tbody>
 					@foreach($parceiros as $parceiro)
 						<tr>
-							<td>{{ $parceiro->nome }}</td>
+							<td><a href="{{ route('admin.parceiros.show', $parceiro->id) }}">{{ $parceiro->nome }}</a></td>
 							<td>{{ isset($parceiro->receitas) && isset($parceiro->receitas->first()->created_at) ? date('d/m/Y', strtotime($parceiro->receitas->first()->created_at)) : '' }}</td>
                             <td>{{ isset($parceiro->receitas) ? $parceiro->receitas->count() : 0 }}</td>
 						</tr>

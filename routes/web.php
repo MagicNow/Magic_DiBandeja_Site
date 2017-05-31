@@ -112,4 +112,5 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('parceiros/list', ['as' =>'admin.parceiros.list','uses' => 'Admin\ParceirosController@listItems']);
 	Route::get('parceiros/edit/{id}', ['as' =>'admin.parceiros.edit','uses' => 'Admin\ParceirosController@edit']);
 	Route::get('parceiros/destroy/{id?}', ['as' =>'admin.parceiros.destroy','uses' => 'Admin\ParceirosController@destroy']);
+	Route::get('parceiro/{id}', ['as' =>'admin.parceiros.show','uses' => 'Admin\ParceirosController@show']);
 });

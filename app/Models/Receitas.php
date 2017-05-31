@@ -43,4 +43,9 @@ class Receitas extends Model {
     {
         return $this->belongsTo('App\Models\Parceiros');
     }
+
+    public function cardapios()
+    { 
+        return $this->belongsToMany('App\Models\Cardapios', 'receita_cardapios', 'receita_id', 'cardapio_id');
+    }
 }
