@@ -31,7 +31,7 @@
         <div class="row">
             <div class="form-group form-group-select col-md-12">
                 <label>Caracteristicas</label>
-                <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas[]" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
+                <div class="col-md-12 row component-mt-select" data-mt-request-url="/admin/caracteristicas/list" data-mt-max-tags="99" data-mt-tag-input-name="caracteristicas" data-mt-default-values="{{ isset($caracteristicas_ingredientes) ? $caracteristicas_ingredientes : '{}' }}">
                     <div class="col-md-12 row">
                         <input type="text" class="form-control form-ingredientes-caracteristicas" data-mt-filter-control/>
                     </div>
@@ -39,9 +39,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group form-group-select col-md-12">
+            <div class="form-group form-group-select col-md-12 ingredients-groups">
                 <label>Grupos</label>
-                <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos[]" data-mt-default-values="{{ isset($grupos_ingredientes) ? $grupos_ingredientes : '{}' }}">
+                <div class="col-sm-12 row component-mt-select" data-mt-request-url="/admin/grupos/list" data-mt-max-tags="99" data-mt-tag-input-name="grupos" data-mt-default-values="{{ isset($grupos_ingredientes) ? $grupos_ingredientes : '{}' }}">
                     <div class="col-md-12 row">
                         <input type="text" class="form-control" data-mt-filter-control/>
                     </div>
@@ -114,9 +114,9 @@
             @if (isset($fornecedores_ingredientes) && count($fornecedores_ingredientes) > 0)
                 @foreach ($fornecedores_ingredientes as $key => $fornecedor)
                     <div class="row fornecedores-linha">
-                        <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
+                        <div class="col-md-5 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores" data-mt-default-values='{"{{ $fornecedor->id }}":"{{ $fornecedor->nome }}"}'>
                             <div class="col-md-12 row">
-                                <input type="text" class="form-control" data-mt-filter-control/>
+                                <input type="text" class="form-control supliers-name" data-mt-filter-control/>
                             </div>
                         </div>
                         <label for="fornecedores-custo" class="col-md-7 col-sm-12 col-xs-12">
@@ -142,9 +142,9 @@
                 @endforeach
             @else
                 <div class="row fornecedores-linha">
-                    <div class="col-md-4 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores[]">
+                    <div class="col-md-4 col-sm-12 component-mt-select" data-mt-request-url="/admin/fornecedores/list" data-mt-max-tags="1" data-mt-tag-input-name="fornecedores">
                         <div class="col-md-12 row">
-                            <input type="text" class="form-control" data-mt-filter-control />
+                            <input type="text" class="form-control supliers-name" data-mt-filter-control />
                         </div>
                     </div>
                     <label for="fornecedores-custo" class="col-md-8 col-sm-12 col-xs-12">
@@ -163,12 +163,16 @@
                 </div>
             @endif
         </div>
+        <div class="form-group">
+            <button type="button" class="ingredients-suppliers btn btn-default">Sugerir fornecedores</button>
+        </div>
+
         @if(isset($ingrediente->image))
             <img width="100" src="{!!asset('upload/ingredientes').'/'.$ingrediente->image !!}">
         @endif
         <div class="form-group">
              <div class="fileinput fileinput-new" data-provides="fileinput">
-                <span class="btn btn-default btn-file"><span>Image</span>{!! Form::file('image')!!}</span>
+                <span class="btn btn-default btn-file"><span>Imagem</span>{!! Form::file('image')!!}</span>
                 <span class="fileinput-filename"></span><span class="fileinput-new">nenhum arquivo</span>
             </div>
         </div>

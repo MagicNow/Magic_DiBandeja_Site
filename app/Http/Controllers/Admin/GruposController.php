@@ -108,7 +108,4 @@ class GruposController extends Controller {
 			}
 		}
 	}
-   
-
-	
 }

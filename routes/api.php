@@ -15,5 +15,6 @@ use Illuminate\Http\Request;
 
 Route::post('dicionario', ['as' => 'dicionario.store', 'uses' => 'Admin\ApiController@dictionary']);
 Route::post('ingredientes/revisao', ['as' => 'ingredientes.revisao', 'uses' => 'Admin\ApiController@ingredientsReview']);
+Route::get('ingredientes/fornecedores', ['as' => 'ingredientes.fornecedores', 'uses' => 'Admin\ApiController@getSuppliersByGroup']);
 Route::get('distribuidores/nota/{fornecedorId}/{id}', ['as' => 'distribuidores.nota', 'uses' => 'Admin\ApiController@getDistributorsNote']);
 Route::post('receitas/busca', ['as' =>'admin.receitas.find','uses' => 'Admin\ApiController@findRecipe']);

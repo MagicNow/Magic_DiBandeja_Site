@@ -237,45 +237,7 @@ $(function() {
 
 	$('.fornecedores-remover').on('click', removeSelect);
 
-	$('.fornecedores-acrescentar').on('click', function () {
-		var $line,
-			$clone,
-			$button,
-			html;
-
-		$self = $(this);
-		$line = $self.parents('.fornecedores-linha');
-		$clone = $line.clone();
-
-		$clone.find('input, select').val('');
-		// $clone.find('.select2-container').remove();
-		$clone.find('select option').remove();
-		$clone.find('.mt-tag-element').remove();
-		$clone.find('.mt-tag-container').remove();
-		$clone.find('.component-mt-select').removeClass('dispatched');
-		$clone.find('.component-mt-select').removeAttr('data-mt-default-values');
-		$clone.find('input[type="hidden"]').remove();
-		$clone.find('.form-control').removeAttr('style');
-		$clone.find('input').removeAttr('value');
-
-		$button = $clone.find('.fornecedores-acrescentar');
-
-		$button.removeClass('fornecedores-acrescentar')
-				.addClass('fornecedores-remover');
-
-		$button.children()
-				.removeClass('glyphicon-plus-sign')
-				.addClass('glyphicon-minus-sign');
-
-		html = '<div class="row fornecedores-linha">' + $clone.html() + '</div>';
-
-		$('.form-providers')
-			.append(html)
-			.find('.fornecedores-remover')
-			.one('click', removeSelect);
-
-		changeSelect();
-	});
+	$('.fornecedores-acrescentar').on('click', cloneSupliersField);
 
 	$('.ingredientes-remover').on('click', removeSelectIngredientes);
 
@@ -352,7 +314,76 @@ $(function() {
 			$('#historico').data("wysihtml5").editor.setValue($item.find('.ingredientes-revisoes-original-text').html());
 		});
 	});
+
+	$('.ingredients-suppliers').on('click', function (e) {
+		var supliers = $('.fornecedores-linha input').serialize(),
+			groups = $('.ingredients-groups input').serialize();
+
+		$.ajax({
+			method: 'GET',
+			url: apiUrl + 'ingredientes/fornecedores',
+			data: {
+				'supliers': supliers,
+				'groups': groups
+			}
+		}).done(function( data ) {
+			var results = data.results,
+				$targetInput;
+
+			$.each(results, function(index, suplier) {
+				setTimeout(function () {
+					cloneSupliersField($('.fornecedores-acrescentar')[0]);
+
+					$targetInput = $('.supliers-name').last();
+					$targetInput.val(suplier.name);
+
+					$targetInput.trigger('keyup')
+					clickOnMtSelectOption(suplier.id);
+				}, 1000 * index)
+			});
+		});
+	});
 });
+
+function cloneSupliersField(e) {
+	var $line,
+		$clone,
+		$button,
+		html;
+
+	$self = $(e.currentTarget ? e.currentTarget : e);
+	$line = $self.parents('.fornecedores-linha');
+	$clone = $line.clone();
+
+	$clone.find('input, select').val('');
+	// $clone.find('.select2-container').remove();
+	$clone.find('select option').remove();
+	$clone.find('.mt-tag-element').remove();
+	$clone.find('.mt-tag-container').remove();
+	$clone.find('.component-mt-select').removeClass('dispatched');
+	$clone.find('.component-mt-select').removeAttr('data-mt-default-values');
+	$clone.find('input[type="hidden"]').remove();
+	$clone.find('.form-control').removeAttr('style');
+	$clone.find('input').removeAttr('value');
+
+	$button = $clone.find('.fornecedores-acrescentar');
+
+	$button.removeClass('fornecedores-acrescentar')
+			.addClass('fornecedores-remover');
+
+	$button.children()
+			.removeClass('glyphicon-plus-sign')
+			.addClass('glyphicon-minus-sign');
+
+	html = '<div class="row fornecedores-linha">' + $clone.html() + '</div>';
+
+	$('.form-providers')
+		.append(html)
+		.find('.fornecedores-remover')
+		.one('click', removeSelect);
+
+	changeSelect();
+}
 
 function findWord (number, $indredientsInp, $indredientsTxt, $ingredientsArr, $form) {
 	var $form = $('.ingredients-form');
